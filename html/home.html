@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRAROZ™ | HOME</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="css/project1.css">
+    <link rel="stylesheet" type="text/css" href="css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/download.jpg">
+    
+    <!-- FontAwesome Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <!-- Background -->
+    <div class="background"></div>
+
+    <!-- Optimized Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <img id="nav-logo" src="images/logo.png" alt="PraRoz™ Logo">
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <!-- Links will be inserted dynamically -->
+        </ul>
+
+        <!-- Hamburger Menu Button -->
+        <button class="menu-btn" id="menuBtn">
+            <div></div>
+            <div></div>
+            <div></div>
+        </button>
+        <aside class="sidebar" id="sidebar"> <!-- Sidebar should only appear once -->
+            <div class="logo">
+                <img id="nav-logo" src="images/logo.png" alt="PraRoz™ Logo">
+            </div>
+            <p><a href="#">WATCH VIDEO</a></p>
+            <p><a href="#">BASIC SKILLS</a></p>
+            <p><a href="#">LEARN MORE</a></p>
+            <p><a href="submission.html">SUBMIT YOUR RECIPE</a></p>
+        </aside>
+    </nav>
+
+    <!-- Main Content Container -->
+    <div class="main-container">
+        <div class="content-container">
+            <div id="content"></div>
+        </div>
+    </div>
+
+    <div id="popupContainer">
+        <div id="g-recaptcha" class="g-recaptcha" data-sitekey="6LcU5_wqAAAAAN2OhinShvAfOcNAZRzBduC8kqbY"></div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer id="dynamic-footer">
+        <!--footer content will be loaded dynamically here -->
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="js/project.js"></script>
+    <script src="js/popup.js"></script>
+
+</body>
+</html>
