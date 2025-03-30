@@ -11,11 +11,12 @@ const streamifier = require('streamifier'); // Used for streaming file uploads
 const app = express();
 app.use(express.json());
 app.use(cors({
-    origin: ["https://praroz.onrender.com", "http://localhost:3000"], // Add both your live and local frontend URLs
+    origin: ["https://praroz-50094.web.app", "http://localhost:3000"], // Allow frontend domains
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true
 }));
 app.use(express.urlencoded({ extended: true }));
+
 
 // Cloudinary Configuration (replace with your credentials)
 cloudinary.config({
