@@ -11,10 +11,6 @@
         "source": "/",
         "destination": "/home.html"
       }
-    ],
-    "predeploy": [
-      "cmd /c minify_css.bat",
-      "cmd /c minify_js.bat"
     ]
   }
 }
