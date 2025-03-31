@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
+    <search-bar></search-bar>
     <h1>Recipe Approval Panel</h1>
     <button id="viewApproved" onclick="fetchApprovedRecipes()">View Approved Recipes</button>
     <button id="backToApproval" style="display: none;" onclick="fetchUnapprovedRecipes()">Back to Approval Page</button>
@@ -16,6 +17,7 @@
     </div>
 
     <script src="js/config.js"></script>
+    <script src="js/searchBar.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", authenticateAdmin);
 
@@ -73,41 +75,59 @@
         }
 
         async function fetchApprovedRecipes() {
-            try {
-                const response = await fetch(`${window.API_BASE_URL}/approved-recipes`);
-                const recipes = await response.json();
-                const recipeList = document.getElementById("recipe-list");
+    try {
+        const response = await fetch(`${window.API_BASE_URL}/approved-recipes`);
+        const recipes = await response.json();
+        const recipeList = document.getElementById("recipe-list");
 
-                document.getElementById("viewApproved").style.display = "none";
-                document.getElementById("backToApproval").style.display = "inline-block";
+        document.getElementById("viewApproved").style.display = "none";
+        document.getElementById("backToApproval").style.display = "inline-block";
 
-                recipeList.innerHTML = recipes.length === 0 ? "<p>No approved recipes found.</p>" : "";
+        recipeList.innerHTML = recipes.length === 0 ? "<p>No approved recipes found.</p>" : "";
 
-                recipes.forEach((recipe, index) => {
-                    let instructions = Array.isArray(recipe.instructions) 
-                        ? recipe.instructions 
-                        : recipe.instructions 
-                            ? [recipe.instructions] 
-                            : [];
-
-                    recipeList.innerHTML += `
-                        <div class="recipe-item">
-                            <h3>${recipe.name}</h3>
-                            <img src="${recipe.image || 'placeholder.jpg'}" width="100" onerror="this.onerror=null;this.src='placeholder.jpg';">
-                            <p><strong>Description:</strong> ${recipe.description || "No description available"}</p>
-                            <p><strong>Ingredients:</strong> ${Array.isArray(recipe.ingredients) ? recipe.ingredients.join(", ") : (recipe.ingredients || "Not provided")}</p>
-                            <p><strong>Instructions:</strong> ${instructions.length > 0 ? instructions.join("<br>") : "Not provided"}</p>
-                            <p><strong>Time Required:</strong> ${recipe.time || "Not specified"}</p>
-                            <p><strong>Servings:</strong> ${recipe.servings || "Not specified"}</p>
-                            <button onclick="deleteRecipe('${recipe.category}', '${recipe.name}', 'approved')">Delete</button>
-                            <button onclick="disapproveRecipe('${recipe.category}-${index}')">Disapprove</button>
-                        </div>
-                    `;
-                });
-            } catch (error) {
-                alert("Error fetching approved recipes. Please try again later.");
+        // Group recipes by category
+        const recipesByCategory = {};
+        recipes.forEach(recipe => {
+            if (!recipe.category) {
+                recipe.category = "Uncategorized"; // Handle recipes without categories
             }
+            if (!recipesByCategory[recipe.category]) {
+                recipesByCategory[recipe.category] = [];
+            }
+            recipesByCategory[recipe.category].push(recipe);
+        });
+
+        // Display recipes by category
+        for (const category in recipesByCategory) {
+            recipeList.innerHTML += `<h2>${category}</h2>`;
+
+            recipesByCategory[category].forEach((recipe, index) => {
+                let instructions = Array.isArray(recipe.instructions)
+                    ? recipe.instructions
+                    : recipe.instructions
+                        ? [recipe.instructions]
+                        : [];
+
+                recipeList.innerHTML += `
+                    <div class="recipe-item">
+                        <h3>${recipe.name}</h3>
+                        <img src="${recipe.image || 'placeholder.jpg'}" width="100" onerror="this.onerror=null;this.src='placeholder.jpg';">
+                        <p><strong>Description:</strong> ${recipe.description || "No description available"}</p>
+                        <p><strong>Ingredients:</strong> ${Array.isArray(recipe.ingredients) ? recipe.ingredients.join(", ") : (recipe.ingredients || "Not provided")}</p>
+                        <p><strong>Instructions:</strong> ${instructions.length > 0 ? instructions.join("<br>") : "Not provided"}</p>
+                        <p><strong>Time Required:</strong> ${recipe.time || "Not specified"}</p>
+                        <p><strong>Servings:</strong> ${recipe.servings || "Not specified"}</p>
+                        <button onclick="deleteRecipe('${recipe.category}', '${recipe.name}', 'approved')">Delete</button>
+                        <button onclick="disapproveRecipe('${recipe.category}-${index}')">Disapprove</button>
+                    </div>
+                `;
+            });
         }
+    } catch (error) {
+        alert("Error fetching approved recipes. Please try again later.");
+    }
+}
+
 
         async function approveRecipe(id) {
             try {

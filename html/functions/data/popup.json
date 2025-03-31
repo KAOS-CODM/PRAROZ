@@ -1,0 +1,13 @@
+{
+    "popupForm":{
+        "title": "Subscribe",
+        "message": "Get the latest recipes and updates delivered right to your inbox!",
+        "fields": [
+            {"label":"Email", "type":"email", "id":"email","name":"email", "required": true}
+        ],
+        "submitText": "Submit",
+        "formspreeid": "xgvakeor",
+        "recaptchaSiteKey":"6LcU5_wqAAAAAN2OhinShvAfOcNAZRzBduC8kqbY",
+        "g-recaptcha-response":"Thanks for subscribing"
+    }
+}

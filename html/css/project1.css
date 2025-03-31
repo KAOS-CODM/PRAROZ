@@ -207,7 +207,7 @@ body {
     right: 20px;
     z-index: 1005;
     cursor: pointer;
-    background: #ccc;
+    background: #050505;
     border: none;
     outline: none;
 }
@@ -238,7 +238,7 @@ body {
     top: 0px;
     right: -100vw;
     width: 100vw;
-    height: 100;
+    height: 300%;
     background-color: black;
     opacity: 95%;
     padding-top: 100px;
@@ -613,22 +613,13 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin-top: 15px; /* Adjust for spacing */
+    margin-top: 15px; /* Adjust spacing */
     position: relative;
 }
 
-
-#g-recaptcha {
-    transform: scale(0.85); /* Adjust size */
-    transform-origin: 0 0;
-    width: 100%;
-    max-width: 300px;
-    margin: auto;
-}
-
-
+/* Adjusting the size of the reCAPTCHA box */
 .g-recaptcha {
-    transform: scale(1);
+    transform: scale(0.85); /* Reduce size */
     transform-origin: center;
 }
 
@@ -861,8 +852,7 @@ button:hover {
     }
 
     .g-recaptcha {
-        transform: scale(0.9); /* Slightly smaller for tablets */
-        transform-origin: center;
+        transform: scale(0.75); /* Smaller scale for mobile */
     }
 }
 

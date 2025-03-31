@@ -227,6 +227,12 @@ document.addEventListener("DOMContentLoaded", function () {
     // Toggle Sidebar When Clicking the Menu Button
     menuBtn.addEventListener("click", function (event) {
         sidebar.classList.toggle("open");
+
+        if (sidebar.classList.contains("open")) {
+            menuBtn.textContent = "X"; // Change to 'X' when open
+        } else {
+            menuBtn.textContent = "☰"; // Change back to menu icon
+        }
         event.stopPropagation(); // Prevents click from propagating
     });
 
@@ -234,6 +240,10 @@ document.addEventListener("DOMContentLoaded", function () {
     document.addEventListener("click", function (event) {
         if (!sidebar.contains(event.target) && !menuBtn.contains(event.target)) {
             sidebar.classList.remove("open");
+        }
+
+        if (!sidebar.classList.contains("open")) {
+            menuBtn.textContent = "☰"; // Change back to menu icon
         }
     });
 
