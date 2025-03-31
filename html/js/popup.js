@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 .then(response => response.json())
                 .then(data => {
                     if (data.ok) {
-                        alert("Form Submitted Successfully!");
+                        alert("Thanks for subscribing!!!");
                         popup.style.display = "none";
                         form.reset();
                         grecaptcha.reset();
