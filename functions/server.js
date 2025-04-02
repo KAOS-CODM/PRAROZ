@@ -1,5 +1,4 @@
 require('dotenv').config();
-console.log("Admin Password from .env:", process.env.ADMIN_PASSWORD); // Debugging
 const express = require('express');
 const fs = require('fs');
 const multer = require('multer');
@@ -34,7 +33,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
 // File paths
-const DATA_FOLDER = path.join(__dirname, '../html/data');
+const DATA_FOLDER = path.join(__dirname, 'data');  // New path (if moved inside /functions)
 const FILES = {
     submissions: path.join(DATA_FOLDER, 'submission.json'),
     recipes: path.join(DATA_FOLDER, 'recipes.json'),
@@ -53,15 +52,37 @@ app.get('/admin.html', (req, res) => {
 
 // Fetch all data
 app.get('/api/data/:file', (req, res) => {
-    const { file } = req.params;
-    if (!FILES[file]) return res.status(400).json({ message: "Invalid file request" });
 
-    try {
-        res.json(readJSON(FILES[file]));
-    } catch (error) {
-        res.status(500).json({ message: "Error reading file." });
+    // Allow requests from localhost without API key (for testing purposes)
+    if (req.get('host') === 'localhost:3000') {
+        const { file } = req.params;
+        if (!FILES[file]) return res.status(400).json({ message: "Invalid file request" });
+
+        try {
+            res.json(readJSON(FILES[file]));
+        } catch (error) {
+            res.status(500).json({ message: "Error reading file." });
+        }
+    } else {
+        // Require API key for non-local requests
+        const apiKey = req.headers['x-api-key'];
+        if (apiKey !== process.env.API_KEY) {
+            return res.status(403).json({ message: 'Unauthorized access' });
+        }
+
+        const { file } = req.params;
+        if (!FILES[file]) return res.status(400).json({ message: "Invalid file request" });
+
+        try {
+            res.json(readJSON(FILES[file]));
+        } catch (error) {
+            res.status(500).json({ message: "Error reading file." });
+        }
     }
 });
+
+
+
 
 // Multer setup for handling file uploads in memory (for Cloudinary)
 const storage = multer.memoryStorage();
@@ -70,9 +91,6 @@ const upload = multer({ storage: storage });
 // Submit a new recipe with Cloudinary image upload
 app.post('/submit-recipe', upload.single('image'), async (req, res) => {
     try {
-        console.log("Request body:", req.body);
-        console.log("Request file:", req.file);
-
         if (!req.body || !req.file) {
             return res.status(400).json({ message: "Missing data or image." });
         }
@@ -89,9 +107,6 @@ app.post('/submit-recipe', upload.single('image'), async (req, res) => {
             extraContent: { prepTime, cookTime, servings, chefTips }
         };
 
-        // Log the recipe data
-        console.log("New Recipe Data:", newRecipe);
-
         let submissionData = readJSON(FILES.submissions);
         submissionData[category] = submissionData[category] || [];
         submissionData[category].push(newRecipe);
@@ -99,7 +114,6 @@ app.post('/submit-recipe', upload.single('image'), async (req, res) => {
 
         res.json({ message: "Recipe submitted successfully!" });
     } catch (error) {
-        console.error("Error submitting recipe:", error);
         res.status(500).json({ message: "Internal Server Error" });
     }
 });
@@ -108,7 +122,6 @@ app.post('/submit-recipe', upload.single('image'), async (req, res) => {
 app.post('/approve-recipe', (req, res) => {
     try {
         const { id } = req.body;
-        console.log("ID received for approval:", id);  // Debug log
 
         if (!id || !id.includes('-')) return res.status(400).json({ message: "Invalid recipe ID!" });
 
@@ -120,23 +133,14 @@ app.post('/approve-recipe', (req, res) => {
         const submissionData = readJSON(FILES.submissions);
         const recipeData = readJSON(FILES.recipes);
 
-        // Log data for debugging
-        console.log("Submission Data:", submissionData);
-        console.log("Recipe Data:", recipeData);
-
         if (!submissionData[category] || !submissionData[category][index]) {
             return res.status(404).json({ message: "Recipe not found!" });
         }
 
         let approvedRecipe = submissionData[category].splice(index, 1)[0];
-        console.log("Approved Recipe:", approvedRecipe);  // Debug log
 
         if (!recipeData[category]) recipeData[category] = [];
         recipeData[category].push(approvedRecipe);
-
-        // Log the updated data
-        console.log("Updated Submission Data:", submissionData);
-        console.log("Updated Recipe Data:", recipeData);
 
         // Write to files
         writeJSON(FILES.submissions, submissionData);
@@ -144,7 +148,6 @@ app.post('/approve-recipe', (req, res) => {
 
         res.json({ message: "Recipe approved successfully!" });
     } catch (error) {
-        console.error("Error approving recipe:", error);
         res.status(500).json({ message: "Internal Server Error" });
     }
 });
@@ -163,7 +166,6 @@ app.get('/approved-recipes', (req, res) => {
 
         res.json(allApproved);
     } catch (error) {
-        console.error("Error fetching approved recipes:", error);
         res.status(500).json({ message: "Internal Server Error" });
     }
 });
@@ -213,7 +215,6 @@ app.post('/disapprove-recipe', (req, res) => {
 
         res.json({ message: "Recipe disapproved successfully!" });
     } catch (error) {
-        console.error("Error disapproving recipe:", error);
         res.status(500).json({ message: "Internal Server Error" });
     }
 });
@@ -221,7 +222,6 @@ app.post('/disapprove-recipe', (req, res) => {
 // Delete a recipe
 app.post('/delete-recipe', (req, res) => {
     try {
-        console.log("Received delete request:", req.body); // Debugging
 
         const { category, name, type } = req.body;
 
@@ -240,7 +240,6 @@ app.post('/delete-recipe', (req, res) => {
         // Find the recipe index by name
         const recipeIndex = recipeData[category].findIndex(recipe => recipe.name.toLowerCase() === name.toLowerCase());
         if (recipeIndex === -1) {
-            console.log("Recipe not found. Available recipes:", recipeData[category]);
             return res.status(404).json({ message: "Recipe not found!" });
         }
 
@@ -249,18 +248,14 @@ app.post('/delete-recipe', (req, res) => {
 
         // Save updated data
         writeJSON(fileToCheck, recipeData);
-        console.log("Updated file after deletion:", recipeData);
 
         res.json({ message: `Recipe '${deletedRecipe[0].name}' deleted successfully!` });
     } catch (error) {
-        console.error("Error deleting recipe:", error);
         res.status(500).json({ message: "Internal Server Error" });
     }
 });
 
 app.post('/validate-admin', (req, res) => {
-    console.log("Received password:", req.body.password);
-    console.log("Expected password:", process.env.ADMIN_PASSWORD);
 
     if (req.body.password === process.env.ADMIN_PASSWORD) {
         return res.json({ valid: true });

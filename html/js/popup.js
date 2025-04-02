@@ -1,7 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
     const popupContainer = document.getElementById("popupContainer");
 
-    fetch(`${window.API_BASE_URL}/api/data/popup`)
+    fetch(`${window.API_BASE_URL}/api/data/popup`, {
+        headers: {
+            "x-api-key": "yemite01",
+        }
+    })
         .then(response => response.json())
         .then(data => {
             const popupData = data.popupForm;

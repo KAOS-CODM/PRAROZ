@@ -3,25 +3,17 @@ document.addEventListener("DOMContentLoaded", function () {
     const page = window.location.pathname.split('/').pop().replace('.html', '');
     console.log("Detected page:", page);
 
-    fetch(`${window.API_BASE_URL}/api/data/recipes`) // Adjust path if needed
+    fetch(`${window.API_BASE_URL}/api/data/recipes`, {
+        headers: {
+            "x-api-key": "yemite01",
+        }
+    }) // Adjust path if needed
     .then(response => response.json())
     .then(data => {
         console.log("Fetched data:", data);
         const recipes = data[page]; // Get all recipes for the current category
         console.log("Recipes for this page:", recipes);
-        const recipeContainer = document.getElementById('recipe-container');
-        //function getImagePath(imageName) {
-           // if (!imageName) return "http://localhost:3000/uploads/default.jpg"; // Fallback image
-        
-            // If the image is from uploads (uploaded dynamically)
-           // if (imageName.startsWith("/uploads/")) {
-           //     return `http://localhost:3000${imageName}`;
-            //}
-        
-            // Otherwise, assume it's from the "images" folder inside backend
-            //return `http://localhost:3000/images/${imageName}`;
-        //} 
-    
+        const recipeContainer = document.getElementById('recipe-container');    
 
         if (recipes) {
             recipeContainer.innerHTML = recipes.map(recipe => {
@@ -61,7 +53,11 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch(error => console.error("Error fetching recipes:", error));
 
-    fetch(`${window.API_BASE_URL}/api/data/contents`) // Adjust path if needed
+    fetch(`${window.API_BASE_URL}/api/data/contents`, {
+        headers: {
+            "x-api-key": "yemite01",
+        }
+    }) // Adjust path if needed
     .then(response =>{
         console.log("fetching content");
         return response.json();
@@ -104,7 +100,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let currentPage = window.location.pathname.split('/').pop().split('?')[0].split('#')[0];
 
-        fetch(`${window.API_BASE_URL}/api/data/contents`)
+        fetch(`${window.API_BASE_URL}/api/data/contents`, {
+            headers: {
+                "x-api-key": "yemite01",
+            }
+        })
         .then(response => response.json())
         .then(data => {
             console.log("📂 Navbar Data:", data.navbar);
@@ -149,7 +149,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Fetch recipe data from recipes.json
-    fetch(`${window.API_BASE_URL}/api/data/recipes`)
+    fetch(`${window.API_BASE_URL}/api/data/recipes`, {
+        headers: {
+            "x-api-key": "yemite01",
+        }
+    })
     .then(response => response.json())
     .then(data => {
         console.log("📂 Fetched Data:", data);

@@ -1,5 +1,9 @@
 document.addEventListener('DOMContentLoaded', async function() {
-    const response = await fetch(`${window.API_BASE_URL}/recipes`);
+    const response = await fetch(`${window.API_BASE_URL}/api/data/recipes`, {
+        headers: {
+            "x-api-key": "yemite01",
+        }
+    });
     const recipes = await response.json();
     const recipeContainer = document.getElementById('recipe-container');
 
