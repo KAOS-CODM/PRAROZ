@@ -34,13 +34,13 @@ document.addEventListener("DOMContentLoaded", function () {
                         <div class="recipe-card">
                             <img class="recipe-image" src="${imageUrl}"  width="100" onerror="this.onerror=null;this.src='placeholder.jpg' ">
                             <h2 class="recipe-title">${recipe.name}</h2>
-                            <p class="recipe-description">${recipe.description || "A delicious recipe!"}</p>
+                            <p class="recipe-description"><strong>Description:</strong>${recipe.description || "A delicious recipe!"}</p>
                             <div class="recipe-ingredients">
                                 <h3>Ingredients</h3>
                                 <ul>${ingredientsArray.map(i => `<li>${i}</li>`).join('')}</ul>
                             </div>
                             <div class="recipe-instructions">
-                                <strong>Quick Steps:</strong> ${recipe.shortInstructions || "Click to view full recipe!"}
+                                <strong>Steps:</strong>"Click to view full recipe!"
                             </div>
                         </div>
                     </a>

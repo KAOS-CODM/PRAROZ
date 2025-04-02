@@ -2,9 +2,8 @@
     "dessert": [
         {
             "name": "Classic Tiramisu",
-            "image": "images/classic-tiramisu.jpg",
+            "image": "images/desserts/classic-tiramisu.jpg",
             "description": "Coming soon!!!",
-            "shortInstructions": "Coming soon!!!",
             "instructions": "HOW TO PREPARE<p>&star; Whisk egg yolks and sugar until creamy.</p><p>&star; Add mascarpone and vanilla extract, mix well.</p><p>&star; Dip ladyfingers in coffee and layer them in a dish.</p><p>&star; Chill for 4 hours and dust with cocoa before serving.</p>",
             "ingredients": [
                 "250g mascarpone",
@@ -23,16 +22,15 @@
                     "calories": "",
                     "protein": "",
                     "carbs": "",
-                    "fat": "g"
+                    "fat": ""
                 },
                 "chefTips": "Use espresso for an authentic taste and let it chill overnigh for better flavor."
             }
         },
         {
-            "name": "Molten Brown Sundae",
-            "image": "images/molten-brown-sundae.jpg",
+            "name": "Molten Brownie Sundae",
+            "image": "images/desserts/molten-brownie-sundae.jpg",
             "description": "Coming soon!!!",
-            "shortInstructions": "Coming soon!!!",
             "instructions": "HOW TO PREPARE<p>&star; Preheat oven to 180&deg;C (356&deg;F).</p><p>&star; Melt chocolate and butter together.</p><p>&star; Whisk egg and sugar, then mix in melted chocolate.</p><p>&star; Sift in flour and stir gently.</p><p>&star; Bake for 10-15 minutes until just set.</p><p>&star; Serve warm with ice cream</p>",
             "ingredients": [
                 "250g dark chocolate",
@@ -58,9 +56,8 @@
         },
         {
             "name": "Apple Crumble",
-            "image": "images/apple-crumble.jpg",
+            "image": "images/desserts/apple-crumble.webp",
             "description": "Coming soon!!!",
-            "shortInstructions": "Coming soon!!!",
             "instructions": "HOW TO PREPARE<p>&star; Preheat oven to 180&deg;C (356&deg;F).</p><p>&star; Peel and slice apples, mix with cinnamon and sugar.</p><p>&star;In a bowl, mix flour, oats, and butter until crumbly.</p><p>&star; Layer apples in a bakinh dish and sprinkle crumble mixture on top.</p><p>&star; Bake for 25-30 minutes until golden brown.</p>",
             "ingredients": [
                 "4 apples",
@@ -85,9 +82,8 @@
         },
         {
             "name": "Vanilla Panna Cotta",
-            "image": "images/vanilla-panna-cotta.jpg",
+            "image": "images/desserts/vanilla-panna-cotta.webp",
             "description": "Coming soon!!!",
-            "shortInstructions": "Coming soon!!!",
             "instructions": "HOW TO PREPARE<p>&star; Soak gelatin sheets in cold water.</p><p>&star; Heat cream, sugar, and vanilla until warm.</p><p>&star; Pour into molds and refrigerate for 4 hours.</p><p>&star; Serve with fresh berries or caramel sauce.</p>",
             "ingredients": [
                 "250ml heavy cream",
@@ -111,9 +107,8 @@
         },
         {
             "name": "Chocolate Lava Cake",
-            "image": "images/chocolate-lava-cake.jpg",
+            "image": "images/desserts/chocolate-lava-cake.jpeg",
             "description": "Coming soon!!!",
-            "shortInstructions": "Coming soon!!!",
             "instructions": "HOW TO PREPARE<p>&star; Preheat oven to 200&deg;C (392&deg;F). Grease ramekins with butter and dust with cocoa powder.</p><p>&star; Melt chocolate and butter together over low heat.</p><p>&star; Whisk eggs, yolk, and sugar until light and fluffy.</p><p>&star; Fold in melted chocolate, then sift in flour.</p><p>&star; Pour batter into ramekims and bake for 8-10 minutess.</p><p>&star; Serve immediately with ice cream to taste</p>",
             "ingredients": [
                 "100g dark chocolate",
@@ -144,7 +139,6 @@
             "name": "Spaghetti Carbonara",
             "image": "images/spaghetti-carbonara.jpg",
             "description": "A creamy and flavorful Italian classic with eggs, cheese, and pancetta.",
-            "shortInstructions": "Boil pasta, cook pancetta, mix with eggs and cheese.",
             "instructions": "Cook pasta until al dente. In a pan, fry pancetta until crispy. In a bowl, whisk eggs with grated Parmesan. Toss hot pasta with egg mixture and pancetta. Serve immediately with extra cheese and black pepper.",
             "ingredients": [
                 "200g spaghetti",
@@ -170,7 +164,6 @@
             "name": "Penne Arrabbiata",
             "image": "images/penne-arrabbiata.jpg",
             "description": "A spicy and delicious pasta with rich tomato sauce and chili flakes.",
-            "shortInstructions": "Cook pasta, sauté garlic and chili, add tomatoes, mix.",
             "instructions": "Cook pasta in boiling salted water until al dente. In a pan, heat olive oil and sauté minced garlic with chili flakes. Add canned tomatoes, season with salt, and let simmer for 10 minutes. Toss pasta into the sauce, mix well, and serve with fresh basil.",
             "ingredients": [
                 "200g penne",
@@ -198,7 +191,6 @@
             "name": "Spaghetti Carbonara",
             "image": "images/spaghetti-carbonara.jpg",
             "description": "A creamy and flavorful Italian classic with eggs, cheese, and pancetta.",
-            "shortInstructions": "Boil pasta, cook pancetta, mix with eggs and cheese.",
             "instructions": "Cook pasta until al dente. In a pan, fry pancetta until crispy. In a bowl, whisk eggs with grated Parmesan. Toss hot pasta with egg mixture and pancetta. Serve immediately with extra cheese and black pepper.",
             "ingredients": [
                 "200g spaghetti",
@@ -224,7 +216,6 @@
             "name": "Penne Arrabbiata",
             "image": "images/penne-arrabbiata.jpg",
             "description": "A spicy and delicious pasta with rich tomato sauce and chili flakes.",
-            "shortInstructions": "Cook pasta, sauté garlic and chili, add tomatoes, mix.",
             "instructions": "Cook pasta in boiling salted water until al dente. In a pan, heat olive oil and sauté minced garlic with chili flakes. Add canned tomatoes, season with salt, and let simmer for 10 minutes. Toss pasta into the sauce, mix well, and serve with fresh basil.",
             "ingredients": [
                 "200g penne",
@@ -252,7 +243,6 @@
             "name": "Spaghetti Carbonara",
             "image": "images/spaghetti-carbonara.jpg",
             "description": "A creamy and flavorful Italian classic with eggs, cheese, and pancetta.",
-            "shortInstructions": "Boil pasta, cook pancetta, mix with eggs and cheese.",
             "instructions": "Cook pasta until al dente. In a pan, fry pancetta until crispy. In a bowl, whisk eggs with grated Parmesan. Toss hot pasta with egg mixture and pancetta. Serve immediately with extra cheese and black pepper.",
             "ingredients": [
                 "200g spaghetti",
@@ -278,7 +268,6 @@
             "name": "Penne Arrabbiata",
             "image": "images/penne-arrabbiata.jpg",
             "description": "A spicy and delicious pasta with rich tomato sauce and chili flakes.",
-            "shortInstructions": "Cook pasta, sauté garlic and chili, add tomatoes, mix.",
             "instructions": "Cook pasta in boiling salted water until al dente. In a pan, heat olive oil and sauté minced garlic with chili flakes. Add canned tomatoes, season with salt, and let simmer for 10 minutes. Toss pasta into the sauce, mix well, and serve with fresh basil.",
             "ingredients": [
                 "200g penne",
@@ -306,7 +295,6 @@
             "name": "Spaghetti Carbonara",
             "image": "images/spaghetti-carbonara.jpg",
             "description": "A creamy and flavorful Italian classic with eggs, cheese, and pancetta.",
-            "shortInstructions": "Boil pasta, cook pancetta, mix with eggs and cheese.",
             "instructions": "Cook pasta until al dente. In a pan, fry pancetta until crispy. In a bowl, whisk eggs with grated Parmesan. Toss hot pasta with egg mixture and pancetta. Serve immediately with extra cheese and black pepper.",
             "ingredients": [
                 "200g spaghetti",
@@ -332,7 +320,6 @@
             "name": "Penne Arrabbiata",
             "image": "images/penne-arrabbiata.jpg",
             "description": "A spicy and delicious pasta with rich tomato sauce and chili flakes.",
-            "shortInstructions": "Cook pasta, sauté garlic and chili, add tomatoes, mix.",
             "instructions": "Cook pasta in boiling salted water until al dente. In a pan, heat olive oil and sauté minced garlic with chili flakes. Add canned tomatoes, season with salt, and let simmer for 10 minutes. Toss pasta into the sauce, mix well, and serve with fresh basil.",
             "ingredients": [
                 "200g penne",
@@ -360,7 +347,6 @@
             "name": "Spaghetti Carbonara",
             "image": "images/spaghetti-carbonara.jpg",
             "description": "A creamy and flavorful Italian classic with eggs, cheese, and pancetta.",
-            "shortInstructions": "Boil pasta, cook pancetta, mix with eggs and cheese.",
             "instructions": "Cook pasta until al dente. In a pan, fry pancetta until crispy. In a bowl, whisk eggs with grated Parmesan. Toss hot pasta with egg mixture and pancetta. Serve immediately with extra cheese and black pepper.",
             "ingredients": [
                 "200g spaghetti",
@@ -386,7 +372,6 @@
             "name": "Penne Arrabbiata",
             "image": "images/penne-arrabbiata.jpg",
             "description": "A spicy and delicious pasta with rich tomato sauce and chili flakes.",
-            "shortInstructions": "Cook pasta, sauté garlic and chili, add tomatoes, mix.",
             "instructions": "Cook pasta in boiling salted water until al dente. In a pan, heat olive oil and sauté minced garlic with chili flakes. Add canned tomatoes, season with salt, and let simmer for 10 minutes. Toss pasta into the sauce, mix well, and serve with fresh basil.",
             "ingredients": [
                 "200g penne",
@@ -414,7 +399,6 @@
             "name": "Spaghetti Carbonara",
             "image": "images/spaghetti-carbonara.jpg",
             "description": "A creamy and flavorful Italian classic with eggs, cheese, and pancetta.",
-            "shortInstructions": "Boil pasta, cook pancetta, mix with eggs and cheese.",
             "instructions": "Cook pasta until al dente. In a pan, fry pancetta until crispy. In a bowl, whisk eggs with grated Parmesan. Toss hot pasta with egg mixture and pancetta. Serve immediately with extra cheese and black pepper.",
             "ingredients": [
                 "200g spaghetti",
@@ -440,7 +424,6 @@
             "name": "Penne Arrabbiata",
             "image": "images/penne-arrabbiata.jpg",
             "description": "A spicy and delicious pasta with rich tomato sauce and chili flakes.",
-            "shortInstructions": "Cook pasta, sauté garlic and chili, add tomatoes, mix.",
             "instructions": "Cook pasta in boiling salted water until al dente. In a pan, heat olive oil and sauté minced garlic with chili flakes. Add canned tomatoes, season with salt, and let simmer for 10 minutes. Toss pasta into the sauce, mix well, and serve with fresh basil.",
             "ingredients": [
                 "200g penne",
