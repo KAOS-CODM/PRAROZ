@@ -11,61 +11,34 @@ document.addEventListener("DOMContentLoaded", function () {
         const popupData = data.popupForm;
         if (!popupData) return;
 
+        // Inject the popup HTML structure
         popupContainer.innerHTML = `
             <div id="popupForm" class="popup">
                 <div class="popup-content">
                     <span class="close-btn">&times;</span>
-                    <h2>${popupData.title}</h2>
-                    <p>${popupData.message}</p>
-                    <form id="popupFormContent" action="https://gmail.us4.list-manage.com/subscribe/post?u=009f188a1a12df7ffcb87edbc&id=f3cd6a5107" 
-                        method="POST" target="_blank" novalidate>
-                        
-                        <input type="hidden" name="u" value="${popupData.mailchimpUser}">
-                        <input type="hidden" name="id" value="${popupData.mailchimpListId}">
-                        
-                        ${popupData.fields.map(field => `
-                        <label for="${field.id}">${field.label}</label>
-                        <input type="${field.type}" id="${field.id}" name="${field.name}" ${field.required ? "required" : ""}>
-                        `).join("")}
-
-                        <div id="recaptcha-container">
-                            <div id="g-recaptcha" class="g-recaptcha" data-sitekey="${popupData.recaptchaSiteKey}"></div>
-                        </div>
-
-                        <button type="submit">${popupData.submitText}</button>
-                    </form>
-                    
-                    <iframe id="mailchimp-iframe" name="mailchimp-iframe" style="display:none;"></iframe>
-                    <p id="g-recaptcha-response"></p>
+                    <div id="mailchimpFormContainer"></div>
                 </div>
             </div>
         `;
 
+        // Inject Mailchimp's provided embed code directly
+        const script = document.createElement("script");
+        script.id = "mcjs";
+        script.async = true;
+        script.src = "https://chimpstatic.com/mcjs-connected/js/users/009f188a1a12df7ffcb87edbc/e28ef9941f38ab0c9c1852cb0.js";
+        document.head.appendChild(script);
+
+        // Reference the popup and close button
         const popup = document.getElementById("popupForm");
         const closeBtn = document.querySelector(".close-btn");
-
         const popupDelay = 5000;
 
-        function loadRecaptcha(callback) {
-            if (typeof grecaptcha === "undefined") {
-                setTimeout(() => loadRecaptcha(callback), 500);
-            } else {
-                callback();
-            }
-        }
-
         function showPopup() {
-            console.log("popup found");
-            popupContainer.classList.add("active");
+            console.log("Mailchimp popup triggered");
             popup.style.display = "flex";
-
-            loadRecaptcha(() => {
-                grecaptcha.render("g-recaptcha", {
-                    sitekey: popupData.recaptchaSiteKey
-                });
-            });
         }
 
+        // Delay popup display based on sessionStorage (only shows once per session)
         if (!sessionStorage.getItem("popupShown")) {
             setTimeout(() => {
                 showPopup();
@@ -73,6 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }, popupDelay);
         }
 
+        // Close button functionality
         closeBtn.addEventListener("click", function () {
             popup.style.display = "none";
         });
@@ -84,13 +58,12 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     })
     .catch(error => console.error("Error fetching JSON:", error));
-});
 
-document.addEventListener("DOMContentLoaded", function(){
+    // Landing page redirect logic remains unchanged
     const landingTimeout = 24 * 60 * 60 * 1000;
     const lastVisit = localStorage.getItem("lastLandingTime");
 
-    if (!lastVisit || Date.now() - lastVisit > landingTimeout){
+    if (!lastVisit || Date.now() - lastVisit > landingTimeout) {
         window.location.href = "landing.html";
     }
 });

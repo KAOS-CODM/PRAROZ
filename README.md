@@ -23,7 +23,7 @@ A simple and elegant recipe website where users can explore, submit, and manage 
 ## 📁 Project Structure
 
 - **/data**  
-  Contains recipes.json, submission.json, users.json, comments.json
+  Contains recipes.json, submission.json, contents.json, comments.json
 
 - **/functions**  
   Node.js backend with API endpoints
