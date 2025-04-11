@@ -198,6 +198,68 @@ body {
     background-color: #f8f8f8; /* Light background for contrast */
 }
 
+/* Content Class Styling */
+.content {
+    max-width: 1000px;
+    margin: 50px auto; /* Centers the content with some space above and below */
+    padding: 20px;
+    background-color: #ffffff; /* White background for content */
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for a subtle lift effect */
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6; /* Comfortable line spacing */
+}
+
+/* Heading Inside Content */
+.content h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    text-align: center; /* Center-aligns the title */
+}
+
+/* Paragraphs Inside Content */
+.content p {
+    font-size: 1.2rem;
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: left; /* Left-aligns the paragraph text */
+    max-width: 80%;
+    margin: 0 auto; /* Centers the paragraph */
+    word-wrap: break-word; /* Ensures no text overflows */
+    white-space: normal; /* Allows wrapping of long words */
+}
+
+/* Custom Bullet Points */
+.content ul {
+    list-style-type: none; /* Removes default bullet styling */
+    padding-left: 0;
+}
+
+.content ul li {
+    font-size: 1.1rem;
+    color: #444;
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+}
+
+.content ul li::before {
+    content: "🍽️"; /* Custom bullet icon */
+    font-size: 1.2rem;
+    margin-right: 10px;
+    color: #ff6600; /* Sets a warm orange color for bullets */
+}
+
+/* Emphasized Text */
+.content em {
+    font-style: italic;
+    color: #ff6600; /* Highlights emphasized text with color */
+}
+
 
 /* Sidebar Button */
 .menu-btn {

@@ -64,6 +64,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const lastVisit = localStorage.getItem("lastLandingTime");
 
     if (!lastVisit || Date.now() - lastVisit > landingTimeout) {
-        window.location.href = "landing.html";
+        window.location.href = "index.html";
     }
 });

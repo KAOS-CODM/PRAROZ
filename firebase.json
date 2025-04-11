@@ -4,13 +4,23 @@
     "ignore": [
       "firebase.json",
       "**/.*",
-      "**/node_modules/**",
-      "index.html"
+      "**/node_modules/**"
     ],
     "rewrites": [
       {
         "source": "/",
-        "destination": "/home.html"
+        "destination": "/index.html"
+      }
+    ],
+    "headers": [
+      {
+        "source": "/home.html",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, no-store, must-revalidate"
+          }
+        ]
       }
     ]
   }
