@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>PRAROZ™ | DESSERT</title>
+        <link rel="stylesheet" type="text/css" href="/css/project1.css">
+        <link rel="stylesheet" type="text/css" href="/css/all.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="icon" type="image/png" href="/images/download.jpg">
+    </head>
+    <body>
+
+        <div class="background"></div>
+
+        <nav class="navbar">
+            <div class="logo">
+                <img id="nav-logo" src="/images/logo.png" alt="PraRoz™ Logo">
+            </div>
+            <ul class="nav-links" id="nav-links"></ul>
+
+            <button class="menu-btn" id="menuBtn"><strong>☰</strong></button>
+            <aside class="sidebar" id="sidebar">
+                <div class="logo">
+                    <img id="nav-logo" src="/images/logo.png" alt="PraRoz™ Logo">
+                </div>
+                <p><a href="#">WATCH VIDEO</a></p>
+                <p><a href="#">BASIC SKILLS</a></p>
+                <p><a href="#">LEARN MORE</a></p>
+                <p><a href="/submission">SUBMIT YOUR RECIPE</a></p>
+            </aside>
+        </nav>
+
+        <search-bar></search-bar>
+
+        <div class="main-container">
+            <div class="content-container">
+                <div id="content"></div>
+                <div id="recipe-container"></div>
+            </div>
+        </div>
+
+        <div id="popupContainer">
+            <div id="g-recaptcha" class="g-recaptcha" data-sitekey="6LcU5_wqAAAAAN2OhinShvAfOcNAZRzBduC8kqbY"></div>
+        </div>
+
+
+        <footer id="dynamic-footer"></footer>
+
+        <script src="/js/config.js"></script>
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <script src="/js/project.js" defer></script>
+        <script src="/js/navbar.js" defer></script>
+        <script src="/js/sidebar.js" defer></script>
+        <script src="/js/searchBar.js" defer></script>
+        <script src="/js/footer.js" defer></script>
+    </body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRAROZ&trade; | WELCOME</title>
+    <link rel="icon" type="image/png" href="/images/download.jpg">
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        .video-container{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .video-container video{
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+        }
+
+        .container{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.85);
+            padding: 20px;
+            min-height: 60vh;
+            max-height: 60vh;
+            min-width: 60vw;
+            max-width: 60vw;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+        }
+
+        button{
+            padding: 10px 20px;
+            margin-top: 20px;
+            background: #ff6600;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            position: absolute;
+            top: 100%;
+        }
+
+        button:hover{
+            background: #e65c00;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <video autoplay loop muted playsinline>
+            <source src="/video/bg_vid.mp4">
+        </video>
+    </div>
+
+    <div class="container">
+        <hi>Welcome To PraRoz™ Recipes</h1>
+        <p>Discover Recipes of the most explicit cuisine</p>
+        <button onclick="continueToSite()">Continue</button>
+    </div>
+
+
+    <script src="/js/config.js"></script>
+    <script>
+        function continueToSite() {
+            localStorage.setItem("lastLandingTime", Date.now());
+
+            window.location.href = "/home";
+        }
+    </script>
+</body>
+</html>

@@ -1,3 +1,16 @@
-node_modules/ 
+node_modules /
 uploads/ 
 .env 
+server_backup.js
+server_backup2.js
+migrate.js
+migrateRecipes.js
+contents.json
+recipes.json
+excesses/
+excess.docx
+home-dub.html
+inex.html
+stress.html
+text/
+index.js

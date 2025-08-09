@@ -28,7 +28,7 @@ A simple and elegant recipe website where users can explore, submit, and manage 
 - **/functions**  
   Node.js backend with API endpoints
 
-- **/html**  
+- **/public**  
   Frontend files (HTML, CSS, JS)
 
 ---

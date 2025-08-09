@@ -1,0 +1,186 @@
+/* ===== Popup Overlay ===== */
+.popup {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* ===== Popup Content Box ===== */
+.popup-content {
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 100%;
+    min-width: auto;   /* prevent too narrow */
+    min-height: 250px;  /* give space for form */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    animation: popupFadeIn 0.3s ease;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.popup-content h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.popup-content p {
+    font-size: 16px;
+    margin-bottom: 15px;
+    position: relative;
+    display: flex;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+.popup-content label {
+    display: block;
+    text-align: left;
+    margin: 10px 0 5px;
+}
+
+.popup-content input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.popup-content button {
+    background: #037afa;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100px;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background 0.2s ease;
+}
+
+.popup-content button:hover {
+    background: #01438a;
+}
+
+.popup-content button:focus,
+.popup-content input:focus {
+    outline: 2px solid #037afa;
+    outline-offset: 2px;
+}
+
+/* ===== Close Button ===== */
+.close-btn {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.2s ease;
+}
+
+.close-btn:hover {
+    color: #000;
+}
+
+/* ===== reCAPTCHA Styling ===== */
+.g-recaptcha {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    transform: scale(0.85); /* Reduce size */
+    transform-origin: center;
+}
+
+/* ===== Animation ===== */
+@keyframes popupFadeIn {
+    from { 
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to { 
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 768px) {
+    .popup-content {
+        padding: 20px;
+        max-width: 90%;
+    }
+
+    .popup-content h2 {
+        font-size: 20px;
+    }
+
+    .popup-content p {
+        font-size: 14px;
+    }
+
+    .popup-content input {
+        padding: 6px;
+    }
+
+    .popup-content button {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .close-btn {
+        font-size: 18px;
+        top: 5px;
+        right: 10px;
+    }
+
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 480px) {
+    .popup-content {
+        max-width: 90%;
+        padding: 20px;
+    }
+    .close-btn {
+        font-size: 16px;
+        top: 5px;
+        right: 8px;
+    }
+
+    .popup-content {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .popup-content h2 {
+        font-size: 18px;
+    }
+
+    .popup-content p {
+        font-size: 12px;
+    }
+
+    .popup-content input {
+        padding: 5px;
+    }
+
+    .popup-content button {
+        font-size: 12px;
+        padding: 6px;
+    }
+}
