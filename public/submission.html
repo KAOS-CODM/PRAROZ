@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>PRAROZ™ | SUBMIT RECIPES</title>
+        <link rel="stylesheet" type="text/css" href="/css/project1.css">
+        <link rel="stylesheet" type="text/css" href="/css/submission.css">
+        <link rel="stylesheet" type="text/css" href="/css/all.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="icon" type="image/png" href="/images/download.jpg">
+    </head>
+    <body>
+
+        <div class="background"></div>
+        <header class="navbar">
+            <div class="logo">
+                <img src="/images/logo.png" alt="PraRoz™ Logo">
+            </div>
+            <ul class="nav-links" id="nav-links">
+
+            </ul>
+            <button class="menu-btn" id="menuBtn"><strong>☰</strong></button>
+            <aside class="sidebar" id="sidebar">
+                <div class="logo">
+                    <img id="nav-logo" src="/images/logo.png" alt="PraRoz™ Logo">
+                </div>
+                <p><a href="#">WATCH VIDEO</a></p>
+                <p><a href="#">BASIC SKILLS</a></p>
+                <p><a href="#">LEARN MORE</a></p>
+                <p><a href="/submission">SUBMIT YOUR RECIPE</a></p>
+            </aside>
+        </header>
+
+        <div class="submission-container">
+            <h2>Submit Your Recipe</h2>
+            <form id="recipeForm">
+                <label for="category">Category:</label>
+                <select id="category" name="category" required>
+                    <option value="dessert">Dessert</option>
+                    <option value="appetizers">Appetizers</option>
+                    <option value="pasta">Pasta</option>
+                    <option value="salad">Salad</option>
+                    <option value="burger">Burger</option>
+                    <option value="pizza">Pizza</option>
+                    <option value="recipes">Recipes</option>
+                </select>
+    
+                <label for="name">Recipe Name:</label>
+                <input type="text" id="name" name="name" required>
+    
+                <label for="image">Upload Image:</label>
+                <input type="file" id="image" name="image" accept="image/*" required>
+    
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required></textarea>
+    
+                <label for="instructions">Instructions (one per line):</label>
+                <textarea id="instructions" name="instructions" required></textarea>
+    
+                <label for="ingredients">Ingredients (one per line):</label>
+                <textarea id="ingredients" name="ingredients" required></textarea>
+    
+    
+                <label for="prepTime">Prep Time:</label>
+                <div class="time-input-group">
+                    <input type="number" id="prepTimeValue" name="prepTimeValue" min="0" placeholder="e.g. 15">
+                    <select id="prepTimeUnit" name="prepTimeUnit">
+                        <option value="minutes">Minutes</option>
+                        <option value="hours">Hours</option>
+                        <option value="seconds">Seconds</option>
+                    </select>
+                </div>
+
+                <label for="cookTime">Cook Time:</label>
+                <div class="time-input-group">
+                    <input type="number" id="cookTimeValue" name="cookTimeValue" min="0" placeholder="e.g. 45">
+                    <select id="cookTimeUnit" name="cookTimeUnit">
+                        <option value="minutes">Minutes</option>
+                        <option value="hours">Hours</option>
+                        <option value="seconds">Seconds</option>
+                    </select>
+                </div>
+                
+                <label for="servings">Servings:</label>
+                <div class="time-input-group">
+                    <input type="number" id="servingsValue" name="servingsValue" min="1" placeholder="e.g. 4">
+                    <select id="servingsUnit" name="servingsUnit">
+                        <option value="people">People</option>
+                        <option value="slices">Slices</option>
+                        <option value="pieces">Pieces</option>
+                    </select>
+                </div>
+
+                <label for="chefTips">Chef Tips:</label>
+                <textarea id="chefTips" name="chefTips"></textarea>
+
+                <div class="button-container">
+                    <button class="button1" type="submit">Submit Recipe</button1>
+                </div>
+            </form>
+            <p id="responseMessage"></p>
+        </div>
+
+        <footer id="dynamic-footer">
+            
+        </footer>
+
+        <script src="/js/config.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const form = document.getElementById("recipeForm");
+                const responseMessage = document.getElementById("responseMessage");
+
+                if (!form) {
+                    console.error("Form element not found!");
+                    return;
+                }
+
+                form.addEventListener("submit", async (e) => {
+                    e.preventDefault();
+                    console.log("Submit button clicked!");
+
+                    const category = document.getElementById("category").value;
+                    const name = document.getElementById("name").value;
+                    const description = document.getElementById("description").value;
+                    const instructionsArray = document.getElementById("instructions").value
+                        .split("\n")
+                        .map(i => i.trim())
+                        .filter(Boolean);
+                    const ingredientsArray = document.getElementById("ingredients").value
+                        .split("\n")
+                        .map(i => i.trim())
+                        .filter(Boolean);
+                    const formattedInstructions = instructionsArray.join("\n");
+                    const formattedIngredients = ingredientsArray.join("\n ");
+                    const prepTime = `${document.getElementById("prepTimeValue").value} ${document.getElementById("prepTimeUnit").value}`;
+                    const cookTime = `${document.getElementById("cookTimeValue").value} ${document.getElementById("cookTimeUnit").value}`;
+                    const servings = `${document.getElementById("servingsValue").value} ${document.getElementById("servingsUnit").value}`;
+                    const chefTips = document.getElementById("chefTips").value;
+                    const imageFile = document.getElementById("image").files[0];
+
+                    if (!imageFile) {
+                        alert("Please select an image!");
+                        return;
+                    }
+
+                    try {
+                        const imageUrl = await uploadImageToCloudinary(imageFile);
+                        const formData = new FormData();
+                        formData.append("category", category);
+                        formData.append("name", name);
+                        formData.append("description", description);
+                        formData.append("instructions", formattedInstructions);
+                        formData.append("instructions_array", JSON.stringify(instructionsArray));
+                        formData.append("ingredients", formattedIngredients);
+                        formData.append("prepTime", prepTime);
+                        formData.append("cookTime", cookTime);
+                        formData.append("servings", servings);
+                        formData.append("chefTips", chefTips);
+                        formData.append("image", imageFile);
+                        formData.append("imageUrl", imageUrl);
+
+                        const response = await fetch(`${window.API_BASE_URL}/submit-recipe`, {
+                            method: "POST",
+                            body: formData,
+                        });
+
+                        if (!response.ok) {
+                            throw new Error("Server error, please try again.");
+                        }
+
+                        const result = await response.json();
+                        responseMessage.textContent = result.message;
+                        responseMessage.style.color = "green";
+                        form.reset();
+                    } catch (error) {
+                        console.error("Error submitting recipe:", error);
+                        responseMessage.textContent = "Failed to submit recipe. Please try again.";
+                        responseMessage.style.color = "red";
+                    }
+                });
+
+                async function uploadImageToCloudinary(imageFile) {
+                    const formData = new FormData();
+                    formData.append("file", imageFile);
+                    formData.append("upload_preset", window.CLOUDINARY_UPLOAD_PRESET);
+                    formData.append("cloud_name", window.CLOUDINARY_CLOUD_NAME);
+
+                    const response = await fetch(`https://api.cloudinary.com/v1_1/${window.CLOUDINARY_CLOUD_NAME}/image/upload`, {
+                        method: "POST",
+                        body: formData
+                    });
+
+                    if (!response.ok) {
+                        throw new Error("Failed to upload image to Cloudinary");
+                    }
+
+                    const data = await response.json();
+                    return data.secure_url;
+                }
+            });
+        </script>
+        <script src="/js/config.js" defer></script>
+        <script src="/js/project.js" defer></script>
+        <script src="/js/navbar.js" defer></script>
+        <script src="/js/sidebar.js" defer></script>
+        <script src="/js/footer.js" defer></script>
+    </body>
+</html>
