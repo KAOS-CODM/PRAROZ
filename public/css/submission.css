@@ -1,7 +1,6 @@
-/* Form Container */
 .submission-container {
     width: 50vw;
-    max-width: 600px; /* Prevents excessive width on large screens */
+    max-width: 600px;
     margin: 50px auto;
     padding: 20px;
     background-color: #fff;
@@ -10,7 +9,6 @@
     position: relative;
 }
 
-/* Form Heading */
 .submission-container h2 {
     text-align: center;
     color: #333;
@@ -18,7 +16,6 @@
     font-size: 22px;
 }
 
-/* Form Inputs */
 .form-group {
     margin-bottom: 15px;
 }
@@ -31,7 +28,6 @@ label {
     font-size: 16px;
 }
 
-/* Input & Textarea */
 input, textarea, select {
     width: 100%;
     padding: 12px;
@@ -46,7 +42,6 @@ input:focus, textarea:focus, select:focus {
     border: 1px solid #007BFF;
 }
 
-/* File Input */
 input[type="file"] {
     border: none;
     background: #f0f0f0;
@@ -54,14 +49,12 @@ input[type="file"] {
     font-size: 14px;
 }
 
-/* Button Container */
 .button-container {
     display: flex;
     justify-content: center;
     margin-top: 20px;
 }
 
-/* Submit Button */
 .button1 {
     min-width: 150px;
     padding: 12px 20px;
@@ -78,24 +71,21 @@ input[type="file"] {
     background-color: #0056b3;
 }
 
-/* Group number input + select nicely */
 .time-input-group {
     display: flex;
     align-items: center;
-    gap: 8px; /* space between input and select */
+    gap: 8px;
     margin-bottom: 15px;
 }
 
-/* Number box styling */
 .time-input-group input[type="number"] {
-    flex: 1; /* take available width */
+    flex: 1; 
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 14px;
 }
 
-/* Dropdown styling */
 .time-input-group select {
     flex: 1;
     padding: 8px;
@@ -106,7 +96,6 @@ input[type="file"] {
     cursor: pointer;
 }
 
-/* Make them a bit more compact together */
 .time-input-group input[type="number"]:focus,
 .time-input-group select:focus {
     outline: none;
@@ -114,7 +103,6 @@ input[type="file"] {
     box-shadow: 0 0 4px rgba(0, 123, 255, 0.4);
 }
 
-/* Responsive tweak for narrow screens */
 @media (max-width: 500px) {
     .time-input-group {
         flex-direction: column;
@@ -127,10 +115,6 @@ input[type="file"] {
     }
 }
 
-
-/* ====== RESPONSIVE DESIGN ====== */
-
-/* Tablets (Max-width: 768px) */
 @media (max-width: 768px) {
     .submission-container {
         width: 85%;
@@ -153,7 +137,6 @@ input[type="file"] {
     }
 }
 
-/* Mobile Devices (Max-width: 480px) */
 @media (max-width: 480px) {
     .submission-container {
         width: 95%;
@@ -176,11 +159,10 @@ input[type="file"] {
     .button1 {
         font-size: 14px;
         padding: 8px;
-        width: 100%; /* Full width on smaller screens */
+        width: 100%;
     }
 }
 
-/* Very Small Phones (Max-width: 360px) */
 @media (max-width: 360px) {
     .submission-container {
         width: 98%;

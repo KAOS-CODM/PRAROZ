@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PRAROZ&trade; | WELCOME</title>
     <link rel="icon" type="image/png" href="/images/download.jpg">
+    <link rel="stylesheet" type="text/css" href="/css/footer.css">
     <style>
         body{
             margin: 0;
@@ -35,7 +36,7 @@
         }
 
         .container{
-            position: absolute;
+            position: relative;
             top: 1000px;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -47,6 +48,9 @@
             border-radius: 10px;
             text-align: left;
             box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+            display: flex;
+            flex-direction: column;
+            flex: 1;
         }
 
 
@@ -189,12 +193,15 @@
         <button onclick="continueToSite()">Continue to homepage</button>
     </div>
 
-    <script src="/js/config.js"></script>
+    <div id="dynamic-footer"></div>
+
+    <script src="/js/config.js" defer></script>
     <script>
         function continueToSite() {
             localStorage.setItem("lastLandingTime", Date.now());
             window.location.href = "/home";
         }
     </script>
+    <script src="/js/footer.js" defer></script>
 </body>
 </html>

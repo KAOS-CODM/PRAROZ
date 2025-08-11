@@ -13,10 +13,10 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("Recipes for this page:", recipes);
         const recipeContainer = document.getElementById('recipe-container');
 
-        if (recipes) {
+        if (recipes.length > 0) {
             recipeContainer.innerHTML = recipes.map(recipe => {
                 let imageUrl = recipe.image;
-                if (!imageUrl.startsWith("https")) {
+                if (!/^https?:\/\//i.test(imageUrl)) {
                     imageUrl = `${window.API_BASE_URL}/${imageUrl}`;
                 }
 
@@ -66,7 +66,8 @@ document.addEventListener("DOMContentLoaded", function () {
             contentContainer.innerHTML =  `
                 <h2 class="content-title">${content.title}</h2>
                 <p class="content-description">${desc}</p>
-                <img class="content-image" src="${content.image}">
+                <p>Thanks for visiting, hope you enjoy your stay!</p>
+                <img class="content-image" src="${content.image}" alt="${content.title}">
             `;
         } else {
             contentContainer.innerHTML = '<p>No content found for this category.</p>';
@@ -77,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("✅ Recipe Details Page Loaded!");
     
     const urlParams = new URLSearchParams(window.location.search);
-    const recipeName = urlParams.get("recipe");
+    const recipeName = decodeURIComponent(urlParams.get("recipe") || "").trim();
     console.log("🍽️ Selected Recipe:", recipeName);
 
     if (!recipeName) {

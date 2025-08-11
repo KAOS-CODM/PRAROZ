@@ -1,0 +1,133 @@
+#dynamic-footer {
+    width: 100%;
+    background: #343434;
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+    font-size: 18px;
+    position: relative;
+}
+
+.container {
+    max-width: 1140px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.footer-content {
+    flex: 1 1 300px;
+    min-width: 250px;
+}
+
+.footer-content h3 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.footer-content p {
+    margin: 5px auto;
+    padding: 5px;
+    max-width: 200px;
+    word-wrap: break-word;
+}
+
+.footer-content ul {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.list li {
+    list-style: none;
+    padding: 7px;
+    position: relative;
+}
+
+.list li::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: #f18930;
+    transition: width 0.5s;
+}
+
+.list li:hover::before {
+    width: 70px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #f18930;
+}
+
+.social-icons {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.social-icons li {
+    display: inline-block;
+    padding: 5px;
+}
+
+.social-icons i {
+    font-size: 25px;
+    transition: color 0.3s ease;
+}
+
+.social-icons i:hover {
+    color: #f18930;
+}
+
+.bottom-bar {
+    background: #f18930;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 50px;
+    width: 100%;
+}
+
+.bottom-bar p {
+    color: #343434;
+    margin: 0;
+    font-size: 16px;
+}
+
+@media (max-width: 1024px) {
+    #dynamic-footer {
+        font-size: 16px;
+        padding: 40px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    #dynamic-footer {
+        font-size: 14px;
+        padding: 20px 10px;
+    }
+
+    .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .social-icons i {
+        font-size: 20px;
+    }
+}

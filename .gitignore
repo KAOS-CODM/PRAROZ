@@ -83,11 +83,14 @@ functions/server_backup.js
 functions/server_backup2.js
 node_modules/
 public/.vscode
+public/css/project1_backup.css
+public/css/recipe_backup.css
 public/images/desserts
 public/js/*bat
 public/js/project_backup.js
 public/js/project_backup2.js
 public/js/submission.js
+public/js/tester.js
 public/excess.docx
 public/home-dub.html
 public/inex.html

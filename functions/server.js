@@ -12,6 +12,7 @@ const DATA_FOLDER = path.join(__dirname, 'data');
 const FILES = {
     contents: path.join(DATA_FOLDER, 'contents.json'),
     popup: path.join(DATA_FOLDER, 'popup.json'),
+    recipes: path.join(DATA_FOLDER, 'recipes.json')
 };
 const readJSON = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
 const writeJSON = (file, data) => fs.writeFileSync(file, JSON.stringify(data, null, 4), 'utf8');
@@ -39,7 +40,7 @@ app.use(cors({
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../public')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use('/images', express.static(path.join(__dirname, '../public/images')));
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
