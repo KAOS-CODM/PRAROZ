@@ -180,7 +180,6 @@
     border-radius: 5px;
 }
 
-/* ===== Tablet View ===== */
 @media (min-width: 601px) and (max-width: 1024px) {
     #recipe-container {
         grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -212,7 +211,6 @@
     }
 }
 
-/* ===== Desktop Large Screens ===== */
 @media (min-width: 1025px) {
     #recipe-container {
         grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -221,8 +219,14 @@
     }
 }
 
-/* ===== Mobile View ===== */
 @media (max-width: 480px) {
+
+    #recipe-container {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 14px;
+        padding: 10px;
+    }
+
     .recipe-card {
         min-height: 300px;
     }
@@ -240,4 +244,5 @@
         font-size: 0.95rem;
         padding: 10px;
     }
+}
 }
