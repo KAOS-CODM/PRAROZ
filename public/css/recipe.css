@@ -2,15 +2,17 @@
 #recipe-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
     max-width: 1200px;
     margin: 0 auto;
     padding: 1rem;
-    gap: 1rem;
     box-sizing: border-box;
     border: 1px solid gold;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
     background: #fff;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 /* ===== Recipe Cards ===== */
@@ -180,12 +182,14 @@
     border-radius: 5px;
 }
 
-/* ===== Tablet View ===== */
+/* ===== Medium Screens ===== */
 @media (min-width: 601px) and (max-width: 1024px) {
     #recipe-container {
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
         gap: 18px;
         padding: 15px;
+        width: 100%;
+        overflow-x: hidden;
     }
 
     .recipe-card {
@@ -212,17 +216,27 @@
     }
 }
 
-/* ===== Desktop Large Screens ===== */
+/* ===== Large Screens ===== */
 @media (min-width: 1025px) {
     #recipe-container {
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         gap: 24px;
         padding: 25px;
+        width: 100%;
+        overflow-x: hidden;
     }
 }
 
-/* ===== Mobile View ===== */
+/* ===== Small Screens ===== */
 @media (max-width: 480px) {
+    #recipe-container {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 14px;
+        padding: 10px;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
     .recipe-card {
         min-height: 300px;
     }

@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (footer) {
                 footer.innerHTML = `
-                    <div class="container">
+                    <div id="container">
                         <div class="footer-content">
                             <h3>${data.footer.contact.title}</h3>
                             <p>${data.footer.contact.email}</p>
