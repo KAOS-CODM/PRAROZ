@@ -199,7 +199,7 @@
         "quickLinks": {
         "title": "Quick Links",
         "links": [
-            { "name": "Home", "url": "/" },
+            { "name": "Home", "url": "/home" },
             { "name": "About", "url": "/about" },
             { "name": "Services", "url": "/services" },
             { "name": "Terms & Conditions", "url": "/terms" },
