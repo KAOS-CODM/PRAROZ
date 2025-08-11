@@ -41,6 +41,14 @@
     margin: 0;
 }
 
+.footer-content ul, .footer-content p, .footer-content h3, .bottom-bar p, .list li, #dynamic-footer a{
+    font-family: 'Tangerin', cursive;
+    font-style: normal;
+    color: white;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
 .list li {
     list-style: none;
     padding: 7px;
@@ -63,13 +71,13 @@
     width: 70px;
 }
 
-a {
+#dynamic-footer a {
     text-decoration: none;
     color: white;
     transition: color 0.3s ease;
 }
 
-a:hover {
+#dynamic-footer a:hover {
     color: #f18930;
 }
 

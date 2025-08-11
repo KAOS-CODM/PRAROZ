@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("📌 Navbar script loaded");
+    console.log("📌 Footer script loaded");
 
     const footer = document.getElementById("dynamic-footer");
     if (!footer) {
-        console.warn("⚠️ Navbar container (#dynamic-footer) not found. Skipping footer setup.");
+        console.warn("⚠️ Footer container (#dynamic-footer) not found. Skipping footer setup.");
         return;
     }
 

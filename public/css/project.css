@@ -13,7 +13,7 @@ html, body {
     width: 100vw;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(to right, #ffecd2, #fcb69f);
+    background: linear-gradient(to right, #f5e1c6, #f74d14);
     color: #333;
     line-height: 1.6;
     transition: background 0.5s ease-in-out;
@@ -183,6 +183,16 @@ body {
 .content em {
     font-style: italic;
     color: #ff6600; 
+}
+
+.content-title{
+    font-family: 'Tangerin', cursive;
+    font-size: 2rem;
+    font-weight: 700;
+    font-style: normal;
+    color: #4b2e2e;
+    text-align: center;
+    margin-bottom: 1rem;
 }
 
 .menu-btn {

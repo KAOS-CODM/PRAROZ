@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("Recipes for this page:", recipes);
         const recipeContainer = document.getElementById('recipe-container');
 
-        if (recipes.length > 0) {
+        if (recipes) {
             recipeContainer.innerHTML = recipes.map(recipe => {
                 let imageUrl = recipe.image;
                 if (!/^https?:\/\//i.test(imageUrl)) {
@@ -27,15 +27,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 return `
                     <a href="/recipe-details?recipe=${encodeURIComponent(recipe.name.trim())}" class="recipe-card-link">
                         <div class="recipe-card">
-                            <img class="recipe-image" src="${imageUrl}" width="100" onerror="this.onerror=null;this.src='placeholder.jpg'">
-                            <h2 class="recipe-title">${recipe.name}</h2>
-                            <p class="recipe-description"><strong>Description:</strong>${recipe.description || "A delicious recipe!"}</p>
-                            <div class="recipe-ingredients">
-                                <h3>Ingredients</h3>
+                            <img class="recipe-image" src="${recipe.image}" width="100" onerror="this.onerror=null;this.src='placeholder.jpg'">
+                            <div class="recipe-content">
+                                <h2>${recipe.name}</h2>
+                                <ul>
+                                <p><li><h3>Ingredients</h3></li></p>
                                 <ul>${ingredientsArray.map(i => `<li>${i}</li>`).join('')}</ul>
-                            </div>
-                            <div class="recipe-instructions">
-                                <strong>Steps:</strong> Click to view full recipe!
+                                <p><li><h3><strong>Steps:</strong></h3></p>
+                                <p> Click to view full recipe!</p>
+                                </ul>
                             </div>
                         </div>
                     </a>
@@ -108,22 +108,27 @@ document.addEventListener("DOMContentLoaded", function () {
             <img class="recipe-image" src="${selectedRecipe.image}" alt="${selectedRecipe.name}">
             <p class="recipe-description">${selectedRecipe.description || "A delicious recipe!"}</p>
 
-            <ul class="recipe-ingredients">
-                ${(Array.isArray(selectedRecipe.ingredients)
-                    ? selectedRecipe.ingredients
-                    : selectedRecipe.ingredients.split(/\r?\n/))
-                    .filter(i => i.trim() !== '')
-                    .map(i => `<li>${i.trim()}</li>`).join('')}
+            <ul>
+                <li><h2>Ingredients</h2></li>
+                <ul>
+                    ${(Array.isArray(selectedRecipe.ingredients)
+                        ? selectedRecipe.ingredients
+                        : selectedRecipe.ingredients.split(/\r?\n/))
+                        .filter(i => i.trim() !== '')
+                        .map(i => `<li>${i.trim()}</li>`).join('')}
+                </ul>
             </ul>
 
-            <h2>Instructions</h2>
-            <ol class="recipe-instructions">
-                ${(Array.isArray(selectedRecipe.instructions)
-                    ? selectedRecipe.instructions
-                    : selectedRecipe.instructions.split(/\r?\n/))
-                    .filter(step => step.trim() !== '')
-                    .map(step => `<li>${step.trim()}</li>`).join('')}
-            </ol>
+            <ul>
+                <li><h2>Instructions</h2></li>
+                <ol>
+                    ${(Array.isArray(selectedRecipe.instructions)
+                        ? selectedRecipe.instructions
+                        : selectedRecipe.instructions.split(/\r?\n/))
+                        .filter(step => step.trim() !== '')
+                        .map(step => `<p>${step.trim()}</p>`).join('')}
+                </ol>
+            </ul>
 
             <div class="recipe-extra">
                 <h2>Additional Info</h2>

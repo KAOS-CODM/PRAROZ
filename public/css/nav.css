@@ -1,12 +1,7 @@
 .navbar {
-	width: 100%;
-    max-width: 100%;
+    max-width: 100vw;
     position: relative;
-    top: 0;
-    left: 0;
-    width: 100%;
     background: rgba(51, 51, 51, 0.9);
-    padding: 15px 30px;
     display: flex;
     align-items: left;
     justify-content: center;
@@ -39,10 +34,14 @@
 }
 
 .nav-links li a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
+    font-family: 'Tangerin', cursive;
     font-size: 1rem;
+    font-weight: 700;
+    font-style: normal;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    margin-bottom: 1rem;
     transition: color 0.3s ease-in-out;
 }
 
@@ -105,5 +104,14 @@
 
     .nav-links li a:hover {
         color: #ff9800;
+    }
+}
+
+@media (min-width: 1025px) {
+    .navbar {
+        flex-direction: column;
+        padding: 8px;
+        height: fit-content;
+        max-height: fit-content;
     }
 }

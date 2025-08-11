@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
             recipeCard.innerHTML = `
                 <img src="${recipe.image}" alt="${recipe.name}">
+                <div class="recipe-content
                 <h3>${recipe.name}</h3>
                 <p>${recipe.description}</p>
                 <a href="/recipe-details?recipename=${encodeURIComponent(recipe.name)}">View Recipe</a>
