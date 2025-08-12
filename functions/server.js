@@ -39,7 +39,7 @@ app.get('/recipe', (req, res, next) => {
 });
 
 app.get('/:page?',(req, res, next) => {
-    const page = req.params.page || 'home'
+    const page = req.params.page || 'index'
     const filePath = path.join(__dirname, '../public', `${page}.html`)
 
     console.log("serving page:", {page});
