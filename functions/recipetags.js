@@ -1,47 +1,14 @@
 module.exports = {
-  "classic tiramisu": {
-    "title": "Classic Tiramisu",
-    "description": "Coming soon!!!",
-    "image": "images/desserts/classic-tiramisu.jpg",
-    "jsonld": {
-      "@context": "https://schema.org",
-      "@type": "Recipe",
-      "name": "Classic Tiramisu",
-      "description": "Coming soon!!!",
-      "image": "images/desserts/classic-tiramisu.jpg",
-      "author": {
-        "@type": "Person",
-        "name": "Praroz"
-      },
-      "recipeCategory": "desserts",
-      "keywords": "classic, tiramisu, 250g mascarpone, 3 egg yolks, 100g sugar, 250g mascarpone, 3 egg yolks, 100g sugar, 200ml strong coffee",
-      "recipeIngredient": [
-        "250g mascarpone",
-        "3 egg yolks",
-        "100g sugar",
-        "200ml strong coffee",
-        "200g ladyfinger biscuits",
-        "Cocoa powder for dusting",
-        "1 tsp vanilla extract"
-      ],
-      "recipeInstructions": [
-        "Whisk egg yolks and sugar until creamy.",
-        "Add mascarpone and vanilla extract, mix well.",
-        " Dip ladyfingers in coffee and layer them in a dish.",
-        "Chill for 4 hours and dust with cocoa before serving."
-      ]
-    }
-  },
   "molten brownie sundae": {
     "title": "Molten Brownie Sundae",
     "description": "Coming soon!!!",
-    "image": "images/desserts/molten-brownie-sundae.jpg",
+    "image": "https://qfwmpgeybarnibmaoswb.supabase.co/storage/v1/object/public/recipe-images/dessert/molten-brownie-sundae.jpg",
     "jsonld": {
       "@context": "https://schema.org",
       "@type": "Recipe",
       "name": "Molten Brownie Sundae",
       "description": "Coming soon!!!",
-      "image": "images/desserts/molten-brownie-sundae.jpg",
+      "image": "https://qfwmpgeybarnibmaoswb.supabase.co/storage/v1/object/public/recipe-images/dessert/molten-brownie-sundae.jpg",
       "author": {
         "@type": "Person",
         "name": "Praroz"
@@ -57,26 +24,19 @@ module.exports = {
         "1 tsp vanilla extract",
         "ice cream for serving"
       ],
-      "recipeInstructions": [
-        "Preheat oven to 180&deg;C (356&deg;F).",
-        "Melt chocolate and butter together.",
-        "Whisk egg and sugar, then mix in melted chocolate.",
-        "Sift in flour and stir gently.",
-        "Bake for 10-15 minutes until just set.",
-        "Serve warm with ice cream"
-      ]
+      "recipeInstructions": "<ol><li>Preheat oven to 180&deg;C (356&deg;F).</li><li>Melt chocolate and butter together.</li><li>Whisk egg and sugar, then mix in melted chocolate.</li><li>Sift in flour and stir gently.</li><li>Bake for 10-15 minutes until just set.</li><li>Serve warm with ice cream</li></ol>"
     }
   },
   "apple crumble": {
     "title": "Apple Crumble",
     "description": "Coming soon!!!",
-    "image": "images/desserts/apple-crumble.webp",
+    "image": "https://qfwmpgeybarnibmaoswb.supabase.co/storage/v1/object/public/recipe-images/dessert/apple-crumble.webp",
     "jsonld": {
       "@context": "https://schema.org",
       "@type": "Recipe",
       "name": "Apple Crumble",
       "description": "Coming soon!!!",
-      "image": "images/desserts/apple-crumble.webp",
+      "image": "https://qfwmpgeybarnibmaoswb.supabase.co/storage/v1/object/public/recipe-images/dessert/apple-crumble.webp",
       "author": {
         "@type": "Person",
         "name": "Praroz"
@@ -91,25 +51,19 @@ module.exports = {
         "50g butter",
         "1 tsp cinnamon"
       ],
-      "recipeInstructions": [
-        "Preheat oven to 180&deg;C (356&deg;F).",
-        "Peel and slice apples, mix with cinnamon and sugar.",
-        "In a bowl, mix flour, oats, and butter until crumbly.",
-        "Layer apples in a bakinh dish and sprinkle crumble mixture on top.",
-        "Bake for 25-30 minutes until golden brown."
-      ]
+      "recipeInstructions": "<ol><li>Preheat oven to 180&deg;C (356&deg;F).</li><li>Peel and slice apples, mix with cinnamon and sugar.</li><li>In a bowl, mix flour, oats, and butter until crumbly.</li><li>Layer apples in a bakinh dish and sprinkle crumble mixture on top.</li><li>Bake for 25-30 minutes until golden brown.</li></ol>"
     }
   },
   "vanilla panna cotta": {
     "title": "Vanilla Panna Cotta",
     "description": "Coming soon!!!",
-    "image": "images/desserts/vanilla-panna-cotta.webp",
+    "image": "https://qfwmpgeybarnibmaoswb.supabase.co/storage/v1/object/public/recipe-images/dessert/vanilla-panna-cotta.webp",
     "jsonld": {
       "@context": "https://schema.org",
       "@type": "Recipe",
       "name": "Vanilla Panna Cotta",
       "description": "Coming soon!!!",
-      "image": "images/desserts/vanilla-panna-cotta.webp",
+      "image": "https://qfwmpgeybarnibmaoswb.supabase.co/storage/v1/object/public/recipe-images/dessert/vanilla-panna-cotta.webp",
       "author": {
         "@type": "Person",
         "name": "Praroz"
@@ -123,24 +77,47 @@ module.exports = {
         "2 sheets gelatin",
         "100ml milk"
       ],
-      "recipeInstructions": [
-        "Soak gelatin sheets in cold water.",
-        "Heat cream, sugar, and vanilla until warm.",
-        "Pour into molds and refrigerate for 4 hours.",
-        "Serve with fresh berries or caramel sauce."
-      ]
+      "recipeInstructions": "<ol><li>Soak gelatin sheets in cold water.</li><li>Heat cream, sugar, and vanilla until warm.</li><li>Pour into molds and refrigerate for 4 hours.</li><li>Serve with fresh berries or caramel sauce.</li></ol>"
+    }
+  },
+  "classic tiramisu": {
+    "title": "Classic Tiramisu",
+    "description": "Coming soon!!!",
+    "image": "https://qfwmpgeybarnibmaoswb.supabase.co/storage/v1/object/public/recipe-images/dessert/classic-tiramisu.jpg",
+    "jsonld": {
+      "@context": "https://schema.org",
+      "@type": "Recipe",
+      "name": "Classic Tiramisu",
+      "description": "Coming soon!!!",
+      "image": "https://qfwmpgeybarnibmaoswb.supabase.co/storage/v1/object/public/recipe-images/dessert/classic-tiramisu.jpg",
+      "author": {
+        "@type": "Person",
+        "name": "Praroz"
+      },
+      "recipeCategory": "desserts",
+      "keywords": "classic, tiramisu, 250g mascarpone, 3 egg yolks, 100g sugar, 250g mascarpone, 3 egg yolks, 100g sugar, 200ml strong coffee",
+      "recipeIngredient": [
+        "250g mascarpone",
+        "3 egg yolks",
+        "100g sugar",
+        "200ml strong coffee",
+        "200g ladyfinger biscuits",
+        "Cocoa powder for dusting",
+        "1 tsp vanilla extract"
+      ],
+      "recipeInstructions": "<ol><li>Whisk egg yolks and sugar until creamy.</li><li>Add mascarpone and vanilla extract, mix well.</li><li>Dip ladyfingers in coffee and layer them in a dish.</li><li>Chill for 4 hours and dust with cocoa before serving.</li></ol>"
     }
   },
   "chocolate lava cake": {
     "title": "Chocolate Lava Cake",
     "description": "Coming soon!!!",
-    "image": "images/desserts/chocolate-lava-cake.jpeg",
+    "image": "https://qfwmpgeybarnibmaoswb.supabase.co/storage/v1/object/public/recipe-images/dessert/chocolate-lava-cake.jpeg",
     "jsonld": {
       "@context": "https://schema.org",
       "@type": "Recipe",
       "name": "Chocolate Lava Cake",
       "description": "Coming soon!!!",
-      "image": "images/desserts/chocolate-lava-cake.jpeg",
+      "image": "https://qfwmpgeybarnibmaoswb.supabase.co/storage/v1/object/public/recipe-images/dessert/chocolate-lava-cake.jpeg",
       "author": {
         "@type": "Person",
         "name": "Praroz"
@@ -157,15 +134,7 @@ module.exports = {
         "Butter for greasing",
         "Cocoa powder for dusting"
       ],
-      "recipeInstructions": [
-        "Preheat oven to 200&deg;C (392&deg;F).",
-        "Grease ramekins with butter and dust with cocoa powder.",
-        "Melt chocolate and butter together over low heat.",
-        "Whisk eggs, yolk, and sugar until light and fluffy.",
-        "Fold in melted chocolate, then sift in flour.",
-        "Pour batter into ramekims and bake for 8-10 minutess.",
-        "Serve immediately with ice cream to taste."
-      ]
+      "recipeInstructions": "<ol><li>Preheat oven to 200&deg;C (392&deg;F).</li><li>Grease ramekins with butter and dust with cocoa powder.</li><li>Melt chocolate and butter together over low heat.</li><li>Whisk eggs, yolk, and sugar until light and fluffy.</li><li>Fold in melted chocolate, then sift in flour.</li><li>Pour batter into ramekims and bake for 8-10 minutess.</li><li>Serve immediately with ice cream to taste.</li></ol>"
     }
   }
 };

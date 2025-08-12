@@ -9,7 +9,7 @@ const { v2: cloudinary } = require('cloudinary');
 const supabase = require('./supabase');
 const app = express();
 const metaTags = require('./metatags');
-const recipeTags = require('./recipetags1');
+const recipeTags = require('./recipetags');
 const { version } = require('os');
 
 app.get('/recipe', (req, res, next) => {
