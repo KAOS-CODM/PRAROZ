@@ -25,9 +25,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     : recipe.ingredients.split(",").map(item => item.trim());
         
                 return `
-                    <a href="/recipe-details?recipe=${encodeURIComponent(recipe.name.trim())}" class="recipe-card-link">
+                    <a href="/recipe?recipe=${encodeURIComponent(recipe.name.trim())}" class="recipe-card-link">
                         <div class="recipe-card">
-                            <img class="recipe-image" src="${recipe.image}" width="100" onerror="this.onerror=null;this.src='placeholder.jpg'">
+                            <img class="recipe-image" loading="lazy"  src="${recipe.image}" width="100" onerror="this.onerror=null;this.src='placeholder.jpg'">
                             <div class="recipe-content">
                                 <h2>${recipe.name}</h2>
                                 <ul>
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <h2 class="content-title">${content.title}</h2>
                 <p class="content-description">${desc}</p>
                 <p>Thanks for visiting, hope you enjoy your stay!</p>
-                <img class="content-image" src="${content.image}" alt="${content.title}">
+                <img class="content-image" loading="lazy" src="${content.image}" alt="${content.title}">
             `;
         } else {
             contentContainer.innerHTML = '<p>No content found for this category.</p>';
@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         document.getElementById("recipe-details").innerHTML = `
             <h1 class="recipe-title">${selectedRecipe.name}</h1>
-            <img class="recipe-image" src="${selectedRecipe.image}" alt="${selectedRecipe.name}">
+            <img class="recipe-image" loading="lazy" src="${selectedRecipe.image}" alt="${selectedRecipe.name}">
             <p class="recipe-description">${selectedRecipe.description || "A delicious recipe!"}</p>
 
             <ul>

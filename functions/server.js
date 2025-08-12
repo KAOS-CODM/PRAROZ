@@ -8,6 +8,118 @@ const streamifier = require('streamifier');
 const { v2: cloudinary } = require('cloudinary');
 const supabase = require('./supabase');
 const app = express();
+const metaTags = require('./metatags');
+const recipeTags = require('./recipetags1');
+const { version } = require('os');
+
+app.get('/recipe', (req, res, next) => {
+  const recipeName = decodeURIComponent(req.query.recipe || '').toLowerCase();
+  const data = recipeTags[recipeName];
+
+  const filePath = path.join(__dirname, '../public', 'recipe.html');
+  fs.readFile(filePath, 'utf8', (err, html) => {
+    if (err || !data) return next();
+
+    const metaHtml = `
+      <title>${data.title} | Praroz™</title>
+      <meta name="description" content="${data.description}">
+      <meta property="og:title" content="${data.title}">
+      <meta property="og:description" content="${data.description}">
+      <meta property="og:image" content="${data.image}">
+    `;
+
+    const jsonLdScript = `
+      <script type="application/ld+json">${JSON.stringify(data.jsonld)}
+      </script>
+    `;
+
+    const finalHtml = html.replace('</head>', `${metaHtml} ${jsonLdScript}</head>`);
+    res.send(finalHtml);
+  });
+});
+
+app.get('/:page?',(req, res, next) => {
+    const page = req.params.page || 'home'
+    const filePath = path.join(__dirname, '../public', `${page}.html`)
+
+    console.log("serving page:", {page});
+    fs.readFile(filePath, 'utf8', (err, data) =>  {
+        if (req.path === '/recipe') return next();
+        if (err) return next();
+        const meta = metaTags[page] || metaTags.home;
+        console.log("Meta Tags:", {meta});
+
+        const metaHtml = `
+            <title>${meta.title} | Praroz™</title>
+            <meta name="description" content="${meta.description}">
+            <meta property="og:title" content="${meta.title}">
+            <meta property="og:description" content="${meta.description}">
+            <meta property="og:image" content="${meta.image}">
+            <meta property="og:type" content="website">
+
+            <meta name="twitter:card" content="summary_large_image">
+            <meta name="twitter:title" content="${meta.title}">
+            <meta name="twitter:description" content="${meta.description}">
+            <meta name="twitter:image" content="${meta.image}">
+        `;
+        const modifiedData = data.replace('</head>', `${metaHtml}</head>`);
+        res.send(modifiedData);
+    });
+});
+
+app.get('/robots.txt', (req, res) => {
+    const baseUrl = `${req.protocol}s://${req.get('host')}`;
+    const disallowedPaths = [
+        '/private/',
+        '/admin/'
+    ];
+
+    const disallowedRules = disallowedPaths.map(path => `\nDisallow: ${path}`).join('');
+
+    const robotsContent = `
+        User-agent: *\n${disallowedRules}
+        \nSitemap: ${baseUrl}/sitemap.xml`;
+
+        res.type('text/plain').send(robotsContent);
+});
+
+app.get('/sitemap.xml', (req, res) => {
+    const baseUrl =`${req.protocol}s://${req.get('host')}`;
+    const pages = [
+        {url: '/', changefreq: 'daily', priority: 1.0},
+        {url: '/home', changefreq: 'daily', priority: 0.8},
+        {url: '/desserts', changefreq: 'weekly', priority: 1.0},
+        {url: '/appetizers', changefreq: 'weekly', priority: 0.8},
+        {url: '/salad', changefreq: 'weekly', priority: 0.8},
+        {url: '/burger', changefreq: 'weekly', priority: 0.8},
+        {url: '/pizza', changefreq: 'weekly', priority: 0.8},
+        {url: '/pasta', changefreq: 'weekly', priority: 0.8},
+        {url: '/recipes', changefreq: 'weekly', priority: 0.8},
+        {url: '/recipe', changefreq: 'weekly', priority: 0.8},
+        {url: '/index', changefreq: 'weekly', priority: 0.8},
+        {url: '/submission', changefreq: 'weekly', priority: 0.8},
+        {url: '/about', changefreq: 'weekly', priority: 0.8},
+        {url: '/terms', changefreq: 'weekly', priority: 0.8},
+        {url: '/contact', changefreq: 'weekly', priority: 0.8},
+    ];
+
+    let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
+    xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+
+    pages.forEach(page => {
+        xml += `<url>\n`;
+        xml += `<loc>${baseUrl}${page.url}</loc>`;
+        xml += `<changefreq>${page.changefreq}</changefreq>\n`;
+        xml += `<priority>${page.priority}</priority>\n`;
+        xml += `</url>\n`
+    });
+
+    xml += `</urlset>`;
+
+    res.header('Content-Type', 'application/xml');
+    res.send(xml);
+});
+
 const DATA_FOLDER = path.join(__dirname, 'data');
 const FILES = {
     contents: path.join(DATA_FOLDER, 'contents.json'),
@@ -259,6 +371,11 @@ app.post('/api/validate-admin', (req, res) => {
 app.use((req, res) => {
   res.status(404).sendFile(path.join(__dirname, '../public/404.html'));
 });
+
+app.use(express.static('../public', {
+    maxAge: '1y',
+    etag: false
+}));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, '0.0.0.0', () => {

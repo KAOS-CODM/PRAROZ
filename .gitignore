@@ -75,9 +75,12 @@ functions/data/recipes.json
 functions/node_modules/
 functions/.env
 functions/db.js
-functions/metatag.js
 functions/index.js
 functions/migrate.js
+functions/jsonld.js
+functions/recipetags1.js
+functions/generateRecipeTag.js
+functions/generaterecipetags.js
 functions/migrateRecipes.js
 functions/server_backup.js
 functions/server_backup2.js
@@ -99,5 +102,7 @@ public/stress.html
 public/subscribe.html
 public/tester.html
 text/
+excess.docx
+excess.doc
 Praroz.zip
 requirements.txt
