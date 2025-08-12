@@ -210,7 +210,7 @@
         "title": "Follow Us",
         "links": [
             { "platform": "facebook", "url": "#" },
-            { "platform": "twitter", "url": "#" },
+            { "platform": "x-twitter", "url": "#" },
             { "platform": "instagram", "url": "#" },
             { "platform": "linkedin", "url": "#" }
         ]
