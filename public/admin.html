@@ -59,7 +59,7 @@
                     recipeList.innerHTML += `
                         <div class="recipe-item">
                             <h3>${recipe.name}</h3>
-                            <img src="${recipe.image || 'placeholder.jpg'}" width="100" onerror="this.onerror=null;this.src='placeholder.jpg';">
+                            <img src="${recipe.image || 'placeholder.webp'}" width="100" onerror="this.onerror=null;this.src='placeholder.webp';">
                             <p><strong>Description:</strong> ${recipe.description || "No description available"}</p>
                             <p><strong>Ingredients:</strong> ${Array.isArray(recipe.ingredients) ? recipe.ingredients.join(", ") : (recipe.ingredients || "Not provided")}</p>
                             <p><strong>Instructions:</strong> ${instructions.length > 0 ? instructions.join("<br>") : "Not provided"}</p>
@@ -113,7 +113,7 @@
                 recipeList.innerHTML += `
                     <div class="recipe-item">
                         <h3>${recipe.name}</h3>
-                        <img src="${recipe.image || 'placeholder.jpg'}" width="100" onerror="this.onerror=null;this.src='placeholder.jpg';">
+                        <img src="${recipe.image || 'placeholder.webp'}" width="100" onerror="this.onerror=null;this.src='placeholder.webp';">
                         <p><strong>Description:</strong> ${recipe.description || "No description available"}</p>
                         <p><strong>Ingredients:</strong> ${Array.isArray(recipe.ingredients) ? recipe.ingredients.join(", ") : (recipe.ingredients || "Not provided")}</p>
                         <p><strong>Instructions:</strong> ${instructions.length > 0 ? instructions.join("<br>") : "Not provided"}</p>

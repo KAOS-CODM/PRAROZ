@@ -2,13 +2,13 @@ module.exports = {
   "molten brownie sundae": {
     "title": "Molten Brownie Sundae",
     "description": "Coming soon!!!",
-    "image": "https://qfwmpgeybarnibmaoswb.supabase.co/storage/v1/object/public/recipe-images/dessert/molten-brownie-sundae.jpg",
+    "image": "https://qfwmpgeybarnibmaoswb.supabase.co/storage/v1/object/public/recipe-images/dessert/molten-brownie-sundae.webp",
     "jsonld": {
       "@context": "https://schema.org",
       "@type": "Recipe",
       "name": "Molten Brownie Sundae",
       "description": "Coming soon!!!",
-      "image": "https://qfwmpgeybarnibmaoswb.supabase.co/storage/v1/object/public/recipe-images/dessert/molten-brownie-sundae.jpg",
+      "image": "https://qfwmpgeybarnibmaoswb.supabase.co/storage/v1/object/public/recipe-images/dessert/molten-brownie-sundae.webp",
       "author": {
         "@type": "Person",
         "name": "Praroz"
@@ -83,13 +83,13 @@ module.exports = {
   "classic tiramisu": {
     "title": "Classic Tiramisu",
     "description": "Coming soon!!!",
-    "image": "https://qfwmpgeybarnibmaoswb.supabase.co/storage/v1/object/public/recipe-images/dessert/classic-tiramisu.jpg",
+    "image": "https://qfwmpgeybarnibmaoswb.supabase.co/storage/v1/object/public/recipe-images/dessert/classic-tiramisu.webp",
     "jsonld": {
       "@context": "https://schema.org",
       "@type": "Recipe",
       "name": "Classic Tiramisu",
       "description": "Coming soon!!!",
-      "image": "https://qfwmpgeybarnibmaoswb.supabase.co/storage/v1/object/public/recipe-images/dessert/classic-tiramisu.jpg",
+      "image": "https://qfwmpgeybarnibmaoswb.supabase.co/storage/v1/object/public/recipe-images/dessert/classic-tiramisu.webp",
       "author": {
         "@type": "Person",
         "name": "Praroz"
@@ -111,13 +111,13 @@ module.exports = {
   "chocolate lava cake": {
     "title": "Chocolate Lava Cake",
     "description": "Coming soon!!!",
-    "image": "https://qfwmpgeybarnibmaoswb.supabase.co/storage/v1/object/public/recipe-images/dessert/chocolate-lava-cake.jpeg",
+    "image": "https://qfwmpgeybarnibmaoswb.supabase.co/storage/v1/object/public/recipe-images/dessert/chocolate-lava-cake.webp",
     "jsonld": {
       "@context": "https://schema.org",
       "@type": "Recipe",
       "name": "Chocolate Lava Cake",
       "description": "Coming soon!!!",
-      "image": "https://qfwmpgeybarnibmaoswb.supabase.co/storage/v1/object/public/recipe-images/dessert/chocolate-lava-cake.jpeg",
+      "image": "https://qfwmpgeybarnibmaoswb.supabase.co/storage/v1/object/public/recipe-images/dessert/chocolate-lava-cake.webp",
       "author": {
         "@type": "Person",
         "name": "Praroz"
