@@ -11,6 +11,17 @@ const app = express();
 const metaTags = require('./metatags');
 const recipeTags = require('./recipetags');
 const { version } = require('os');
+const gaScript = `
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWDGMK7KP6"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-RWDGMK7KP6');
+    </script>
+`;
 
 app.get('/recipe', (req, res, next) => {
   const recipeName = decodeURIComponent(req.query.recipe || '').toLowerCase();
@@ -33,7 +44,7 @@ app.get('/recipe', (req, res, next) => {
       </script>
     `;
 
-    const finalHtml = html.replace('</head>', `${metaHtml} ${jsonLdScript}</head>`);
+    const finalHtml = html.replace('</head>', `${metaHtml} ${gaScript} ${jsonLdScript}</head>`);
     res.send(finalHtml);
   });
 });
@@ -62,7 +73,7 @@ app.get('/:page?',(req, res, next) => {
             <meta name="twitter:description" content="${meta.description}">
             <meta name="twitter:image" content="${meta.image}">
         `;
-        const modifiedData = data.replace('</head>', `${metaHtml}</head>`);
+        const modifiedData = data.replace('</head>', `${metaHtml} ${gaScript}</head>`);
         res.send(modifiedData);
     });
 });
@@ -84,6 +95,7 @@ app.get('/robots.txt', (req, res) => {
 });
 
 app.get('/sitemap.xml', (req, res) => {
+    res.header('Content-Type', 'application/xml');
     const baseUrl =`${req.protocol}s://${req.get('host')}`;
     const pages = [
         {url: '/', changefreq: 'daily', priority: 1.0},
@@ -115,8 +127,6 @@ app.get('/sitemap.xml', (req, res) => {
     });
 
     xml += `</urlset>`;
-
-    res.header('Content-Type', 'application/xml');
     res.send(xml);
 });
 

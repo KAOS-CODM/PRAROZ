@@ -84,6 +84,8 @@ functions/generaterecipetags.js
 functions/migrateRecipes.js
 functions/server_backup.js
 functions/server_backup2.js
+functions/backend.js
+functions/frontend.js
 node_modules/
 public/.vscode
 public/css/project1_backup.css

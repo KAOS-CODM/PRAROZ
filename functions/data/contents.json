@@ -174,7 +174,7 @@
     },
 
     "navbar": {
-        "logo": "images/logo.png",
+        "logo": "images/logo.webp",
         "links": [
             { "name": "Home", "url": "/home", "icon": "fas fa-home", "active": true},
             { "name": "Desserts", "url": "/desserts", "icon": "fas fa-birthday-cake" },
