@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         document.getElementById("recipe-details").innerHTML = `
             <h1 class="recipe-title">${selectedRecipe.name}</h1>
-            <img class="recipe-image" loading="lazy" src="${selectedRecipe.image}" alt="${selectedRecipe.name}">
+            <img class="recipe-image" loading="lazy"src="${selectedRecipe.image}" alt="${selectedRecipe.name}">
             <p class="recipe-description">${selectedRecipe.description || "A delicious recipe!"}</p>
 
             <ul>

@@ -11,7 +11,7 @@ h1 {
 }
 
 /* Recipe Item Styling */
-.recipe-item {
+.recipe-card {
     background: white;
     padding: 15px;
     margin: 15px auto;
@@ -25,7 +25,7 @@ h1 {
     align-items: center;
 }
 
-.recipe-item img {
+.recipe-card img {
     max-width: 100px;
     border-radius: 5px;
     display: block;
@@ -54,7 +54,7 @@ button:hover {
 
 /* Responsive Design */
 @media (max-width: 600px) {
-    .recipe-item {
+    .recipe-card {
         width: 95%; /* Full width on smaller screens */
     }
     

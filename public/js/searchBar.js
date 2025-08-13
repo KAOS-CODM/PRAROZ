@@ -5,61 +5,61 @@ class SearchBar extends HTMLElement {
 
         this.shadowRoot.innerHTML = `
             <style>
-    .search-container {
-        display: flex;
-        justify-content: center; /* Centers horizontally */
-        gap: 10px;
-        width: 60%; /* Adjust width to keep it centered */
-        max-width: 500px; /* Prevent it from stretching too much */
-        margin: 20px auto; /* Centers it with equal space on both sides */
-    }
-    
-    input {
-        flex-grow: 1;
-        padding: 12px; /* Increased height */
-        border: 1px solid #ccc;
-        border-radius: 6px;
-        font-size: 16px; /* Slightly larger text */
-    }
-    
-    button {
-        padding: 12px 16px; /* Increased height */
-        background-color: #007BFF;
-        color: white;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 16px;
-    }
+                .search-container {
+                    display: flex;
+                    justify-content: center; /* Centers horizontally */
+                    gap: 10px;
+                    width: 60%; /* Adjust width to keep it centered */
+                    max-width: 500px; /* Prevent it from stretching too much */
+                    margin: 20px auto; /* Centers it with equal space on both sides */
+                }
+                
+                input {
+                    flex-grow: 1;
+                    padding: 12px; /* Increased height */
+                    border: 1px solid #ccc;
+                    border-radius: 6px;
+                    font-size: 16px; /* Slightly larger text */
+                }
+                
+                button {
+                    padding: 12px 16px; /* Increased height */
+                    background-color: #007BFF;
+                    color: white;
+                    border: none;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    font-size: 16px;
+                }
 
-    button:hover {
-        background-color: #0056b3;
-    }
+                button:hover {
+                    background-color: #0056b3;
+                }
 
-    /* Responsive for 760px */
-    @media (max-width: 760px) {
-        .search-container {
-            width: 80%; /* Wider for better fit */
-        }
-        
-        input, button {
-            font-size: 14px; /* Slightly smaller text */
-            padding: 10px;
-        }
-    }
+                /* Responsive for 760px */
+                @media (max-width: 760px) {
+                    .search-container {
+                        width: 80%; /* Wider for better fit */
+                    }
+                    
+                    input, button {
+                        font-size: 14px; /* Slightly smaller text */
+                        padding: 10px;
+                    }
+                }
 
-    /* Responsive for 480px */
-    @media (max-width: 480px) {
-        .search-container {
-            width: 90%; /* Almost full width */
-            flex-direction: column; /* Stack input and button vertically */
-        }
+                /* Responsive for 480px */
+                @media (max-width: 480px) {
+                    .search-container {
+                        width: 90%; /* Almost full width */
+                        flex-direction: column; /* Stack input and button vertically */
+                    }
 
-        button {
-            width: 100%; /* Full width for better usability */
-        }
-    }
-</style>
+                    button {
+                        width: 100%; /* Full width for better usability */
+                    }
+                }
+            </style>
 
             <div class="search-container">
                 <input type="text" id="searchInput" placeholder="Search recipe or category...">
@@ -83,7 +83,7 @@ class SearchBar extends HTMLElement {
 
     performSearch() {
         const query = this.shadowRoot.getElementById("searchInput").value.toLowerCase().trim();
-        const recipeItems = document.querySelectorAll(".recipe-item");
+        const recipeItems = document.querySelectorAll(".recipe-card");
         const recipeCards = document.querySelectorAll(".recipe-card-link"); // For grid layout
         const categoryHeadings = document.querySelectorAll("h2"); // Categories are in <h2>
 
@@ -126,7 +126,7 @@ class SearchBar extends HTMLElement {
             } else if (matchedCategory) {
                 // If a category matched, show all recipes under it
                 let nextElement = matchedCategory.nextElementSibling;
-                while (nextElement && nextElement.classList.contains("recipe-item")) {
+                while (nextElement && nextElement.classList.contains("recipe-card")) {
                     nextElement.style.display = "block";
                     nextElement = nextElement.nextElementSibling;
                 }
