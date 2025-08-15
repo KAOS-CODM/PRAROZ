@@ -23,16 +23,6 @@ html, body {
     width: 120px;
 }
 
-.main-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    z-index: -1;
-}
-
 .content-container {
     position:relative;
     max-height: fit-content;
@@ -342,7 +332,7 @@ button:hover {
     background-color: #0056b3;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 601px) and (max-width: 1024){
     .content-container {
         max-width: 90%;
         padding: 30px;
@@ -390,7 +380,7 @@ button:hover {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
     .content-container {
         max-width: 95%;
         padding: 20px;

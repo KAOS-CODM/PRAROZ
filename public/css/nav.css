@@ -65,7 +65,7 @@
     color: #ff9800;
 }
 
-@media (min-width: 500px) and (max-width: 1024px){
+@media (min-width: 601px) and (max-width: 1024px){
     .navbar{
         flex-direction: column;
         padding: 120px;
@@ -88,7 +88,7 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
     .navbar {
         flex-direction: column;
         padding: 8px;

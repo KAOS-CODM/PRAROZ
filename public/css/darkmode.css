@@ -1,0 +1,146 @@
+#theme-toggle {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: #fff;
+  color: #000;
+  border-radius: 50%;
+  padding: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 999;
+}
+
+
+body.dark-mode {
+  background: #121212 !important;
+  color: #f1f1f1 !important;
+}
+
+/* Headings */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6,
+body.dark-mode .testimonials cite {
+  color: #ffffff;
+}
+
+/* Paragraphs and links */
+body.dark-mode #content p,
+body.dark-mode p,
+body.dark-mode a,
+body.dark-mode span,
+body.dark-mode li,
+body.dark-mode ol,
+body.dark-mode ul,
+body.dark-mode td{
+  color: #e0e0e0;
+}
+
+body.dark-mode #recipe-details p{
+  color: #1a1a1a;
+}
+
+/* Inputs and textareas */
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select
+body.dark-mode .submission-container textarea,
+body.dark-mode .submission-container label{
+  background-color: #1e1e1e;
+  color: #fff;
+  border: 1px solid #333;
+}
+
+body.dark-mode .submission-container select{
+  background-color: #555;
+  color: #fff;
+  border: 1px solid #333;
+}
+
+body.dark-mode #recipe-details .recipe-extra,
+body.dark-mode #recipe-details ul,
+body.dark-mode #recipe-details h2,
+body.dark-mode #recipe-details .recipe-extra,
+body.dark-mode #recipe-details li,
+body.dark-mode #recipe-details .nutrition-list{
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  font-weight: 300;
+  background-color: #555;
+  color: #fff;
+  border: 1px solid #333;
+  margin-top: 15px;
+  list-style: none;
+}
+
+body.dark-mode .recipe-title,
+body.dark-mode #recipe-details p,
+body.dark-mode #recipe-details h1,
+body.dark-mode #recipe-details .recipe-extra p,
+body.dark-mode #recipe-details .chef-tips,
+body.dark-mode #recipe-details .instructions-list li,
+body.dark-mode #recipe-details .ingredients-list li,
+body.dark-mode #recipe-details .nutrition-list li,
+body.dark-mode #recipe-details .additional-info li,
+body.dark-mode .testimonials blockquote,
+body.dark-mode #recipe-details .recipe-description{
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  font-weight: 300;
+  background-color: #555;
+  color: #fff;
+  border: 1px solid #333;
+  border-left: 4px solid #007bff;
+  margin-top: 15px;
+  list-style: none;
+}
+
+/* Buttons */
+body.dark-mode button {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+/* Cards or containers */
+body.dark-mode .recipe-card,
+body.dark-mode #recipe-details,
+body.dark-mode .container,
+body.dark-mode .content-container,
+body.dark-mode #content,
+body.dark-mode #search-results,
+body.dark-mode #recipe-details,
+body.dark-mode #recipe-details .recipe-title
+body.dark-mode .video-container,
+body.dark-mode .submission-container{
+  background-color: #1e1e1e !important;
+  color: #f0f0f0;
+  border: 1px solid #333;
+}
+
+body.dark-mode .recipe-card,
+body.dark-mode #recipe-details,
+body.dark-mode .container,
+body.dark-mode .content-container,
+body.dark-mode #content,
+body.dark-mode #search-results,
+body.dark-mode #recipe-details,
+body.dark-mode #recipe-details .recipe-title
+body.dark-mode .video-container{
+  background-color: #1e1e1e !important;
+}
+
+/* Navigation */
+body.dark-mode .navbar,
+body.dark-mode header,
+body.dark-mode .dynamic-footer {
+  background: #343434;
+  color: #fff;
+}

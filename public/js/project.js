@@ -23,18 +23,23 @@ document.addEventListener("DOMContentLoaded", function () {
                 let ingredientsArray = Array.isArray(recipe.ingredients) 
                     ? recipe.ingredients 
                     : recipe.ingredients.split(",").map(item => item.trim());
-        
+
+                const categorySlug = page.toLowerCase();
+                const recipeSlug = recipe.name.toLowerCase().replace(/\s+/g, '-');
+                const url = `/${encodeURIComponent(categorySlug)}/${encodeURIComponent(recipeSlug)}`;
+
                 return `
-                    <a href="/recipe?recipe=${encodeURIComponent(recipe.name.trim())}" class="recipe-card-link">
+                    <a href="${url}" class="recipe-card-link">
                         <div class="recipe-card">
-                            <img class="recipe-image" loading="lazy"  src="${recipe.image}" width="100" onerror="this.onerror=null;this.src='placeholder.jpg'">
+                            <img class="recipe-image" loading="lazy" src="${recipe.image}" width="100" 
+                                 onerror="this.onerror=null;this.src='placeholder.jpg'">
                             <div class="recipe-content">
                                 <h2>${recipe.name}</h2>
                                 <ul>
-                                <p><li><h3>Ingredients</h3></li></p>
-                                <ul>${ingredientsArray.map(i => `<li>${i}</li>`).join('')}</ul>
-                                <p><li><h3><strong>Steps:</strong></h3></p>
-                                <p> Click to view full recipe!</p>
+                                    <p><li><h3>Ingredients</h3></li></p>
+                                    <ul>${ingredientsArray.map(i => `<li>${i}</li>`).join('')}</ul>
+                                    <p><li><h3><strong>Steps:</strong></h3></p>
+                                    <p>Click to view full recipe!</p>
                                 </ul>
                             </div>
                         </div>
@@ -55,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("Fetched data:", data);
         const content = data[page];
         const contentContainer = document.getElementById('content');
-        const desc = content.description.join("")
+        const desc = content?.description?.join("") || "";
 
         if (!contentContainer) {
             console.error("ERROR: #content NOT found in html");
@@ -67,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <h2 class="content-title">${content.title}</h2>
                 <p class="content-description">${desc}</p>
                 <p>Thanks for visiting, hope you enjoy your stay!</p>
-                <img class="content-image" loading="lazy" src="${content.image}" alt="${content.title}">
+                <img class="recipe-image" loading="lazy" src="${content.image}" alt="${content.title}">
             `;
         } else {
             contentContainer.innerHTML = '<p>No content found for this category.</p>';
@@ -78,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("✅ Recipe Details Page Loaded!");
     
     const urlParams = new URLSearchParams(window.location.search);
-    const recipeName = decodeURIComponent(urlParams.get("recipe") || "").trim();
+    const recipeName = urlParams.get("recipe");
     console.log("🍽️ Selected Recipe:", recipeName);
 
     if (!recipeName) {
@@ -86,74 +91,4 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("recipe-details").innerHTML = "<p>⚠️ No recipe found. Please go back and select a recipe.</p>";
         return;
     }
-
-    fetch(`${window.API_BASE_URL}/approved-recipes`, {
-        headers: { "x-api-key": "yemite01" }
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log("📂 Fetched Data:", data);
-        let selectedRecipe = Array.isArray(data)
-            ? data.find(recipe => recipe.name.toLowerCase().trim() === recipeName.toLowerCase().trim())
-            : null;
-
-        if (!selectedRecipe) {
-            console.error("❌ ERROR: Recipe not found in JSON.");
-            document.getElementById("recipe-details").innerHTML = "<p>⚠️ Recipe not found.</p>";
-            return;
-        }
-
-        document.getElementById("recipe-details").innerHTML = `
-            <h1 class="recipe-title">${selectedRecipe.name}</h1>
-            <img class="recipe-image" loading="lazy"src="${selectedRecipe.image}" alt="${selectedRecipe.name}">
-            <p class="recipe-description">${selectedRecipe.description || "A delicious recipe!"}</p>
-
-            <ul>
-                <li><h2>Ingredients</h2></li>
-                <ul>
-                    ${(Array.isArray(selectedRecipe.ingredients)
-                        ? selectedRecipe.ingredients
-                        : selectedRecipe.ingredients.split(/\r?\n/))
-                        .filter(i => i.trim() !== '')
-                        .map(i => `<li>${i.trim()}</li>`).join('')}
-                </ul>
-            </ul>
-
-            <ul>
-                <li><h2>Instructions</h2></li>
-                <ol>
-                    ${(Array.isArray(selectedRecipe.instructions)
-                        ? selectedRecipe.instructions
-                        : selectedRecipe.instructions.split(/\r?\n/))
-                        .filter(step => step.trim() !== '')
-                        .map(step => `<p>${step.trim()}</p>`).join('')}
-                </ol>
-            </ul>
-
-            <div class="recipe-extra">
-                <h2>Additional Info</h2>
-                <p><strong>Prep Time:</strong> ${selectedRecipe.prep_time || "Not specified"}</p>
-                <p><strong>Cook Time:</strong> ${selectedRecipe.cook_time || "Not specified"}</p>
-                <p><strong>Servings:</strong> ${selectedRecipe.servings || "Not specified"}</p>
-
-                <h2>Nutrition Facts</h2>
-                <ul class="nutrition-list">
-                    <li><strong>Calories:</strong> ${selectedRecipe.calories || "N/A"}</li>
-                    <li><strong>Protein:</strong> ${selectedRecipe.protein || "N/A"}</li>
-                    <li><strong>Carbs:</strong> ${selectedRecipe.carbs || "N/A"}</li>
-                    <li><strong>Fat:</strong> ${selectedRecipe.fat || "N/A"}</li>
-                </ul> 
-
-                <h2>Chef's Tips</h2>
-                <p class="chef-tips">${selectedRecipe.chef_tips || "None"}</p>
-            </div>
-
-            <p><strong>HEY YOU!</strong> Yes you, are you interested in submitting a recipe of your own? Click the button below, and let us know what you have in mind!!!</p>
-            <button class="redirect-button">Submit a Recipe</button>
-        `;
-        document.querySelector('.redirect-button').addEventListener('click', function() {
-            window.location.href = '/submission';
-        });
-    })
-    .catch(error => console.error("❌ ERROR Fetching Recipe:", error));
 });

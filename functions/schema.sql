@@ -1,12 +1,15 @@
--- Approved recipes table
-CREATE TABLE recipes (
-    id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+-- Database schema for recipes and submissions
+-- WARNING: This schema is for context only and is not meant to be run as-is
+
+CREATE TABLE public.recipes (
+    id uuid NOT NULL DEFAULT gen_random_uuid(),
     name text NOT NULL,
     category text NOT NULL,
     image text,
     description text,
     instructions text,
-    ingredients text[],  -- stored as an array
+    instructions_array text[],
+    ingredients jsonb,
     prep_time text,
     cook_time text,
     servings text,
@@ -15,18 +18,19 @@ CREATE TABLE recipes (
     carbs text,
     fat text,
     chef_tips text,
-    created_at timestamp with time zone DEFAULT now()
+    created_at timestamp with time zone DEFAULT now(),
+    CONSTRAINT recipes_pkey PRIMARY KEY (id)
 );
 
--- Unapproved submissions table
-CREATE TABLE submissions (
-    id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+CREATE TABLE public.submissions (
+    id uuid NOT NULL DEFAULT gen_random_uuid(),
     name text NOT NULL,
     category text NOT NULL,
     image text,
     description text,
     instructions text,
-    ingredients text[],  -- stored as an array
+    instructions_array text[],
+    ingredients jsonb,
     prep_time text,
     cook_time text,
     servings text,
@@ -35,7 +39,6 @@ CREATE TABLE submissions (
     carbs text,
     fat text,
     chef_tips text,
-    created_at timestamp with time zone DEFAULT now()
+    created_at timestamp with time zone DEFAULT now(),
+    CONSTRAINT submissions_pkey PRIMARY KEY (id)
 );
-
-create extension if not exists pgcrypto;

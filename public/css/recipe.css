@@ -73,7 +73,7 @@ ul,ol{
 #recipe-details {
     max-width: 100%;
     padding: 15px;
-    background: linear-gradient(to left, #f9f9f9, #ff9800);
+    background-color: linear-gradient(to left, #f9f9f9, #ff9800);
 }
 
 #recipe-details .recipe-title {
@@ -256,7 +256,7 @@ ul,ol{
     }
 }
 
-@media (min-width: 1024px){
+@media (min-width: 1025px){
     #recipe-container {
         grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     }
