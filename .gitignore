@@ -71,7 +71,6 @@ functions/data/~$aRoz_Descriptions.docx
 functions/data/contents_backup.json
 functions/data/contents_backup2.json
 functions/data/submission.json
-functions/data/recipes.json
 functions/node_modules/
 functions/.env
 functions/db.js
