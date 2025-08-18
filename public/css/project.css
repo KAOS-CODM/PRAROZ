@@ -190,7 +190,7 @@ body {
     top: 20px;
     left: auto;
     right: 20px;
-    z-index: 1005;
+    z-index: 9999;
     cursor: pointer;
     background: #050505;
     border: none;
@@ -222,12 +222,12 @@ body {
     top: 0px;
     right: -100vw;
     width: 100vw;
-    height: 300%;
+    height: 100vh;
     background-color: black;
     opacity: 95%;
     padding-top: 100px;
     transition: right 0.3s;
-    z-index: 1000;
+    z-index: 5000;
 }
 
 .sidebar.open {

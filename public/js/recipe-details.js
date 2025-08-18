@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const pathParts = window.location.pathname.split('/').filter(Boolean);
     const category = pathParts[0];
     const recipeSlug = pathParts[1];
+    let currentRecipeId = null;
 
     console.log('📦 Page loaded for:', category, recipeSlug);
 
@@ -69,10 +70,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 <h2>Chef's Tips</h2>
                 <p class="chef-tips">${selectedRecipe.chef_tips || "None"}</p>
+                <p><strong>HEY YOU!</strong> Yes you, are you interested in submitting a recipe of your own? Click the button below, and let us know what you have in mind!!!</p>
+                <button class="redirect-button">Submit a Recipe</button>
             </div>
-
-            <p><strong>HEY YOU!</strong> Yes you, are you interested in submitting a recipe of your own? Click the button below, and let us know what you have in mind!!!</p>
-            <button class="redirect-button">Submit a Recipe</button>
         `;
 
         document.querySelector('.redirect-button').addEventListener('click', function() {

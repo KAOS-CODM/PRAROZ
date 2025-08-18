@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login</title>
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+  <h1>Admin Login</h1>
+  <form id="login-form">
+    <label for="password">Password:</label>
+    <input type="password" id="password" required>
+    <button type="submit">Login</button>
+  </form>
+
+  <script src="/js/config.js"></script>
+  <script>
+    document.getElementById("login-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const password = document.getElementById("password").value;
+
+      try {
+        const res = await fetch(`${window.API_BASE_URL}/validate-admin`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ password })
+        });
+
+        const data = await res.json();
+        if (res.ok && data.valid) {
+          localStorage.setItem("adminToken", "true"); // basic token
+          alert("Login successful");
+          window.location.href = "/admin";
+        } else {
+          alert("Invalid password");
+        }
+      } catch (err) {
+        alert("Login error. Try again.");
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+</html>

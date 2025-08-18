@@ -1,6 +1,6 @@
 #theme-toggle {
-  position: absolute;
-  top: 20px;
+  position: fixed;
+  bottom: 20px;
   left: 20px;
   background: #fff;
   color: #000;
@@ -37,7 +37,9 @@ body.dark-mode span,
 body.dark-mode li,
 body.dark-mode ol,
 body.dark-mode ul,
-body.dark-mode td{
+body.dark-mode td,
+body.dark-mode .comment p,
+body.dark-mode .comment small{
   color: #e0e0e0;
 }
 
@@ -59,7 +61,7 @@ body.dark-mode .submission-container label{
 body.dark-mode .submission-container select{
   background-color: #555;
   color: #fff;
-  border: 1px solid #333;
+  border: 1px solid #413c3cff;
 }
 
 body.dark-mode #recipe-details .recipe-extra,
@@ -67,14 +69,15 @@ body.dark-mode #recipe-details ul,
 body.dark-mode #recipe-details h2,
 body.dark-mode #recipe-details .recipe-extra,
 body.dark-mode #recipe-details li,
-body.dark-mode #recipe-details .nutrition-list{
+body.dark-mode #recipe-details .nutrition-list,
+body.dark-mode #comments-container{
   padding: 10px;
   margin: 5px 0;
   border-radius: 5px;
   font-weight: 300;
-  background-color: #555;
+  background-color: #1e1e1e;
   color: #fff;
-  border: 1px solid #333;
+  border: none;
   margin-top: 15px;
   list-style: none;
 }
@@ -94,9 +97,8 @@ body.dark-mode #recipe-details .recipe-description{
   margin: 5px 0;
   border-radius: 5px;
   font-weight: 300;
-  background-color: #555;
+  background-color: grey;
   color: #fff;
-  border: 1px solid #333;
   border-left: 4px solid #007bff;
   margin-top: 15px;
   list-style: none;
@@ -106,7 +108,7 @@ body.dark-mode #recipe-details .recipe-description{
 body.dark-mode button {
   background-color: #333;
   color: #fff;
-  border: 1px solid #555;
+  border: 0.5px solid #413c3cff;
 }
 
 /* Cards or containers */
@@ -119,10 +121,15 @@ body.dark-mode #search-results,
 body.dark-mode #recipe-details,
 body.dark-mode #recipe-details .recipe-title
 body.dark-mode .video-container,
-body.dark-mode .submission-container{
+body.dark-mode .submission-container,
+body.dark-mode #comment-name,
+body.dark-mode #comment-form,
+body.dark-mode #comment-text,
+body.dark-mode .comment,
+body.dark-mode .comment-input-wrapper {
   background-color: #1e1e1e !important;
   color: #f0f0f0;
-  border: 1px solid #333;
+  border: 0.5px solid #3b3636ff;
 }
 
 body.dark-mode .recipe-card,
@@ -134,7 +141,7 @@ body.dark-mode #search-results,
 body.dark-mode #recipe-details,
 body.dark-mode #recipe-details .recipe-title
 body.dark-mode .video-container{
-  background-color: #1e1e1e !important;
+  color: #1e1e1e !important;
 }
 
 /* Navigation */

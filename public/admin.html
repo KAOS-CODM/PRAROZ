@@ -1,183 +1,318 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel - Recipe Management</title>
     <link rel="stylesheet" href="/css/admin.css">
-</head>
-<body>
+  </head>
+  <body>
     <search-bar></search-bar>
     <h1>Recipe Approval Panel</h1>
-    <button id="viewApproved" onclick="fetchApprovedRecipes()">View Approved Recipes</button>
-    <button id="backToApproval" style="display: none;" onclick="fetchUnapprovedRecipes()">Back to Approval Page</button>
 
-    <div id="recipe-list">
-        <p>Loading recipes...</p>
-    </div>
+    <button id="viewApproved">View Approved Recipes</button>
+    <button id="backToApproval" style="display: none;">Back to Approval Page</button>
+
+    <div id="recipe-list"><p>Loading recipes...</p></div>
+
+  <h2>Unapproved Comments</h2>
+  <div id="unapproved-comments-container"></div>
+
+  <h2>Approved Comments</h2>
+  <div id="approved-comments-container"></div>
 
     <script src="/js/config.js"></script>
     <script src="/js/searchBar.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", authenticateAdmin);
-
-        async function authenticateAdmin() {
-            const password = prompt("Enter Admin Password:");
-            const response = await fetch(`${window.API_BASE_URL}/validate-admin`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ password })
-            });
-
-            const result = await response.json();
-            if (!result.valid) {
-                alert("Access Denied!");
-                window.location.href = "/index";
-            }else{
-                alert("Access Granted. Welcome to admin page...");
-            }
+      // ✅ Redirect to login if no admin token
+      document.addEventListener("DOMContentLoaded", () => {
+        if (!localStorage.getItem("adminToken")) {
+          window.location.href = "/adminLogin";
+          return;
         }
+        fetchUnapprovedRecipes();
 
-        async function fetchUnapprovedRecipes() {
-            try {
-                const response = await fetch(`${window.API_BASE_URL}/unapproved-recipes`);
-                const recipes = await response.json();
-                const recipeList = document.getElementById("recipe-list");
+        document.getElementById("viewApproved").addEventListener("click", fetchApprovedRecipes);
+        document.getElementById("backToApproval").addEventListener("click", fetchUnapprovedRecipes);
+      });
 
-                document.getElementById("viewApproved").style.display = "inline-block";
-                document.getElementById("backToApproval").style.display = "none";
+      // ✅ Small fetch wrapper
+      async function apiCall(endpoint, method = "GET", body = null) {
+        const options = { method, headers: { "Content-Type": "application/json" } };
+        if (body) options.body = JSON.stringify(body);
 
-                recipeList.innerHTML = recipes.length === 0 ? "<p>No recipes waiting for approval.</p>" : "";
+        const res = await fetch(`${window.API_BASE_URL}${endpoint}`, options);
+        return res.json();
+      }
 
-                recipes.forEach((recipe, index) => {
-                    let instructions = Array.isArray(recipe.instructions) 
-                        ? recipe.instructions 
-                        : recipe.instructions 
-                            ? [recipe.instructions] 
-                            : [];
-
-                    recipeList.innerHTML += `
-                        <div class="recipe-card">
-                            <h3>${recipe.name}</h3>
-                            <img src="${recipe.image || 'placeholder.webp'}" width="100" onerror="this.onerror=null;this.src='placeholder.webp';">
-                            <p><strong>Description:</strong> ${recipe.description || "No description available"}</p>
-                            <p><strong>Ingredients:</strong> ${Array.isArray(recipe.ingredients) ? recipe.ingredients.join(", ") : (recipe.ingredients || "Not provided")}</p>
-                            <p><strong>Instructions:</strong> ${instructions.length > 0 ? instructions.join("<br>") : "Not provided"}</p>
-                            <p><strong>Time Required:</strong> ${recipe.time || "Not specified"}</p>
-                            <p><strong>Servings:</strong> ${recipe.servings || "Not specified"}</p>
-                            <button onclick="approveRecipe('${recipe.id}')">Approve</button>
-                            <button onclick="deleteRecipe('${recipe.id}', 'unapproved')">Delete</button>
-                        </div>
-                    `;
-                    console.log("Unapproved Recipe Data:", recipe);
-                });
-            } catch (error) {
-                alert("Error fetching unapproved recipes. Please try again later.");
-            }
-        }
-
-        async function fetchApprovedRecipes() {
-    try {
-        const response = await fetch(`${window.API_BASE_URL}/approved-recipes`);
-        const recipes = await response.json();
+      // ✅ Recipes (functions unchanged, just cleaner)
+      async function fetchUnapprovedRecipes() {
         const recipeList = document.getElementById("recipe-list");
+        recipeList.innerHTML = "<p>Loading...</p>";
 
-        document.getElementById("viewApproved").style.display = "none";
-        document.getElementById("backToApproval").style.display = "inline-block";
+        try {
+          const recipes = await apiCall("/unapproved-recipes");
+          document.getElementById("viewApproved").style.display = "inline-block";
+          document.getElementById("backToApproval").style.display = "none";
 
-        recipeList.innerHTML = recipes.length === 0 ? "<p>No approved recipes found.</p>" : "";
+          recipeList.innerHTML = recipes.length === 0 ? "<p>No recipes waiting for approval.</p>" : "";
 
-        // Group recipes by category
-        const recipesByCategory = {};
-        recipes.forEach(recipe => {
-            if (!recipe.category) {
-                recipe.category = "Uncategorized"; // Handle recipes without categories
-            }
-            if (!recipesByCategory[recipe.category]) {
-                recipesByCategory[recipe.category] = [];
-            }
-            recipesByCategory[recipe.category].push(recipe);
-        });
+          recipes.forEach(recipe => {
+            let instructions = Array.isArray(recipe.instructions) ? recipe.instructions : (recipe.instructions ? [recipe.instructions] : []);
+            recipeList.innerHTML += `
+              <div class="recipe-card">
+                <h3>${recipe.name}</h3>
+                <img src="${recipe.image || 'placeholder.webp'}" width="100" alt="${recipe.name}" onerror="this.onerror=null;this.src='placeholder.webp';">
+                <p><strong>Description:</strong> ${recipe.description || "No description available"}</p>
+                <p><strong>Ingredients:</strong> ${Array.isArray(recipe.ingredients) ? recipe.ingredients.join(", ") : (recipe.ingredients || "Not provided")}</p>
+                <p><strong>Instructions:</strong> ${instructions.length > 0 ? instructions.join("<br>") : "Not provided"}</p>
+                <p><strong>Servings:</strong> ${recipe.servings || "Not specified"}</p>
+                <button onclick="approveRecipe('${recipe.id}')">Approve</button>
+                <button onclick="deleteRecipe('${recipe.id}', 'unapproved')">Delete</button>
+              </div>
+            `;
+          });
+        } catch (err) {
+          alert("Error fetching unapproved recipes.");
+          console.error(err);
+        }
+      }
 
-        // Display recipes by category
-        for (const category in recipesByCategory) {
+      async function fetchApprovedRecipes() {
+        const recipeList = document.getElementById("recipe-list");
+        recipeList.innerHTML = "<p>Loading...</p>";
+
+        try {
+          const recipes = await apiCall("/approved-recipes");
+          document.getElementById("viewApproved").style.display = "none";
+          document.getElementById("backToApproval").style.display = "inline-block";
+
+          if (recipes.length === 0) {
+            recipeList.innerHTML = "<p>No approved recipes found.</p>";
+            return;
+          }
+
+          // Group by category
+          const recipesByCategory = {};
+          recipes.forEach(r => {
+            const cat = r.category || "Uncategorized";
+            if (!recipesByCategory[cat]) recipesByCategory[cat] = [];
+            recipesByCategory[cat].push(r);
+          });
+
+          // Render
+          recipeList.innerHTML = "";
+          for (const category in recipesByCategory) {
             recipeList.innerHTML += `<h2>${category}</h2>`;
-
-            recipesByCategory[category].forEach((recipe, index) => {
-                let instructions = Array.isArray(recipe.instructions)
-                    ? recipe.instructions
-                    : recipe.instructions
-                        ? [recipe.instructions]
-                        : [];
-
-                recipeList.innerHTML += `
-                    <div class="recipe-card">
-                        <h3>${recipe.name}</h3>
-                        <img src="${recipe.image || 'placeholder.webp'}" width="100" onerror="this.onerror=null;this.src='placeholder.webp';">
-                        <p><strong>Description:</strong> ${recipe.description || "No description available"}</p>
-                        <p><strong>Ingredients:</strong> ${Array.isArray(recipe.ingredients) ? recipe.ingredients.join(", ") : (recipe.ingredients || "Not provided")}</p>
-                        <p><strong>Instructions:</strong> ${instructions.length > 0 ? instructions.join("<br>") : "Not provided"}</p>
-                        <p><strong>Time Required:</strong> ${recipe.time || "Not specified"}</p>
-                        <p><strong>Servings:</strong> ${recipe.servings || "Not specified"}</p>
-                        <button onclick="deleteRecipe('${recipe.id}', 'approved')">Delete</button>
-                        <button onclick="disapproveRecipe('${recipe.id}')">Disapprove</button>
-                    </div>
-                `;
+            recipesByCategory[category].forEach(recipe => {
+              let instructions = Array.isArray(recipe.instructions) ? recipe.instructions : (recipe.instructions ? [recipe.instructions] : []);
+              recipeList.innerHTML += `
+                <div class="recipe-card">
+                  <h3>${recipe.name}</h3>
+                  <img src="${recipe.image || 'placeholder.webp'}" width="100" alt="${recipe.name}" onerror="this.onerror=null;this.src='placeholder.webp';">
+                  <p><strong>Description:</strong> ${recipe.description || "No description available"}</p>
+                  <p><strong>Ingredients:</strong> ${Array.isArray(recipe.ingredients) ? recipe.ingredients.join(", ") : (recipe.ingredients || "Not provided")}</p>
+                  <p><strong>Instructions:</strong> ${instructions.length > 0 ? instructions.join("<br>") : "Not provided"}</p>
+                  <p><strong>Servings:</strong> ${recipe.servings || "Not specified"}</p>
+                  <button onclick="deleteRecipe('${recipe.id}', 'approved')">Delete</button>
+                  <button onclick="disapproveRecipe('${recipe.id}')">Disapprove</button>
+                </div>
+              `;
             });
+          }
+        } catch (err) {
+          alert("Error fetching approved recipes.");
+          console.error(err);
         }
-    } catch (error) {
-        alert("Error fetching approved recipes. Please try again later.");
+      }
+
+      async function approveRecipe(id) {
+        if (!confirm("Approve this recipe?")) return;
+        const res = await apiCall("/approve-recipe", "POST", { id });
+        alert(res.message || "Action complete");
+        fetchUnapprovedRecipes();
+      }
+
+      async function deleteRecipe(id, type) {
+        if (!confirm("Delete this recipe?")) return;
+        const res = await apiCall("/delete-recipe", "POST", { id, type });
+        alert(res.message || "Deleted");
+        type === "approved" ? fetchApprovedRecipes() : fetchUnapprovedRecipes();
+      }
+
+      async function disapproveRecipe(id) {
+        if (!confirm("Disapprove this recipe?")) return;
+        const res = await apiCall("/disapprove-recipe", "POST", { id });
+        alert(res.message || "Disapproved");
+        fetchApprovedRecipes();
+      }
+
+    fetchApprovedComments();
+    fetchUnapprovedComments();
+
+    async function fetchUnapprovedComments() {
+      try {
+        const grouped = await apiCall("/comments-pending");
+        const container = document.getElementById("unapproved-comments-container");
+
+        container.innerHTML = Object.keys(grouped).length
+          ? `
+            ${Object.entries(grouped).map(([slug, comments]) => `
+              <div class="recipe-block">
+                <h3>Recipe: ${slug}</h3>
+                <table class="comments-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Comment</th>
+                      <th>Created At</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${comments.map(c => `
+                      <tr data-id="${c.id}" data-recipe="${slug}">
+                        <td>${c.name}</td>
+                        <td>${c.comment}</td>
+                        <td>${new Date(c.created_at).toLocaleString()}</td>
+                        <td>
+                          <label><input type="radio" name="action-${c.id}" value="approve"> Approve</label>
+                          <label><input type="radio" name="action-${c.id}" value="delete"> Delete</label>
+                          <label><input type="radio" name="action-${c.id}" value="ignore" checked> Ignore</label>
+                        </td>
+                      </tr>
+                    `).join("")}
+                  </tbody>
+                </table>
+              </div>
+            `).join("")}
+            <button id="confirmUnapprovedActions">Confirm Actions</button>
+          `
+          : "<p>No unapproved comments.</p>";
+
+        const confirmBtn = document.getElementById("confirmUnapprovedActions");
+        if (confirmBtn) confirmBtn.addEventListener("click", processUnapprovedActions);
+      } catch (err) {
+        console.error(err);
+      }
     }
-}
 
+    async function processUnapprovedActions() {
+      const rows = document.querySelectorAll("#unapproved-comments-container tr[data-id]");
+      const approvals = [];
+      const deletions = [];
 
-        async function approveRecipe(id) {
-            try {
-                const response = await fetch(`${window.API_BASE_URL}/approve-recipe`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ id })
-                });
+      rows.forEach(row => {
+        const id = row.dataset.id;
+        const recipeSlug = row.dataset.recipe;
+        const action = row.querySelector("input[type=radio]:checked").value;
 
-                alert((await response.json()).message);
-                fetchUnapprovedRecipes();
-            } catch (error) {
-                alert("Error approving the recipe. Please try again.");
-            }
-        }
+        if (action === "approve") approvals.push({ id, recipeSlug });
+        if (action === "delete") deletions.push({ id, recipeSlug });
+      });
 
-        async function deleteRecipe(id, type) {
-    try {
-        const response = await fetch(`${window.API_BASE_URL}/delete-recipe`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ id, type })
-        });
+      for (const c of approvals) await apiCall("/approve-comment", "POST", c);
+      for (const c of deletions) await apiCall("/delete-comment", "POST", c);
 
-        alert((await response.json()).message);
-
-        if (type === "approved") {
-            fetchApprovedRecipes();
-        } else {
-            fetchUnapprovedRecipes();
-        }
-    } catch (error) {
-        alert("Error deleting the recipe. Please try again.");
+      alert(`✅ Approved ${approvals.length} | ❌ Deleted ${deletions.length}`);
+      fetchApprovedComments();
+      fetchUnapprovedComments();
     }
-}
 
+    async function fetchApprovedComments() {
+      try {
+        const grouped = await apiCall("/comments-approved");
+        const container = document.getElementById("approved-comments-container");
 
-        async function disapproveRecipe(id) {
-    const response = await fetch(`${window.API_BASE_URL}/disapprove-recipe`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id })
-    });
+        container.innerHTML = Object.keys(grouped).length
+          ? `
+            ${Object.entries(grouped).map(([slug, comments]) => `
+              <div class="recipe-block">
+                <h3>Recipe: ${slug}</h3>
+                <table class="comments-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Comment</th>
+                      <th>Created At</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${comments.map(c => `
+                      <tr data-id="${c.id}" data-recipe="${slug}">
+                        <td>${c.name}</td>
+                        <td>${c.comment}</td>
+                        <td>${new Date(c.created_at).toLocaleString()}</td>
+                        <td>
+                          <label><input type="radio" name="approved-action-${c.id}" value="disapprove"> Disapprove</label>
+                          <label><input type="radio" name="approved-action-${c.id}" value="delete"> Delete</label>
+                          <label><input type="radio" name="approved-action-${c.id}" value="ignore" checked> Ignore</label>
+                        </td>
+                      </tr>
+                    `).join("")}
+                  </tbody>
+                </table>
+              </div>
+            `).join("")}
+            <button id="confirmApprovedActions">Confirm Actions</button>
+          `
+          : "<p>No approved comments yet.</p>";
 
-    alert((await response.json()).message);
-    fetchApprovedRecipes();
-}
+        const confirmBtn = document.getElementById("confirmApprovedActions");
+        if (confirmBtn) confirmBtn.addEventListener("click", processApprovedActions);
+      } catch (err) {
+        console.error(err);
+      }
+    }
 
+    async function processApprovedActions() {
+      const rows = document.querySelectorAll("#approved-comments-container tr[data-id]");
+      const disapprovals = [];
+      const deletions = [];
+
+      rows.forEach(row => {
+        const id = row.dataset.id;
+        const recipeSlug = row.dataset.recipe;
+        const action = row.querySelector("input[type=radio]:checked").value;
+
+        if (action === "disapprove") disapprovals.push({ id, recipeSlug });
+        if (action === "delete") deletions.push({ id, recipeSlug });
+      });
+
+      for (const c of disapprovals) await apiCall("/disapprove-comment", "POST", c);
+      for (const c of deletions) await apiCall("/delete-comment", "POST", c);
+
+      alert(`🚫 Disapproved ${disapprovals.length} | ❌ Deleted ${deletions.length}`);
+      fetchApprovedComments();
+      fetchUnapprovedComments();
+    }
+
+    async function processCommentActions() {
+      const rows = document.querySelectorAll("#unapproved-comments-container tr[data-id]");
+      const batch = [];
+
+      rows.forEach(row => {
+        const id = row.dataset.id;
+        const recipeSlug = row.dataset.recipe;
+        const action = row.querySelector("input[type=radio]:checked").value;
+
+        if (action !== "ignore") {
+          batch.push({ id, recipeSlug, action });
+        }
+      });
+
+      if (!batch.length) {
+        alert("No actions selected.");
+        return;
+      }
+
+      const res = await apiCall("/batch-comments", "POST", { comments: batch });
+      alert(res.message || "Batch complete");
+
+      fetchApprovedComments();
+      fetchUnapprovedComments();
+    }
     </script>
-</body>
+  </body>
 </html>

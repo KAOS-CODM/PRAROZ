@@ -8,6 +8,7 @@
         <link rel="stylesheet" type="text/css" href="/css/nav.css">
         <link rel="stylesheet" type="text/css" href="/css/recipe.css">
         <link rel="stylesheet" type="text/css" href="/css/darkmode.css">
+        <link rel="stylesheet" type="text/css" href="/css/comments.css">
         <link rel="stylesheet" type="text/css" href="/css/all.min.css">
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
@@ -36,6 +37,20 @@
         <div class="content-container">
             <button id="theme-toggle">🌙</button>
             <div id="recipe-details"></div>
+            <div id="comments-container">
+            <form id="comment-form">
+                <!-- Hidden until textarea focus -->
+                <input type="text" id="comment-name" placeholder="Your name..." required style="display: none;">
+
+                <div class="comment-input-wrapper">
+                    <textarea id="comment-text" placeholder="Write a comment..." required></textarea>
+                    <button type="submit" id="send-comment">➤</button>
+                </div>
+            </form>
+
+            <h3>Comments</h3>
+            <div id="comments-list"></div>
+            </div>
         </div>
     
         <footer id="dynamic-footer"></footer>
@@ -46,6 +61,7 @@
         <script src="/js/sidebar.js" defer></script>
         <script src="/js/footer.js" defer></script>
         <script src="/js/darkmode.js" defer></script>
+        <script src="/js/comments.js" defer></script>
 
     </body>
 </html>
