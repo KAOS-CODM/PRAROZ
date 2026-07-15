@@ -5,7 +5,7 @@
 
 ## 🍽️ Recipe Hub
 
-A simple and elegant recipe website where users can explore, submit, and manage delicious recipes. Designed with a clean frontend, JSON-based backend to feed frontend contents, supabase database functions integration, and admin functionality for approving submissions.
+A simple and elegant recipe website where users can explore, submit, and manage delicious recipes. Designed with a clean frontend, JSON-based backend to feed frontend contents, MongoDB + Mongoose integration, and admin functionality for approving submissions.
 
 ---
 
@@ -17,7 +17,7 @@ A simple and elegant recipe website where users can explore, submit, and manage 
 - 🔐 Admin panel for approving or rejecting submissions  
 - 💬 Comment system linked to individual recipes  (not implemented yet)
 - ☁️ Cloud image upload support (Cloudinary)  
-- 📦 Supabase data storage (recipes, submissions, users, comments)
+- 📦 MongoDB data storage (recipes, submissions, comments)
 
 ---
 
@@ -46,7 +46,7 @@ A simple and elegant recipe website where users can explore, submit, and manage 
 
 - **Frontend:** HTML, CSS, JavaScript  
 - **Backend:** Node.js (Express)  
-- **Storage:** Supabase Database storage 
+- **Storage:** MongoDB storage 
 - **Hosting:** Render  
 - **Image Uploads:** Cloudinary (unsigned uploads)  
 - **Mailing List Integration:** Mailchimp popup API  

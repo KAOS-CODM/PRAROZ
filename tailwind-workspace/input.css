@@ -1,0 +1,106 @@
+@import "tailwindcss";
+@source "../public/*.html";
+@source "../public/js/*.js";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-poppins: 'Poppins', sans-serif;
+    --font-open-sans: 'Open Sans', sans-serif;
+    --font-arial: 'Arial', sans-serif;
+    --font-roboto: 'Robot', sans-serif;
+    --font-helvetica: 'Helvetica', sans-serif;
+    --font-tangerine: 'Tangerin', cursive;
+}
+
+@layer components {
+    .sidebar {
+        @apply fixed top-0 right-0 h-screen w-72 translate-x-full transition-transform duration-300 bg-white
+    }
+
+    .sidebar.open {
+        @apply translate-x-0;
+    }
+}
+
+@utility transition-right{
+    transition: right 0.3s;
+}
+
+@utility transition-background{
+    transition: background 0.3s;
+}
+
+@utility transition-background-ease{
+    transition: background 0.3s ease;
+}
+
+@utility transition-card{
+    transition: transform 0.3s ease-in-out;
+}
+
+@utility transition-height{
+    transition: max-height 0.3s ease, opacity 0.3s ease, margin 0.3s ease;
+}
+
+@layer base{
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+    
+    html, body {
+    	overflow-y: auto;
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        color: #333;
+        line-height: 1.6;
+    }
+    
+    #toast-container {
+      z-index: 80;
+    }
+    
+    .modal-backdrop {
+      animation: fadeIn 180ms ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes popup {
+        from {
+            opacity: 0;
+            transform: translateY(30px) scale(.95);
+        }
+    
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    /*input[type="file"] {
+        border: none;
+        background: #f0f0f0;
+        padding: 1px;
+        font-size: 14px;
+    }
+
+    .dark input[type="file"] {
+        border: none;
+        background: rgb(21, 15, 33);
+        padding: 1px;
+        font-size: 14px;
+    }*/
+}

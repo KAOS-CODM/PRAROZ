@@ -3,55 +3,157 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="/css/project.css">
-        <link rel="stylesheet" type="text/css" href="/css/footer.css">
-        <link rel="stylesheet" type="text/css" href="/css/nav.css">
-        <link rel="stylesheet" type="text/css" href="/css/recipe.css">
-        <link rel="stylesheet" type="text/css" href="/css/darkmode.css">
-        <link rel="stylesheet" type="text/css" href="/css/comments.css">
-        <link rel="stylesheet" type="text/css" href="/css/all.min.css">
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="stylesheet" type="text/css" href="/css/styles.css">
+         
+         
+        <!--link rel="stylesheet" type="text/css" href="/css/recipe.css">
+         
+        <link rel="stylesheet" type="text/css" href="/css/comments.css"-->
+         
+        <link rel="stylesheet" type="text/css" href="/assets/fontawesome/css/all.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Tangerin&display=swap " rel="stylesheet">
         <link rel="icon" type="image/png" href="/images/favicon.ico">
     </head>
-    <body class="dark-mode">
-        <header class="navbar">
-            <div class="logo">
-                <img src="/images/logo.webp" alt="PraRoz™ Logo">
-            </div>
-            <ul class="nav-links" id="nav-links">
-            </ul>
-            <button class="menu-btn" id="menuBtn">☰</button>
-            <aside class="sidebar" id="sidebar">
-                <div class="logo">
-                    <img id="nav-logo" src="/images/logo.webp" alt="PraRoz™ Logo">
-                </div>
-                <p><a href="#">WATCH VIDEO</a></p>
-                <p><a href="#">BASIC SKILLS</a></p>
-                <p><a href="#">LEARN MORE</a></p>
-                <p><a href="/submission">SUBMIT YOUR RECIPE</a></p>
-            </aside>
-        </header>
+    <body class="min-h-screen flex flex-col bg-gray-100 text-gray-900 dark:bg-slate-900 dark:text-gray-100 transition-colors duration-300">
+        <header id="navbar-container"></header>
 
-        <div class="content-container">
-            <button id="theme-toggle">🌙</button>
-            <div id="recipe-details"></div>
-            <div id="comments-container">
-            <form id="comment-form">
-                <!-- Hidden until textarea focus -->
-                <input type="text" id="comment-name" placeholder="Your name..." required style="display: none;">
+        <main id="recipe-details" aria-live="polite"
+            class="
+                mx-auto
+                max-w-5xl
+                px-6
+                py-10
+            
+                [&_h1]:text-4xl
+                [&_h1]:font-bold
+                [&_h1]:mb-6
+                
+                [&_h2]:text-3xl
+                [&_h2]:font-semibold
+                [&_h2]:mt-10
+                [&_h2]:mb-5
+            
+                [&_h3]:text-2xl
+                [&_h3]:font-semibold
+                [&_h3]:mt-8
+                [&_h3]:mb-4
+                
+                [&_p]:mb-5
+                [&_p]:leading-8
+                [&_p]:text-lg
+                [&_p]:text-gray-700
+                dark:[&_p]:text-gray-300
+                
+                [&_strong]:font-semibold
+                [&_strong]:text-orange-500
+            
+                [&_em]:italic
+            
+                [&_a]:text-orange-500
+                hover:[&_a]:underline
+            
+                [&_ul]:my-6
+                [&_ul]:list-disc
+                [&_ul]:pl-8
+                
+                [&_ol]:my-6
+                [&_ol]:list-decimal
+                [&_ol]:pl-8
+            
+                [&_li]:mb-3
+                [&_li]:leading-8
+                
+                [&_img]:rounded-xl
+                [&_img]:shadow-lg
+                [&_img]:mx-auto
+            ">
 
-                <div class="comment-input-wrapper">
-                    <textarea id="comment-text" placeholder="Write a comment..." required></textarea>
-                    <button type="submit" id="send-comment">➤</button>
+            
+        </main>
+
+        <button
+            id="theme-toggle"
+            class="fixed bottom-5 left-5 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-white text-black shadow-lg transition-all duration-300 hover:scale-110 hover:bg-slate-700 hover:dark:bg-slate-300 dark:bg-slate-700 dark:text-gray-300 dark:border dark:border-gray-700">
+            🌙
+        </button>
+
+        <!--section id="comments-container" class="mt-10 p-5 bg-white dark:bg-slate-800 rounded-3xl shadow-[0_2px_6px_rgba(0,0,0,0.1)] dark:shadow-[0_2px_5px_rgba(0.5,0.5,0.5,60)] w-200 ml-auto mr-auto" aria-labelledby="comments-heading">
+            <h3 id="comments-heading" class="text-center m-[20px_0_15px] text-2xl text-[#222] dark:text-slate-300 border-b-2 border-solid rounded-solid border-b-[#ddd] md:p-4">Comments</h3>
+            <form id="comment-form" class="flex flex-col gap-2.5 mb-6" aria-describedby="comment-help">
+                <p id="comment-help" style="position:absolute;left:-9999px;">Enter your name and comment, then submit.</p>
+                <label for="comment-name" class="p-2.5 rounded-sm border-solid border-[#ccc] dark:border-[#333] border text-[14px] transition-height max-h-0 opacity-0 overflow-hidden hidden" style="display:none;">Your name</label>
+                <input
+                    type="text"
+                    id="comment-name"
+                    name="name"
+                    placeholder="Your name..."
+                    required
+                    class="
+                        hidden
+                        max-h-0
+                        opacity-0
+                        overflow-hidden
+                        mb-0
+                        rounded-xl
+                        border
+                        border-gray-300
+                        dark:border-gray-700
+                        bg-white
+                        dark:bg-slate-900
+                        p-3
+                        transition-all
+                        duration-300
+                    "
+                >
+        
+        
+                <div class="flex items-center border border-solid border-[#ccc] dark:border-[#333] rounded-[25px] p-[6px_10px] bg-[#fafafa] dark:bg-slate-900 ">
+                    <label for="comment-text"  style="position:absolute;left:-9999px;">Write a comment</label>
+                    <textarea id="comment-text" name="comment" class="flex-1 rounded-[25px] resize-none p-[8px_10px] text-[14px] text-inherit outline-none bg-transparent min-h-10 md:text-[13px]" placeholder="Write a comment..." required aria-required="true"></textarea>
+                    <button
+                        type="submit"
+                        id="send-comment"
+                        disabled
+                        aria-label="Submit comment"
+                        class="
+                            ml-2
+                            flex
+                            h-10
+                            w-10
+                            items-center
+                            justify-center
+                            rounded-full
+                    
+                            bg-slate-900
+                            text-white
+                    
+                            dark:bg-slate-100
+                            dark:text-slate-900
+                    
+                            transition-all
+                            duration-200
+                    
+                            disabled:bg-gray-400
+                            disabled:text-white
+                            disabled:cursor-not-allowed
+                            disabled:opacity-60
+                    
+                            enabled:hover:bg-green-600
+                            enabled:hover:scale-110
+                    
+                            dark:enabled:hover:bg-green-500
+                        "
+                    >
+                        <i class="fas fa-paper-plane text-sm"></i>
+                    </button>
                 </div>
             </form>
-
-            <h3>Comments</h3>
-            <div id="comments-list"></div>
-            </div>
-        </div>
+        
+            <div id="comments-list" role="list" aria-live="polite"></div>
+        </!--section-->
+        <section id="comments-section"></section>
+        
     
         <footer id="dynamic-footer"></footer>
 

@@ -85,15 +85,13 @@ functions/server_backup.js
 functions/server_backup2.js
 functions/backend.js
 functions/frontend.js
+functions/schema.sql
 node_modules/
 public/.vscode
-public/css/project1_backup.css
-public/css/recipe_backup.css
 public/images/desserts
 public/js/*bat
 public/js/project_backup.js
 public/js/project_backup2.js
-public/js/submission.js
 public/js/tester.js
 public/admin_backup.html
 public/home-dub.html
@@ -101,7 +99,7 @@ public/inex.html
 public/README.md
 public/stress.html
 public/subscribe.html
-public/recipe2.html
+public/*2.html
 public/tester.html
 text/
 ~$excess.doc
@@ -111,3 +109,33 @@ excess1.doc
 excess.html
 Praroz.zip
 requirements.txt
+text*.js
+public/css/*.css
+!public/css/styles.css
+public/video
+*.txt
+*.php
+*.md
+!README.md
+recipes/
+
+# Logs & temporary files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.tmp
+*.temp
+*.bak
+
+# OS / editor temp
+.vscode/
+.idea/
+*.code-workspace
+
+# Uploads / runtime folders (if present locally)
+uploads/
+
+# Cloudinary/temp
+functions/uploads/
+

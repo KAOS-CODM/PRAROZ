@@ -64,6 +64,11 @@ module.exports = {
     description: 'Our terms and conditions',
     image: 'https://praroz.onrender.com/images/thumbnail/praroz_thumbnail.webp',
   },
+  privacy: {
+    title: 'Privacy Policy',
+    description: 'How Praroz handles personal data and privacy.',
+    image: 'https://praroz.onrender.com/images/thumbnail/praroz_thumbnail.webp',
+  },
   404: {
     title: '404 | Page not found',
     description: '404 | Page not found',

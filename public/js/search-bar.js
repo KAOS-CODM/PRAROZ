@@ -1,9 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('search-container');
+  if (!container) return; // Not every page includes the search widget
 
   container.innerHTML = `
-    <input type="text" id="search-input" placeholder="Search recipes..." />
-    <div id="search-results"></div>
+    <input class="w-full p-[10px_15px] border border-solid border-amber-950 dark:border-white rounded-sm text-lg" type="text" id="search-input" placeholder="Search recipes..." />
+    <div id="search-results" class="
+    absolute
+    top-full
+    w-full
+    max-h-75
+    overflow-y-auto
+    bg-white
+    border
+    border-solid
+    border-[#eee]
+    rounded-t-none
+    z-999
+    shadow-lg
+    
+    dark:bg-gray-800
+    dark:border-gray-800
+
+    "></div>
   `;
 
   const input = document.getElementById('search-input');
@@ -28,22 +46,52 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       const data = await res.json();
 
-      if (data.length === 0) {
+      if (!Array.isArray(data) || data.length === 0) {
         resultsDiv.innerHTML = '<p>No recipes found.</p>';
         return;
       }
       resultsDiv.innerHTML = data.map(recipe => {
-        const categorySlug = recipe.category.toLowerCase();
-        const recipeSlug = recipe.name.toLowerCase().replace(/\s+/g, '-');
-        const url = `/${encodeURIComponent(categorySlug)}/${encodeURIComponent(recipeSlug)}`;
+        const categorySlug = (recipe.category || '').toLowerCase();
+        const recipeSlug = (recipe.name || '').toLowerCase().replace(/\s+/g, '-');
+        const url = `/recipes/${encodeURIComponent(categorySlug)}/${encodeURIComponent(recipeSlug)}`;
 
         return `
-          <div class="search-result">
-            <a href="${url}">
-              <img src="${recipe.image}" alt="${recipe.name}" class="result-thumb" />
+          <div class="
+            flex
+            items-center 
+            p-[8px_15px] 
+            border-b 
+            border-b-[#eee]
+            cursor-pointer
+            transition-colors
+            duration-200
+
+            dark:border-b-gray-900
+            dark:hover:bg-slate-600
+
+            hover:bg-[#f5f5f5]
+            ">
+            <a href="${url}" 
+              class="
+                flex 
+                no-underline 
+                text-inherit
+                w-full 
+                items-center
+              ">
+              <img src="${recipe.image || '/images/thumbnail/praroz-thumbnail.png'}" alt="${recipe.name}" onerror="this.onerror=null;this.src='images/thumbnail/praroz-thumbnail.png'"
+                class="
+                  w-12.5
+                  h-12.5 
+                  object-cover 
+                  rounded-[5px] 
+                  mr-3 
+                  shrink-0
+                " 
+              />
               <div class="result-info">
-                <br><strong>${recipe.name}</strong></br>
-                <small>${recipe.description || ''}</small>
+                <br><strong class="text-[16px]">${recipe.name}</strong></br>
+                <small class="text-[#666] dark:text-gray-200 text-[13px]">${recipe.description || ''}</small>
               </div>
             </a>
           </div>
@@ -57,11 +105,19 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-document.getElementById('search-toggle').addEventListener('click', () => {
-  const container = document.getElementById('search-container');
-  container.style.display = container.style.display === 'none' ? 'block' : 'none';
+const searchToggle = document.getElementById('search-toggle');
+if (searchToggle) {
+  searchToggle.addEventListener('click', (event) => {
+    const container = document.getElementById('search-container');
+    if (!container) return;
+    container.style.display = container.style.display === 'none' ? 'block' : 'none';
 
-  if (container.style.display === 'block') {
-    document.getElementById('search-input').focus();
-  }
-});
+    if (container.style.display === 'block') {
+      const input = document.getElementById('search-input');
+      if (input) input.focus();
+    }
+
+
+    event.stopPropagation();
+  });
+}

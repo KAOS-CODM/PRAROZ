@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Submit a Recipe | PraRoz Recipes</title>
+
+    <meta
+        name="description"
+        content="Share your favourite recipe with PraRoz Recipes and inspire food lovers around the world."
+    >
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="/images/favicon.ico"
+    >
+
+    <link
+        rel="stylesheet"
+        href="/css/styles.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="/assets/fontawesome/css/all.min.css"
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tangerine:wght@700&display=swap"
+        rel="stylesheet"
+    >
+
+</head>
+
+<body class="min-h-screen bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300">
+
+<header id="navbar-container"></header>
+
+<main
+    class="
+        relative
+        mx-auto
+        max-w-screen
+        px-5
+        py-12
+        lg:px-8
+        
+    "
+>
+
+    <!-- Background Blur -->
+
+    <div
+        class="
+            absolute
+            left-0
+            top-0
+            h-72
+            w-72
+            rounded-full
+            bg-orange-400/20
+            blur-3xl
+            pointer-events-none
+        "
+    ></div>
+
+    <div
+        class="
+            absolute
+            right-0
+            bottom-0
+            h-72
+            w-72
+            rounded-full
+            bg-yellow-300/20
+            blur-3xl
+            pointer-events-none
+        "
+    ></div>
+
+    <!-- Hero -->
+
+    <section
+        class="
+            relative
+            rounded-4xl
+            bg-linear-to-r
+            from-orange-500
+            via-orange-600
+            to-red-500
+            px-8
+            py-16
+            text-center
+            text-white
+            shadow-2xl
+            max-w-screen
+        "
+    >
+
+        <div
+            class="
+                mx-auto
+                flex
+                h-24
+                w-24
+                items-center
+                justify-center
+                rounded-full
+                bg-white/20
+                text-5xl
+                backdrop-blur
+            "
+        >
+            <i class="fas fa-utensils"></i>
+        </div>
+
+        <h1
+            class="
+                mt-8
+                text-5xl
+                font-bold
+            "
+        >
+            Share Your Recipe
+        </h1>
+
+        <p
+            class="
+                mx-auto
+                mt-5
+                max-w-3xl
+                text-lg
+                leading-8
+                text-orange-100
+            "
+        >
+            Have a delicious recipe everyone should know about?
+            Submit it below and our team will review it before
+            publishing it on PraRoz Recipes.
+        </p>
+
+        <div
+            class="
+                mt-10
+                flex
+                flex-wrap
+                justify-center
+                gap-4
+            "
+        >
+
+            <div
+                class="
+                    rounded-full
+                    bg-white/15
+                    px-5
+                    py-3
+                    backdrop-blur
+                "
+            >
+                <i class="fas fa-clock mr-2"></i>
+                Review in 24–48 Hours
+            </div>
+
+            <div
+                class="
+                    rounded-full
+                    bg-white/15
+                    px-5
+                    py-3
+                    backdrop-blur
+                "
+            >
+                <i class="fas fa-check-circle mr-2"></i>
+                Free Submission
+            </div>
+
+            <div
+                class="
+                    rounded-full
+                    bg-white/15
+                    px-5
+                    py-3
+                    backdrop-blur
+                "
+            >
+                <i class="fas fa-fire mr-2"></i>
+                Featured Recipes
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Progress -->
+
+    <div class="mt-12">
+
+        <div
+            class="
+                flex
+                items-center
+                justify-between
+                text-sm
+                font-semibold
+                text-slate-500
+                dark:text-slate-400
+            "
+        >
+
+            <span>Recipe Details</span>
+
+            <span id="progress-text">
+                0%
+            </span>
+
+        </div>
+
+        <div
+            class="
+                mt-3
+                h-3
+                overflow-hidden
+                rounded-full
+                bg-slate-300
+                dark:bg-slate-700
+            "
+        >
+
+            <div
+                id="progress-bar"
+                class="
+                    h-full
+                    w-0
+                    rounded-full
+                    bg-linear-to-r
+                    from-orange-500
+                    to-red-500
+                    transition-all
+                    duration-500
+                "
+            ></div>
+
+        </div>
+
+    </div>
+
+    <form
+        id="recipeForm"
+        class="mt-12 space-y-10"
+    >
+
+        <!-- Basic Information -->
+
+        <section
+            class="
+                rounded-3xl
+                bg-white
+                dark:bg-slate-900
+                p-8
+                shadow-xl
+                border
+                border-slate-200
+                dark:border-slate-700
+            "
+        >
+
+            <div
+                class="
+                    mb-8
+                    flex
+                    items-center
+                    gap-4
+                "
+            >
+
+                <div
+                    class="
+                        flex
+                        h-14
+                        w-14
+                        items-center
+                        justify-center
+                        rounded-2xl
+                        bg-orange-100
+                        text-orange-600
+                        dark:bg-orange-900/30
+                        dark:text-orange-300
+                    "
+                >
+                    <i class="fas fa-book-open text-xl"></i>
+                </div>
+
+                <div>
+
+                    <h2
+                        class="
+                            text-3xl
+                            font-bold
+                        "
+                    >
+                        Basic Information
+                    </h2>
+
+                    <p
+                        class="
+                            mt-1
+                            text-slate-500
+                            dark:text-slate-400
+                        "
+                    >
+                        Tell us about your recipe.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div
+                class="
+                    grid
+                    gap-8
+                    md:grid-cols-2
+                "
+            >
+
+                <!-- Category -->
+
+                <div>
+
+                    <label
+                        for="category"
+                        class="mb-3 block font-semibold"
+                    >
+                        Category
+                    </label>
+
+                    <select
+                        id="category"
+                        name="category"
+                        required
+                        class="
+                            w-full
+                            rounded-2xl
+                            border
+                            border-slate-300
+                            dark:border-slate-700
+                            bg-white
+                            dark:bg-slate-800
+                            px-5
+                            py-4
+                            outline-none
+                            transition
+                            focus:border-orange-500
+                        "
+                    >
+                        <option value="desserts">Desserts</option>
+                        <option value="appetizers">Appetizers</option>
+                        <option value="pasta">Pasta</option>
+                        <option value="salad">Salad</option>
+                        <option value="burger">Burger</option>
+                        <option value="pizza">Pizza</option>
+                        <option value="recipes">Recipes</option>
+                    </select>
+
+                </div>
+
+                <!-- Recipe Name -->
+
+                <div>
+
+                    <label
+                        for="name"
+                        class="mb-3 block font-semibold"
+                    >
+                        Recipe Name
+                    </label>
+
+                    <input
+                        id="name"
+                        name="name"
+                        type="text"
+                        required
+                        placeholder="Chocolate Lava Cake"
+                        class="
+                            w-full
+                            rounded-2xl
+                            border
+                            border-slate-300
+                            dark:border-slate-700
+                            bg-white
+                            dark:bg-slate-800
+                            px-5
+                            py-4
+                            outline-none
+                            transition
+                            focus:border-orange-500
+                        "
+                    >
+
+                </div>
+
+            </div>
+
+            <!-- Description -->
+
+            <div class="mt-8">
+
+                <div class="mb-3 flex items-center justify-between">
+
+                    <label
+                        for="description"
+                        class="font-semibold"
+                    >
+                        Description
+                    </label>
+
+                    <span
+                        id="description-count"
+                        class="
+                            text-sm
+                            text-slate-500
+                        "
+                    >
+                        0 / 300
+                    </span>
+
+                </div>
+
+                <textarea
+                    id="description"
+                    name="description"
+                    maxlength="500"
+                    rows="5"
+                    required
+                    placeholder="Tell everyone what makes this recipe special..."
+                    class="
+                        w-full
+                        resize-none
+                        rounded-2xl
+                        border
+                        border-slate-300
+                        dark:border-slate-700
+                        bg-white
+                        dark:bg-slate-800
+                        px-5
+                        py-4
+                        outline-none
+                        transition
+                        focus:border-orange-500
+                    "
+                ></textarea>
+
+            </div>
+
+        </section>
+    
+        <!-- ===================================== -->
+        <!-- Recipe Image -->
+        <!-- ===================================== -->
+        
+        <section
+            class="
+                rounded-3xl
+                border
+                border-slate-200
+                dark:border-slate-700
+                bg-white
+                dark:bg-slate-900
+                p-8
+                shadow-xl
+            "
+        >
+        
+            <div class="flex items-center gap-4 mb-8">
+        
+                <div
+                    class="
+                        flex
+                        h-14
+                        w-14
+                        items-center
+                        justify-center
+                        rounded-2xl
+                        bg-orange-100
+                        dark:bg-orange-900/30
+                        text-orange-500
+                    "
+                >
+                    <i class="fas fa-image text-xl"></i>
+                </div>
+        
+                <div>
+        
+                    <h2 class="text-3xl font-bold">
+                        Recipe Image
+                    </h2>
+        
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">
+                        Upload a clear image of your finished meal.
+                    </p>
+        
+                </div>
+        
+            </div>
+        
+            <label
+                id="drop-zone"
+                for="image"
+                class="
+                    group
+                    flex
+                    cursor-pointer
+                    flex-col
+                    items-center
+                    justify-center
+                    rounded-3xl
+                    border-2
+                    border-dashed
+                    border-orange-300
+                    dark:border-orange-700
+                    bg-orange-50
+                    dark:bg-slate-800
+                    px-10
+                    py-16
+                    transition-all
+                    duration-300
+                    hover:border-orange-500
+                    hover:bg-orange-100
+                    dark:hover:bg-slate-700
+                "
+            >
+        
+                <div
+                    class="
+                        flex
+                        h-20
+                        w-20
+                        items-center
+                        justify-center
+                        rounded-full
+                        bg-orange-500
+                        text-white
+                        text-3xl
+                        shadow-lg
+                        transition-transform
+                        duration-300
+                        group-hover:scale-110
+                    "
+                >
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+        
+                <h3 class="mt-6 text-2xl font-bold">
+                    Drag & Drop Image
+                </h3>
+        
+                <p class="mt-2 text-slate-500 dark:text-slate-400">
+                    or click to browse
+                </p>
+        
+                <p class="mt-4 text-sm text-slate-400">
+                    PNG • JPG • JPEG • WEBP
+                </p>
+        
+                <input
+                    id="image"
+                    name="image"
+                    type="file"
+                    accept="image/*"
+                    required
+                    class="hidden"
+                >
+        
+            </label>
+        
+            <div
+                id="image-preview"
+                class="hidden mt-8"
+            >
+        
+                <img
+                    id="preview-image"
+                    class="
+                        w-full
+                        max-h-125
+                        rounded-3xl
+                        object-cover
+                        shadow-xl
+                    "
+                    alt="Recipe Preview"
+                >
+        
+            </div>
+        
+        </section>
+        
+        
+        
+        
+        
+        <!-- ===================================== -->
+        <!-- Ingredients -->
+        <!-- ===================================== -->
+        
+        <section
+            class="
+                rounded-3xl
+                border
+                border-slate-200
+                dark:border-slate-700
+                bg-white
+                dark:bg-slate-900
+                p-8
+                shadow-xl
+            "
+        >
+        
+            <div class="flex items-center gap-4 mb-8">
+        
+                <div
+                    class="
+                        flex
+                        h-14
+                        w-14
+                        items-center
+                        justify-center
+                        rounded-2xl
+                        bg-green-100
+                        dark:bg-green-900/30
+                        text-green-600
+                    "
+                >
+                    <i class="fas fa-carrot text-xl"></i>
+                </div>
+        
+                <div>
+        
+                    <h2 class="text-3xl font-bold">
+                        Ingredients
+                    </h2>
+        
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">
+                        Enter one ingredient per line.
+                    </p>
+        
+                </div>
+        
+            </div>
+        
+            <div
+                class="
+                    rounded-2xl
+                    border
+                    border-slate-300
+                    dark:border-slate-700
+                    overflow-hidden
+                "
+            >
+        
+                <div
+                    class="
+                        flex
+                        items-center
+                        justify-between
+                        px-5
+                        py-3
+                        bg-slate-100
+                        dark:bg-slate-800
+                    "
+                >
+        
+                    <span class="font-medium">
+                        Ingredients List
+                    </span>
+        
+                    <span
+                        id="ingredients-count"
+                        class="text-sm text-slate-500"
+                    >
+                        0 Items
+                    </span>
+        
+                </div>
+        
+                <textarea
+                    id="ingredients"
+                    name="ingredients"
+                    rows="8"
+                    required
+                    placeholder="2 Eggs&#10;250g Flour&#10;1 Cup Milk&#10;1 tsp Salt"
+                    class="
+                        w-full
+                        border-0
+                        bg-transparent
+                        p-5
+                        outline-none
+                    "
+                ></textarea>
+        
+            </div>
+        
+        </section>
+        
+        
+        
+        
+        
+        
+        <!-- ===================================== -->
+        <!-- Instructions -->
+        <!-- ===================================== -->
+        
+        <section
+            class="
+                rounded-3xl
+                border
+                border-slate-200
+                dark:border-slate-700
+                bg-white
+                dark:bg-slate-900
+                p-8
+                shadow-xl
+            "
+        >
+        
+            <div class="flex items-center gap-4 mb-8">
+        
+                <div
+                    class="
+                        flex
+                        h-14
+                        w-14
+                        items-center
+                        justify-center
+                        rounded-2xl
+                        bg-blue-100
+                        dark:bg-blue-900/30
+                        text-blue-600
+                    "
+                >
+                    <i class="fas fa-list-ol text-xl"></i>
+                </div>
+        
+                <div>
+        
+                    <h2 class="text-3xl font-bold">
+                        Cooking Instructions
+                    </h2>
+        
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">
+                        Write one cooking step per line.
+                    </p>
+        
+                </div>
+        
+            </div>
+        
+            <div
+                class="
+                    rounded-2xl
+                    border
+                    border-slate-300
+                    dark:border-slate-700
+                    overflow-hidden
+                "
+            >
+        
+                <div
+                    class="
+                        flex
+                        items-center
+                        justify-between
+                        bg-slate-100
+                        dark:bg-slate-800
+                        px-5
+                        py-3
+                    "
+                >
+        
+                    <span class="font-medium">
+                        Step-by-Step Guide
+                    </span>
+        
+                    <span
+                        id="steps-count"
+                        class="text-sm text-slate-500"
+                    >
+                        0 Steps
+                    </span>
+        
+                </div>
+        
+                <textarea
+                    id="instructions"
+                    name="instructions"
+                    rows="10"
+                    required
+                    placeholder="Preheat the oven...&#10;Mix all ingredients...&#10;Bake for 30 minutes..."
+                    class="
+                        w-full
+                        resize-none
+                        border-0
+                        bg-transparent
+                        p-5
+                        outline-none
+                    "
+                ></textarea>
+        
+            </div>
+        
+        </section>
+        <!-- ===================================== -->
+        <!-- Cooking Information -->
+        <!-- ===================================== -->
+
+        <section
+            class="
+                rounded-3xl
+                border
+                border-slate-200
+                dark:border-slate-700
+                bg-white
+                dark:bg-slate-900
+                p-8
+                shadow-xl
+            "
+        >
+
+            <div class="flex items-center gap-4 mb-8">
+
+                <div
+                    class="
+                        flex
+                        h-14
+                        w-14
+                        items-center
+                        justify-center
+                        rounded-2xl
+                        bg-purple-100
+                        dark:bg-purple-900/30
+                        text-purple-600
+                    "
+                >
+                    <i class="fas fa-stopwatch"></i>
+                </div>
+
+                <div>
+
+                    <h2 class="text-3xl font-bold">
+                        Cooking Information
+                    </h2>
+
+                    <p class="mt-1 text-slate-500 dark:text-slate-400">
+                        Let visitors know how long this recipe takes.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="grid gap-8 lg:grid-cols-3">
+
+                <!-- Prep -->
+
+                <div>
+
+                    <label
+                        for="prepTimeValue"
+                        class="block mb-3 font-semibold"
+                    >
+                        Prep Time
+                    </label>
+
+                    <div class="flex gap-3">
+
+                        <input
+                            id="prepTimeValue"
+                            type="number"
+                            min="0"
+                            placeholder="15"
+                            class="
+                                flex-1
+                                rounded-2xl
+                                max-w-[50%]
+                                border
+                                border-slate-300
+                                dark:border-slate-700
+                                bg-white
+                                dark:bg-slate-800
+                                px-4
+                                py-3
+                                outline-none
+                                focus:border-orange-500
+                            "
+                        >
+
+                        <select
+                            id="prepTimeUnit"
+                            class="
+                                rounded-2xl
+                                max-w-[50%]
+                                border
+                                border-slate-300
+                                dark:border-slate-700
+                                bg-white
+                                dark:bg-slate-800
+                                px-4
+                            "
+                        >
+                            <option>Minutes</option>
+                            <option>Hours</option>
+                            <option>Seconds</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <!-- Cook -->
+
+                <div>
+
+                    <label
+                        for="cookTimeValue"
+                        class="block mb-3 font-semibold"
+                    >
+                        Cook Time
+                    </label>
+
+                    <div class="flex gap-3">
+
+                        <input
+                            id="cookTimeValue"
+                            type="number"
+                            min="0"
+                            placeholder="45"
+                            class="
+                                flex-1
+                                rounded-2xl
+                                max-w-[50%]
+                                border
+                                border-slate-300
+                                dark:border-slate-700
+                                bg-white
+                                dark:bg-slate-800
+                                px-4
+                                py-3
+                                outline-none
+                                focus:border-orange-500
+                            "
+                        >
+
+                        <select
+                            id="cookTimeUnit"
+                            class="
+                                rounded-2xl
+                                max-w-[50%]
+                                border
+                                border-slate-300
+                                dark:border-slate-700
+                                bg-white
+                                dark:bg-slate-800
+                                px-4
+                            "
+                        >
+                            <option>Minutes</option>
+                            <option>Hours</option>
+                            <option>Seconds</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <!-- Servings -->
+
+                <div>
+
+                    <label
+                        for="servingsValue"
+                        class="block mb-3 font-semibold"
+                    >
+                        Servings
+                    </label>
+
+                    <div class="flex gap-3">
+
+                        <input
+                            id="servingsValue"
+                            type="number"
+                            min="1"
+                            placeholder="4"
+                            class="
+                                flex-1
+                                rounded-2xl
+                                max-w-[50%]
+                                border
+                                border-slate-300
+                                dark:border-slate-700
+                                bg-white
+                                dark:bg-slate-800
+                                px-4
+                                py-3
+                                outline-none
+                                focus:border-orange-500
+                            "
+                        >
+
+                        <select
+                            id="servingsUnit"
+                            class="
+                                rounded-2xl
+                                max-w-[50%]
+                                border
+                                border-slate-300
+                                dark:border-slate-700
+                                bg-white
+                                dark:bg-slate-800
+                                px-4
+                            "
+                        >
+                            <option>People</option>
+                            <option>Slices</option>
+                            <option>Pieces</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+
+
+        <!-- ===================================== -->
+        <!-- Chef Tips -->
+        <!-- ===================================== -->
+
+        <section
+            class="
+                rounded-3xl
+                border
+                border-slate-200
+                dark:border-slate-700
+                bg-white
+                dark:bg-slate-900
+                p-8
+                shadow-xl
+            "
+        >
+
+            <div class="flex items-center gap-4 mb-8">
+
+                <div
+                    class="
+                        flex
+                        h-14
+                        w-14
+                        items-center
+                        justify-center
+                        rounded-2xl
+                        bg-yellow-100
+                        dark:bg-yellow-900/30
+                        text-yellow-600
+                    "
+                >
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+
+                <div>
+
+                    <h2 class="text-3xl font-bold">
+                        Chef's Tips
+                    </h2>
+
+                    <p class="mt-1 text-slate-500 dark:text-slate-400">
+                        Optional tips that make your recipe even better.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="mb-3 flex items-center justify-between">
+            
+                <label
+                    for="chefTips"
+                    class="font-semibold"
+                >
+                    Chef's Tips
+                </label>
+            
+                <span
+                    id="chefTips-count"
+                    class="text-sm text-slate-500"
+                >
+                    0 / 400
+                </span>
+            
+            </div>
+
+            <textarea
+                id="chefTips"
+                rows="6"
+                maxlength="400"
+                placeholder="Share cooking tricks, substitutions, serving suggestions..."
+                class="
+                    w-full
+                    rounded-2xl
+                    border
+                    border-slate-300
+                    dark:border-slate-700
+                    bg-white
+                    dark:bg-slate-800
+                    p-5
+                    resize-none
+                    outline-none
+                    focus:border-orange-500
+                "
+            ></textarea>
+
+        </section>
+
+
+
+
+
+        <!-- ===================================== -->
+        <!-- Submission Notice -->
+        <!-- ===================================== -->
+
+        <section
+            class="
+                rounded-3xl
+                bg-linear-to-r
+                from-orange-500
+                to-red-500
+                p-8
+                text-white
+                shadow-xl
+            "
+        >
+
+            <div class="flex items-start gap-5">
+
+                <i class="fas fa-circle-info text-4xl mt-1"></i>
+
+                <div>
+
+                    <h3 class="text-3xl font-bold">
+                        Before You Submit
+                    </h3>
+
+                    <ul
+                        class="
+                            mt-6
+                            space-y-3
+                            leading-8
+                            text-orange-100
+                        "
+                    >
+                        <li>✔ Upload only recipes you created or have permission to share.</li>
+
+                        <li>✔ Use a clear, high-quality image.</li>
+
+                        <li>✔ Double-check ingredients and cooking steps.</li>
+
+                        <li>✔ Our team reviews every submission before publishing.</li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+            <div id="toast"
+                 class="hidden fixed top-5 right-5 bg-red-600 text-white px-5 py-3 rounded-xl shadow-lg">
+            </div>
+
+        </section>
+
+
+
+
+
+        <!-- ===================================== -->
+        <!-- Submit -->
+        <!-- ===================================== -->
+
+        <div class="pb-20 text-center">
+
+            <button
+                id="submitBtn"
+                type="submit"
+                class="
+                    inline-flex
+                    items-center
+                    gap-4
+                    rounded-2xl
+                    bg-linear-to-r
+                    from-orange-500
+                    to-red-500
+                    px-12
+                    py-5
+                    text-xl
+                    font-bold
+                    text-white
+                    shadow-2xl
+                    transition-all
+                    duration-300
+                    hover:-translate-y-1
+                    hover:scale-105
+                    hover:shadow-orange-500/40
+                    disabled:pointer-events-none
+                    disabled:opacity-50
+                "
+            >
+
+                <i class="fas fa-paper-plane"></i>
+
+                Submit Recipe
+
+            </button>
+
+            <p
+                id="responseMessage"
+                class="
+                    mt-6
+                    text-lg
+                    font-medium
+                "
+            ></p>
+
+        </div>
+
+    </form>
+
+</main>
+
+
+
+
+
+<!-- ===================================== -->
+<!-- Success Modal -->
+<!-- ===================================== -->
+
+<div
+    id="success-modal"
+    class="
+        fixed
+        inset-0
+        hidden
+        items-center
+        justify-center
+        bg-black/60
+        backdrop-blur-sm
+        z-9999
+    "
+>
+
+    <div
+        class="
+            w-[90%]
+            max-w-lg
+            rounded-3xl
+            bg-white
+            dark:bg-slate-900
+            p-10
+            text-center
+            shadow-2xl
+        "
+    >
+
+        <div
+            class="
+                mx-auto
+                flex
+                h-24
+                w-24
+                items-center
+                justify-center
+                rounded-full
+                bg-green-100
+                text-5xl
+                text-green-600
+            "
+        >
+            <i class="fas fa-check"></i>
+        </div>
+
+        <h2
+            class="
+                mt-8
+                text-4xl
+                font-bold
+            "
+        >
+            Recipe Submitted!
+        </h2>
+
+        <p
+            class="
+                mt-5
+                leading-8
+                text-slate-500
+                dark:text-slate-400
+            "
+        >
+            Thank you for sharing your recipe.
+
+            Our team will review it before it's published on PraRoz Recipes.
+        </p>
+
+        <button
+            id="close-success"
+            class="
+                mt-10
+                rounded-2xl
+                bg-orange-500
+                px-8
+                py-4
+                font-semibold
+                text-white
+                transition
+                hover:bg-orange-600
+            "
+        >
+            Awesome!
+        </button>
+
+    </div>
+
+</div>
+
+
+
+
+
+<button
+    id="theme-toggle"
+    class="
+        fixed
+        bottom-6
+        left-6
+        z-50
+        flex
+        h-14
+        w-14
+        items-center
+        justify-center
+        rounded-full
+        bg-white
+        dark:bg-slate-800
+        shadow-xl
+        transition
+        hover:scale-110
+    "
+>
+    🌙
+</button>
+
+<footer id="dynamic-footer"></footer>
+
+<script src="/js/config.js"></script>
+
+<!-- submission.js will replace the inline script -->
+<script src="/js/submission.js" defer></script>
+
+<script src="/js/project.js" defer></script>
+<script src="/js/navbar.js" defer></script>
+<script src="/js/sidebar.js" defer></script>
+<script src="/js/footer.js" defer></script>
+<script src="/js/darkmode.js" defer></script>
+
+</body>
+</html>

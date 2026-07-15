@@ -1,45 +1,223 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Login</title>
-  <link rel="stylesheet" href="/css/admin.css">
-</head>
-<body>
-  <h1>Admin Login</h1>
-  <form id="login-form">
-    <label for="password">Password:</label>
-    <input type="password" id="password" required>
-    <button type="submit">Login</button>
-  </form>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PraRoz Recipes | Admin Login</title>
 
-  <script src="/js/config.js"></script>
-  <script>
-    document.getElementById("login-form").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const password = document.getElementById("password").value;
+    <link rel="stylesheet" href="/css/styles.css" />
 
-      try {
-        const res = await fetch(`${window.API_BASE_URL}/validate-admin`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ password })
-        });
-
-        const data = await res.json();
-        if (res.ok && data.valid) {
-          localStorage.setItem("adminToken", "true"); // basic token
-          alert("Login successful");
-          window.location.href = "/admin";
-        } else {
-          alert("Invalid password");
+    <script>
+        tailwind.config = {
+            darkMode: "class"
         }
-      } catch (err) {
-        alert("Login error. Try again.");
-        console.error(err);
-      }
-    });
-  </script>
+    </script>
+</head>
+
+<body class="min-h-screen bg-slate-100 dark:bg-slate-950 flex items-center justify-center p-6">
+
+<div class="w-full max-w-md">
+
+    <!-- Logo -->
+    <div class="text-center mb-8">
+
+        <div class="mx-auto w-20 h-20 rounded-full bg-emerald-600 flex items-center justify-center shadow-xl">
+
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 class="w-10 h-10 text-white"
+                 fill="none"
+                 viewBox="0 0 24 24"
+                 stroke="currentColor">
+
+                <path stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 3v18m9-9H3"/>
+
+            </svg>
+
+        </div>
+
+        <h1 class="mt-5 text-3xl font-bold text-slate-800 dark:text-white">
+            PraRoz Recipes
+        </h1>
+
+        <p class="text-slate-500 dark:text-slate-400 mt-2">
+            Admin Dashboard Login
+        </p>
+
+    </div>
+
+    <!-- Login Card -->
+
+    <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl p-8 border border-slate-200 dark:border-slate-700">
+
+        <form id="login-form" class="space-y-6">
+
+            <div>
+
+                <label
+                    class="block text-sm font-medium mb-2">
+                    Password
+                </label>
+
+                <div class="relative">
+
+                    <input
+                        id="password"
+                        type="password"
+                        required
+                        placeholder="Enter admin password"
+                        class="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-3 pr-12 outline-none focus:ring-2 focus:ring-emerald-500">
+
+                    <button
+                        type="button"
+                        id="togglePassword"
+                        class="absolute right-3 top-3 text-slate-500">
+
+                        👁
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <button
+                id="loginBtn"
+                class="w-full rounded-xl bg-emerald-600 hover:bg-emerald-700 transition text-white font-semibold py-3">
+
+                Login
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<div id="toast"
+     class="hidden fixed top-5 right-5 bg-red-600 text-white px-5 py-3 rounded-xl shadow-lg">
+</div>
+
+<script src="/js/config.js"></script>
+
+<script>
+
+const password=document.getElementById("password");
+
+const toggle=document.getElementById("togglePassword");
+
+toggle.onclick=()=>{
+
+password.type=password.type==="password"
+?"text"
+:"password";
+
+toggle.textContent=password.type==="password"
+?"👁"
+:"🙈";
+
+};
+
+const toast=document.getElementById("toast");
+
+function showToast(message,color="red"){
+
+toast.textContent=message;
+
+toast.className=`fixed top-5 right-5 px-5 py-3 rounded-xl shadow-lg text-white bg-${color}-600`;
+
+setTimeout(()=>{
+
+toast.classList.add("hidden");
+
+},3000);
+
+}
+
+document.getElementById("login-form").addEventListener("submit",async(e)=>{
+
+e.preventDefault();
+
+const btn=document.getElementById("loginBtn");
+
+btn.disabled=true;
+
+btn.innerHTML=`
+<svg class="animate-spin mx-auto h-5 w-5"
+xmlns="http://www.w3.org/2000/svg"
+fill="none"
+viewBox="0 0 24 24">
+
+<circle
+class="opacity-25"
+cx="12"
+cy="12"
+r="10"
+stroke="currentColor"
+stroke-width="4"/>
+
+<path
+class="opacity-75"
+fill="currentColor"
+d="M4 12a8 8 0 018-8v8H4z"/>
+
+</svg>
+`;
+
+try{
+
+const res=await fetch(`${window.API_BASE_URL}/validate-admin`,{
+
+method:"POST",
+
+headers:{
+
+"Content-Type":"application/json"
+
+},
+
+body:JSON.stringify({
+
+password:password.value
+
+})
+
+});
+
+const data=await res.json();
+
+if(res.ok&&data.valid&&data.token){
+
+localStorage.setItem("adminToken",data.token);
+
+window.location.href="/admin";
+
+return;
+
+}
+
+showToast("Invalid password");
+
+}
+
+catch(err){
+
+console.error(err);
+
+showToast("Unable to login");
+
+}
+
+btn.disabled=false;
+
+btn.innerHTML="Login";
+
+});
+
+</script>
+
 </body>
 </html>

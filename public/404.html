@@ -1,30 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px 16px; border-radius: 3px; }
-      #message h3 { color: #888; font-weight: normal; font-size: 16px; margin: 16px 0 12px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: underline; text-decoration: none; font-size: 14px; }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>404 - PraRoz Recipes</title>
+
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/assets/fontawesome/css/all.min.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tangerine:wght@700&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body>
-    <div id="message">
-      <h2>404</h2>
-      <h1>Page Not Found</h1>
-      <p>The specified file was not found on this website. Please check the URL for mistakes and try again.</p>
-      <h3>Why am I seeing this?</h3>
-      <p>This page you're trying to access does not <b>exist</b> or is <b>under construction</b>. contact <a href='mailto:support@praroz.com'>support</a> if you think there's been a mistake or an error!</p>
-    </div>
+
+  <body class="min-h-screen bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300">
+    <header id="navbar-container"></header>
+
+    <main class="relative mx-auto max-w-6xl px-5 py-16 lg:px-8">
+      <!-- Background Blurs -->
+      <div class="absolute left-0 top-0 h-72 w-72 rounded-full bg-orange-400/20 blur-3xl pointer-events-none"></div>
+      <div class="absolute right-0 bottom-0 h-72 w-72 rounded-full bg-yellow-300/20 blur-3xl pointer-events-none"></div>
+
+      <section class="relative overflow-hidden rounded-4xl bg-linear-to-r from-orange-500 via-orange-600 to-red-500 px-8 py-14 text-center text-white shadow-2xl">
+        <div class="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-white/20 text-5xl backdrop-blur">
+          <i class="fas fa-triangle-exclamation"></i>
+        </div>
+
+        <h1 class="mt-8 text-5xl font-bold">404</h1>
+        <p class="mx-auto mt-4 max-w-2xl text-lg leading-8 text-orange-100">
+          The page you’re looking for can’t be found.
+        </p>
+
+        <div class="mt-10 flex flex-col items-center gap-4">
+          <a
+            href="/"
+            class="inline-flex items-center gap-3 rounded-2xl bg-white px-8 py-4 text-xl font-bold text-orange-600 shadow-xl transition hover:scale-105 hover:shadow-orange-500/40"
+          >
+            <i class="fas fa-house"></i>
+            Go Home
+          </a>
+
+          <a
+            href="/recipes"
+            class="inline-flex items-center gap-3 rounded-2xl border border-white/30 bg-white/10 px-8 py-4 text-xl font-bold text-white shadow-lg transition hover:bg-white/15 hover:scale-105"
+          >
+            <i class="fas fa-utensils"></i>
+            Browse Recipes
+          </a>
+
+          <p class="mt-2 max-w-2xl text-sm text-orange-100/90">
+            If you think this is a mistake, contact
+            <a href="mailto:support@praroz.com" class="underline underline-offset-4">support</a>.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer id="dynamic-footer"></footer>
+
+    <script src="/js/config.js"></script>
+    <script src="/js/project.js" defer></script>
+    <script src="/js/navbar.js" defer></script>
+    <script src="/js/sidebar.js" defer></script>
+    <script src="/js/footer.js" defer></script>
+    <script src="/js/darkmode.js" defer></script>
   </body>
 </html>
+

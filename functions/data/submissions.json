@@ -1,0 +1,30 @@
+[
+    {
+        "name": "cake",
+        "category": "desserts",
+        "image": "https://res.cloudinary.com/dbdtvd1qj/image/upload/v1783773691/mhfooxuatco50nbgcn9s.jpg",
+        "description": "hello",
+        "ingredients": [
+            "thhh",
+            "ddf",
+            "f",
+            "sdfdf",
+            "d"
+        ],
+        "instructions": "<ol><li>adfjhgdfhdhfh</li><li>dfkhjhdff</li><li>khkhf</li></ol>",
+        "instructions_array": [
+            "adfjhgdfhdhfh",
+            "dfkhjhdff",
+            "khkhf"
+        ],
+        "prep_time": " Minutes",
+        "cook_time": " Minutes",
+        "servings": " People",
+        "calories": "",
+        "protein": "",
+        "carbs": "",
+        "fat": "",
+        "chef_tips": "jgdfhdghfhdhhajgdfhdghfhdhhajgdfhdghfhdhhajgdfhdghfhdhhajgdfhdghfhdhhajgdfhdghfhdhhajgdfhdghfhdhhajgdfhdghfhdhhajgdfhdghfhdhhajgdfhdghfhdhhajgdfhdghfhdhhajgdfhdghfhdhhajgdfhdghfhdhhajgdfhdghfhdhhajgdfhdghfhdhhajgdfhdghfhdhhajgdfhdghfhdhhajgdfhdghfhdhhajgdfhdghfhdhhajgdfhdghfhdhhajgdfhdghfhdhhajgdfhdghfhdhhajgdfhdghfhdhhajgdfhdghfhdhhajgdfhdghfhdhhajgdfhdghfhdhhajgdfhdghfhdhhajgdfhdghfhdhhajgdfhdgh",
+        "created_at": "2026-07-11T12:41:38.088Z"
+    }
+]
