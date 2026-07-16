@@ -1,351 +1,398 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="description" content="Praroz is a premium recipe destination featuring homemade meals, Nigerian favorites, and global inspiration for everyday cooking.">
+    <meta name="theme-color" content="#f97316">
     <title>Praroz | Home</title>
 
     <link rel="icon" type="image/png" href="/images/favicon.ico">
-
-    <link rel="stylesheet" href="/css/styles.css">
-    <!--link rel="stylesheet" href="/css/footer.css"-->
-    <!--link rel="stylesheet" href="/css/darkmode.css"-->
     <link rel="stylesheet" href="/assets/fontawesome/css/all.min.css">
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Tangerine&display=swap" rel="stylesheet">
-
-    
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
- 
-<body class="min-h-screen flex flex-col bg-gray-100 text-gray-900 dark:bg-slate-900 dark:text-gray-100 transition-colors duration-300">
+
+<body class="min-h-screen flex flex-col bg-stone-50 text-slate-800 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
     <header id="navbar-container"></header>
-    <!-- Theme Toggle -->
+
     <button
         id="theme-toggle"
-        class="fixed bottom-5 left-5 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-white text-black shadow-lg transition-all duration-300 hover:scale-110 hover:bg-slate-700 hover:dark:bg-slate-300 dark:bg-slate-700 dark:text-gray-300 dark:border dark:border-gray-700">
+        class="fixed bottom-5 left-5 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-white bg-white text-slate-800 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-110 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
+        aria-label="Toggle dark mode"
+        type="button"
+    >
         🌙
     </button>
 
-    <!-- Main Container -->
-    <main class="w-[95%] max-w-6xl mx-auto mt-24 mb-8 rounded-2xl bg-linear-to-r from-blue-600 to-cyan-500 shadow-xl p-6 md:p-10 text-white dark:bg-linear-to-r dark:from-gray-700 dark:to-gray-900 dark:text-white dark:border dark:border-gray-700">
+    <main class="mx-auto mb-10 mt-8 w-[95%] max-w-7xl px-2 sm:px-4 lg:px-0">
+        <section class="relative overflow-hidden rounded-4xl border border-stone-200 bg-white shadow-soft backdrop-blur-xl dark:border-slate-800 dark:bg-slate-900" data-reveal="up">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(249,115,22,0.16),transparent_40%)]"></div>
+            <div class="relative grid gap-10 px-6 py-8 sm:px-8 sm:py-10 lg:grid-cols-[1.15fr_0.85fr] lg:px-12 lg:py-14">
+                <div class="space-y-6">
+                    <div class="inline-flex items-center gap-2 rounded-full border border-orange-200 bg-orange-50 px-3 py-2 text-sm font-medium text-orange-700 dark:border-orange-500 dark:bg-orange-500 dark:text-orange-300">
+                        <i class="fa-solid fa-fire"></i>
+                        Handmade recipes • Nigerian favorites • global inspiration
+                    </div>
 
-        <!-- Hero -->
-        <section class="space-y-6">
+                    <div class="space-y-4">
+                        <h1 class="max-w-2xl text-4xl font-black leading-[0.95] text-slate-900 sm:text-5xl lg:text-6xl dark:text-white">
+                            Delicious home cooking, elevated.
+                        </h1>
+                        <p class="max-w-xl text-lg leading-8 text-slate-600 dark:text-slate-300">
+                            Welcome to Praroz, where warm, trustworthy recipes meet modern, beautiful presentation. Discover comforting classics, bold flavors, and everyday meals made to share.
+                        </p>
+                    </div>
 
-            <h1 class="text-4xl md:text-5xl font-bold leading-tight dark:text-[#ffffff]">
-                🍽️ Welcome to <span class="font-extrabold">Praroz</span> —
-                Where Flavor Meets Simplicity
-            </h1>
+                    <div class="flex flex-col gap-3 sm:flex-row">
+                        <a href="/recipes" class="inline-flex items-center justify-center rounded-full bg-orange-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-orange-500 transition hover:-translate-y-0.5 hover:bg-orange-600">
+                            Browse Recipes
+                        </a>
+                        <a href="/submit" class="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 transition hover:-translate-y-0.5 hover:border-orange-300 hover:text-orange-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200">
+                            Submit a Recipe
+                        </a>
+                    </div>
 
-            <p class="dark:#e0e0e0 text-lg leading-8">
-                <strong>Discover recipes that inspire, comfort, and delight.</strong>
-                Whether you're a seasoned home cook or just beginning your culinary
-                journey, <strong>Praroz</strong> is your destination for
-                easy-to-follow, mouth-watering recipes that bring joy to every table.
-            </p>
-
-        </section>
-
-        <!-- Welcome -->
-        <section class="mt-12 space-y-5">
-
-            <h2 class="dark:text-[#ffffff] text-3xl font-bold">
-                👋 A Warm Welcome from Praroz
-            </h2>
-
-            <p class="dark:#e0e0e0 text-lg leading-8 dar">
-                Welcome to <strong>Praroz</strong>, your new favorite online kitchen.
-                We believe food isn't just fuel—it's love, tradition, creativity,
-                and connection.
-
-                Our mission is to help you cook confidently, eat joyfully, and
-                discover the power of homemade meals.
-
-                From comforting classics to bold global flavors, Praroz is here to
-                spark your creativity and satisfy your taste buds.
-            </p>
-
-        </section>
-
-        <!-- Features -->
-        <section class="mt-12">
-
-            <h2 class="dark:text-[#ffffff] text-3xl font-bold mb-6">
-                🧑‍🍳 What You'll Find at Praroz
-            </h2>
-
-            <ul class="dark:#e0e0e0 space-y-4 text-lg leading-8">
-
-                <li>
-                    ✅ <strong>Step-by-Step Recipes</strong> —
-                    Clear instructions, accurate measurements, and helpful visuals.
-                </li>
-
-                <li>
-                    ✅ <strong>Beginner-Friendly Guides</strong> —
-                    Perfect for anyone learning to cook or bake from scratch.
-                </li>
-
-                <li>
-                    ✅ <strong>Healthy & Indulgent Options</strong> —
-                    Whether you're counting calories or craving comfort.
-                </li>
-
-                <li>
-                    ✅ <strong>Cultural Dishes</strong> —
-                    Explore flavors from around the world, right from your kitchen.
-                </li>
-
-                <li>
-                    ✅ <strong>Tips & Techniques</strong> —
-                    Learn shortcuts, substitutions, and professional cooking tricks.
-                </li>
-
-            </ul>
-
-        </section>
-
-        <!-- Trending Recipes -->
-        <section class="mt-14">
-
-            <h2 class="dark:text-[#ffffff] text-3xl font-bold mb-6">
-                🔥 Trending Recipes
-            </h2>
-
-            <ul class="dark:#e0e0e0 space-y-3 text-lg leading-8 list-none">
-
-                <li>🍝 Creamy Garlic Butter Pasta</li>
-                <li>🍗 Honey-Glazed Chicken Thighs</li>
-                <li>🍰 No-Bake Chocolate Cheesecake</li>
-                <li>🥗 Mediterranean Chickpea Salad</li>
-                <li>🍛 Nigerian Jollof Rice (Fan Favorite!)</li>
-
-            </ul>
-
-        </section>
-
-
-        <!-- Why Choose Us -->
-        <section class="mt-14">
-
-            <h2 class="dark:text-[#ffffff] text-3xl font-bold mb-6">
-                ❤️ Why Thousands Choose Praroz
-            </h2>
-
-            <div class="space-y-6">
-
-                <div class="rounded-xl bg-white/10 backdrop-blur-sm p-5 shadow">
-
-                    <h3 class="dark:#ffffff text-xl font-semibold mb-2">
-                        Simple Ingredients. Big Flavor.
-                    </h3>
-
-                    <p class="dark:#e0e0e0 text-lg leading-8">
-                        You don't need fancy ingredients or professional skills—
-                        just passion and a pinch of curiosity. Every recipe is
-                        tested, optimized, and designed for home cooks.
-                    </p>
-
+                    <div class="flex flex-wrap gap-2 text-sm text-slate-600 dark:text-slate-300">
+                        <span class="rounded-full border border-slate-200 bg-white px-3 py-2 dark:border-slate-700 dark:bg-slate-800">Nigerian classics</span>
+                        <span class="rounded-full border border-slate-200 bg-white px-3 py-2 dark:border-slate-700 dark:bg-slate-800">Quick weeknight meals</span>
+                        <span class="rounded-full border border-slate-200 bg-white px-3 py-2 dark:border-slate-700 dark:bg-slate-800">Desserts & baking</span>
+                    </div>
                 </div>
 
-                <div class="rounded-xl bg-white/10 backdrop-blur-sm p-5 shadow">
-
-                    <h3 class="dark:#ffffff text-xl font-semibold mb-2">
-                        Built for Busy Lives.
-                    </h3>
-
-                    <p class="dark:#e0e0e0 text-lg leading-8">
-                        Most meals can be prepared in under 30 minutes without
-                        sacrificing taste or quality.
-                    </p>
-
+                <div class="space-y-4">
+                    <div class="overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-lg dark:border-slate-700 dark:bg-slate-800">
+                        <img src="/images/download.webp" alt="Featured recipe" class="h-64 w-full object-cover sm:h-72" loading="eager">
+                        <div class="space-y-4 p-5 sm:p-6">
+                            <div class="flex items-center justify-between gap-3">
+                                <span class="rounded-full bg-orange-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-orange-700 dark:bg-orange-500 dark:text-orange-300">Featured recipe</span>
+                                <span class="text-sm text-slate-500 dark:text-slate-400">25 min</span>
+                            </div>
+                            <div>
+                                <h2 class="text-2xl font-semibold text-slate-900 dark:text-white">Spiced pepper soup with buttery herbs</h2>
+                                <p class="mt-2 text-sm leading-7 text-slate-600 dark:text-slate-300">A rich and fragrant bowl built for comfort, warmth, and easy hosting.</p>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2 text-sm text-amber-600">
+                                    <i class="fa-solid fa-star"></i>
+                                    <span class="font-semibold text-slate-700 dark:text-slate-200">4.9 · Beginner friendly</span>
+                                </div>
+                                <a href="/recipes" class="text-sm font-semibold text-orange-600 transition hover:text-orange-700">View recipe</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="rounded-xl bg-white/10 backdrop-blur-sm p-5 shadow">
-
-                    <h3 class="dark:#ffffff text-xl font-semibold mb-2">
-                        Your Taste. Your Pace.
-                    </h3>
-
-                    <p class="dark:#e0e0e0 text-lg leading-8">
-                        Search recipes by meal type, cooking time, dietary
-                        preference, or difficulty. You're always in control.
-                    </p>
-
+        <section class="mt-8 rounded-4xl border border-stone-200 bg-white p-4 shadow-sm backdrop-blur dark:border-slate-800 dark:bg-slate-900" data-reveal="up">
+            <div class="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+                <div class="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+                    <div class="rounded-full bg-orange-100 p-3 text-orange-600 dark:bg-orange-500 dark:text-orange-300">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <div>
+                        <p class="text-base font-semibold text-slate-900 dark:text-white">Find your next favorite dish</p>
+                        <p class="text-sm">Search by ingredient, category, or meal type</p>
+                    </div>
                 </div>
+                <div class="relative flex-1 lg:max-w-2xl">
+                    <div id="search-container" class="relative"></div>
+                </div>
+            </div>
+        </section>
 
+        <section class="mt-12" data-reveal="up">
+            <div class="mb-6 flex items-end justify-between gap-4">
+                <div>
+                    <p class="text-sm font-semibold uppercase tracking-[0.25em] text-orange-600">Recipe categories</p>
+                    <h2 class="mt-2 text-3xl font-semibold text-slate-900 dark:text-white">Cook by mood, meal, or craving</h2>
+                </div>
+                <a href="/recipes" class="hidden text-sm font-semibold text-slate-600 transition hover:text-orange-600 sm:inline-flex dark:text-slate-300">See all recipes</a>
             </div>
 
+            <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                <a href="/recipes" class="group rounded-3xl border border-stone-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-lg font-semibold text-slate-900 dark:text-white">Desserts</p>
+                            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Sweet finishes, baked comfort, and indulgent treats.</p>
+                        </div>
+                        <div class="rounded-2xl bg-amber-100 p-3 text-amber-700 transition group-hover:scale-110 dark:bg-amber-500 dark:text-amber-300">
+                            <i class="fa-solid fa-cake-candles"></i>
+                        </div>
+                    </div>
+                </a>
+                <a href="/recipes" class="group rounded-3xl border border-stone-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-lg font-semibold text-slate-900 dark:text-white">Appetizers</p>
+                            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Little bites, party starters, and first-course favorites.</p>
+                        </div>
+                        <div class="rounded-2xl bg-orange-100 p-3 text-orange-700 transition group-hover:scale-110 dark:bg-orange-500 dark:text-orange-300">
+                            <i class="fa-solid fa-utensils"></i>
+                        </div>
+                    </div>
+                </a>
+                <a href="/recipes" class="group rounded-3xl border border-stone-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-lg font-semibold text-slate-900 dark:text-white">Pasta</p>
+                            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Silky sauces, cozy bowls, and weeknight staples.</p>
+                        </div>
+                        <div class="rounded-2xl bg-stone-100 p-3 text-stone-700 transition group-hover:scale-110 dark:bg-stone-700 dark:text-stone-200">
+                            <i class="fa-solid fa-bowl-food"></i>
+                        </div>
+                    </div>
+                </a>
+                <a href="/recipes" class="group rounded-3xl border border-stone-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-lg font-semibold text-slate-900 dark:text-white">Pizza</p>
+                            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Crisp crusts, bold toppings, and dinner-table favorites.</p>
+                        </div>
+                        <div class="rounded-2xl bg-amber-100 p-3 text-amber-700 transition group-hover:scale-110 dark:bg-amber-500 dark:text-amber-300">
+                            <i class="fa-solid fa-pizza-slice"></i>
+                        </div>
+                    </div>
+                </a>
+                <a href="/recipes" class="group rounded-3xl border border-stone-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-lg font-semibold text-slate-900 dark:text-white">Burger</p>
+                            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Juicy comfort food with a modern homemade spin.</p>
+                        </div>
+                        <div class="rounded-2xl bg-orange-100 p-3 text-orange-700 transition group-hover:scale-110 dark:bg-orange-500 dark:text-orange-300">
+                            <i class="fa-solid fa-burger"></i>
+                        </div>
+                    </div>
+                </a>
+                <a href="/recipes" class="group rounded-3xl border border-stone-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-lg font-semibold text-slate-900 dark:text-white">Salad</p>
+                            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Fresh greens, bright flavors, and satisfying lunch plates.</p>
+                        </div>
+                        <div class="rounded-2xl bg-stone-100 p-3 text-stone-700 transition group-hover:scale-110 dark:bg-stone-700 dark:text-stone-200">
+                            <i class="fa-solid fa-seedling"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
         </section>
 
-
-        <!-- Community -->
-        <section class="mt-14">
-
-            <h2 class="dark:text-[#ffffff] text-3xl font-bold mb-6">
-                📸 Real Food by Real People
-            </h2>
-
-            <p class="dark:#e0e0e0 text-lg leading-8">
-                At Praroz, we feature dishes created and loved by our growing
-                community.
-
-                Share your masterpiece using
-                <span class="font-bold">#CookWithPraroz</span>
-                for a chance to be featured on our website.
-            </p>
-
-        </section>
-
-
-        <!-- Testimonials -->
-        <section class="mt-16">
-
-            <h2 class="dark:text-[#ffffff] text-3xl font-bold mb-8">
-                💬 What Visitors Say
-            </h2>
-
-            <div class="space-y-6">
-
-                <blockquote class="border-l-4 border-orange-500 bg-white/90 dark:bg-slate-800 p-5 italic rounded-lg text-gray-800 dark:text-gray-200 mb-5 shadow">
-
-                    <p class="text-lg leading-8 mb-5">
-                        "I finally nailed lasagna thanks to Praroz!"
-                    </p>
-
-                    <cite class="block text-right font-semibold mt-3">
-                        — Grace N.
-                    </cite>
-
-                </blockquote>
-
-
-                <blockquote class="border-l-4 border-orange-500 bg-white/90 dark:bg-slate-800 p-5 italic rounded-lg text-gray-800 dark:text-gray-200 mb-5 shadow">
-
-                    <p class="text-lg leading-8 mb-5">
-                        "Every recipe I've tried has worked out perfectly."
-                    </p>
-
-                    <cite class="block text-right font-semibold mt-3">
-                        — Joseph A.
-                    </cite>
-
-                </blockquote>
-
-
-                <blockquote class="border-l-4 border-orange-500 bg-white/90 dark:bg-slate-800 p-5 italic rounded-lg text-gray-800 dark:text-gray-200 mb-5 shadow">
-
-                    <p class="text-lg leading-8 mb-5">
-                        "The step-by-step guides are a game changer."
-                    </p>
-
-                    <cite class="block text-right font-semibold mt-3">
-                        — Tina K.
-                    </cite>
-
-                </blockquote>
-
+        <section class="mt-12" data-reveal="up">
+            <div class="mb-6 flex items-end justify-between gap-4">
+                <div>
+                    <p class="text-sm font-semibold uppercase tracking-[0.25em] text-orange-600">Featured recipes</p>
+                    <h2 class="mt-2 text-3xl font-semibold text-slate-900 dark:text-white">Made for real kitchens and busy evenings</h2>
+                </div>
             </div>
 
+            <div class="grid gap-6 lg:grid-cols-3">
+                <article class="overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900">
+                    <img src="/images/thumbnail/praroz-thumbnail.webp" alt="Crispy roasted chicken with herbs" class="h-56 w-full object-cover" loading="lazy">
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+                            <span class="rounded-full bg-orange-100 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-orange-700 dark:bg-orange-500 dark:text-orange-300">Dinner</span>
+                            <span>45 min</span>
+                        </div>
+                        <h3 class="mt-4 text-xl font-semibold text-slate-900 dark:text-white">Crispy roasted chicken with herbs</h3>
+                        <p class="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">Golden edges, bright citrus, and a deeply savory finish for your next table centerpiece.</p>
+                        <div class="mt-5 flex items-center justify-between text-sm text-slate-500 dark:text-slate-400">
+                            <span><i class="fa-solid fa-star text-amber-500"></i> 4.8</span>
+                            <span>Medium</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900">
+                    <img src="/images/download.webp" alt="Lemony pasta with toasted garlic" class="h-56 w-full object-cover" loading="lazy">
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+                            <span class="rounded-full bg-stone-100 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-stone-700 dark:bg-stone-700 dark:text-stone-200">Pasta</span>
+                            <span>20 min</span>
+                        </div>
+                        <h3 class="mt-4 text-xl font-semibold text-slate-900 dark:text-white">Lemony pasta with toasted garlic</h3>
+                        <p class="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">Fresh, silky, and impossible not to love on a busy evening.</p>
+                        <div class="mt-5 flex items-center justify-between text-sm text-slate-500 dark:text-slate-400">
+                            <span><i class="fa-solid fa-star text-amber-500"></i> 4.9</span>
+                            <span>Easy</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900">
+                    <img src="/images/thumbnail/praroz-thumbnail.png" alt="Chocolate mousse with whipped cream" class="h-56 w-full object-cover" loading="lazy">
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+                            <span class="rounded-full bg-amber-100 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-amber-700 dark:bg-amber-500 dark:text-amber-300">Dessert</span>
+                            <span>15 min</span>
+                        </div>
+                        <h3 class="mt-4 text-xl font-semibold text-slate-900 dark:text-white">Chocolate mousse with whipped cream</h3>
+                        <p class="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">A simple dessert that feels luxurious, polished, and very shareable.</p>
+                        <div class="mt-5 flex items-center justify-between text-sm text-slate-500 dark:text-slate-400">
+                            <span><i class="fa-solid fa-star text-amber-500"></i> 4.7</span>
+                            <span>Easy</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
         </section>
-        <!-- Join Community -->
-        <section class="mt-16">
 
-            <h2 class="dark:text-[#ffffff] text-3xl font-bold mb-6">
-                📩 Join the Praroz Community
-            </h2>
-
-            <div class="rounded-2xl bg-white/10 backdrop-blur-sm p-8 shadow-lg">
-
-                <h3 class="dark:#ffffff text-2xl font-semibold mb-5">
-                    Sign up for our newsletter to get:
-                </h3>
-
-                <ul class="dark:#e0e0e0 space-y-4 text-lg leading-8">
-
-                    <li>📌 Weekly recipe inspiration</li>
-
-                    <li>🥗 Seasonal meal plans</li>
-
-                    <li>👨‍🍳 Exclusive cooking tips & kitchen hacks</li>
-
-                    <li>🚀 Early access to new recipes and features</li>
-
-                </ul>
-
-                <p class="dark:#e0e0e0 mt-8 text-xl font-semibold">
-                    Let's make something delicious together.
-                </p>
-
+        <section class="mt-12" data-reveal="up">
+            <div class="mb-6 flex items-end justify-between gap-4">
+                <div>
+                    <p class="text-sm font-semibold uppercase tracking-[0.25em] text-orange-600">Trending now</p>
+                    <h2 class="mt-2 text-3xl font-semibold text-slate-900 dark:text-white">The recipes everyone is saving this week</h2>
+                </div>
             </div>
 
+            <div class="flex gap-4 overflow-x-auto pb-2 sm:grid sm:grid-cols-2 xl:grid-cols-4 sm:overflow-visible">
+                <article class="min-w-[82%] rounded-[1.25rem] border border-stone-200 bg-white p-5 shadow-sm sm:min-w-0 dark:border-slate-800 dark:bg-slate-900">
+                    <p class="text-sm font-semibold text-orange-600">Quick lunch</p>
+                    <h3 class="mt-2 text-lg font-semibold text-slate-900 dark:text-white">Mediterranean chickpea bowl</h3>
+                    <p class="mt-2 text-sm leading-7 text-slate-600 dark:text-slate-300">Bright herbs, creamy yogurt, and a crunchy finish.</p>
+                </article>
+                <article class="min-w-[82%] rounded-[1.25rem] border border-stone-200 bg-white p-5 shadow-sm sm:min-w-0 dark:border-slate-800 dark:bg-slate-900">
+                    <p class="text-sm font-semibold text-orange-600">Cozy dinner</p>
+                    <h3 class="mt-2 text-lg font-semibold text-slate-900 dark:text-white">Nigerian jollof rice</h3>
+                    <p class="mt-2 text-sm leading-7 text-slate-600 dark:text-slate-300">A classic favorite with rich depth and unforgettable flavor.</p>
+                </article>
+                <article class="min-w-[82%] rounded-[1.25rem] border border-stone-200 bg-white p-5 shadow-sm sm:min-w-0 dark:border-slate-800 dark:bg-slate-900">
+                    <p class="text-sm font-semibold text-orange-600">Weekend treat</p>
+                    <h3 class="mt-2 text-lg font-semibold text-slate-900 dark:text-white">Honey glaze salmon</h3>
+                    <p class="mt-2 text-sm leading-7 text-slate-600 dark:text-slate-300">Sweet, savory, and polished enough for guests.</p>
+                </article>
+                <article class="min-w-[82%] rounded-[1.25rem] border border-stone-200 bg-white p-5 shadow-sm sm:min-w-0 dark:border-slate-800 dark:bg-slate-900">
+                    <p class="text-sm font-semibold text-orange-600">Easy dessert</p>
+                    <h3 class="mt-2 text-lg font-semibold text-slate-900 dark:text-white">No-bake cheesecake cups</h3>
+                    <p class="mt-2 text-sm leading-7 text-slate-600 dark:text-slate-300">Creamy, quick, and ideal for entertaining or a small sweet bite.</p>
+                </article>
+            </div>
         </section>
 
+        <section class="mt-12 rounded-4xl border border-stone-200 bg-white p-8 shadow-sm dark:border-slate-800 dark:bg-slate-900" data-reveal="up">
+            <div class="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+                <div>
+                    <p class="text-sm font-semibold uppercase tracking-[0.25em] text-orange-600">Why Praroz</p>
+                    <h2 class="mt-3 text-3xl font-semibold text-slate-900 dark:text-white">Beautiful recipes with clarity, warmth, and confidence</h2>
+                    <p class="mt-4 text-lg leading-8 text-slate-600 dark:text-slate-300">Every recipe is designed to feel approachable, reliable, and genuinely useful in your kitchen.</p>
+                </div>
+                <div class="grid gap-4 sm:grid-cols-2">
+                    <div class="rounded-[1.25rem] border border-stone-200 p-5 dark:border-slate-800">
+                        <div class="mb-3 inline-flex rounded-full bg-orange-100 p-3 text-orange-700 dark:bg-orange-500 dark:text-orange-300">
+                            <i class="fa-solid fa-list-check"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Step-by-step guidance</h3>
+                        <p class="mt-2 text-sm leading-7 text-slate-600 dark:text-slate-300">Clear instructions that make even new recipes feel manageable.</p>
+                    </div>
+                    <div class="rounded-[1.25rem] border border-stone-200 p-5 dark:border-slate-800">
+                        <div class="mb-3 inline-flex rounded-full bg-amber-100 p-3 text-amber-700 dark:bg-amber-500 dark:text-amber-300">
+                            <i class="fa-solid fa-seedling"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Nutrition-minded choices</h3>
+                        <p class="mt-2 text-sm leading-7 text-slate-600 dark:text-slate-300">Balanced recipes and ingredient notes for modern everyday living.</p>
+                    </div>
+                    <div class="rounded-[1.25rem] border border-stone-200 p-5 dark:border-slate-800">
+                        <div class="mb-3 inline-flex rounded-full bg-stone-100 p-3 text-stone-700 dark:bg-stone-700 dark:text-stone-200">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Community submissions</h3>
+                        <p class="mt-2 text-sm leading-7 text-slate-600 dark:text-slate-300">Recipes shared by real cooks and loved by a growing audience.</p>
+                    </div>
+                    <div class="rounded-[1.25rem] border border-stone-200 p-5 dark:border-slate-800">
+                        <div class="mb-3 inline-flex rounded-full bg-orange-100 p-3 text-orange-700 dark:bg-orange-500 dark:text-orange-300">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Fast navigation</h3>
+                        <p class="mt-2 text-sm leading-7 text-slate-600 dark:text-slate-300">Browse by category, save favorites, and jump straight into inspiration.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <!-- Start Exploring -->
-        <section class="mt-16">
-
-            <h2 class="dark:text-[#ffffff] text-3xl font-bold mb-6">
-                🌍 Start Exploring
-            </h2>
-
-            <p class="dark:#e0e0e0 text-lg leading-8 mb-8">
-                Dive into our latest recipes, save your favourites, and discover
-                the joy of cooking—one delicious dish at a time.
-            </p>
-
-            <div class="flex flex-col justify-center items-center md:flex-row gap-4">
-
-                
-
-                <p class=" text-lg leading-8 mb-5">
-                    <a href="/recipes"
-                    class="rounded-lg bg-gray-200 dark:bg-gray-500 text-blue-700 dark:text-black font-semibold px-6 py-4 text-center shadow hover:bg-gray-300 transition duration-300">
-                    [🍽 Browse Recipes]
-                    </a>
-                </p>
-
-                <p class="dark:#e0e0e0 text-lg leading-8 mb-5">
-                    <a href="#"
-                    class="rounded-lg bg-yellow-400 text-black font-semibold px-6 py-4 text-center shadow hover:bg-yellow-300 transition duration-300 dark:bg-gray-300 dark:text-black">
-                    [👥 Join the Community]
-                    </a>
-                </p>
-
-                <p class="dark:#e0e0e0 text-lg leading-8 mb-5">
-                    <a href="/submit"
-                    class="rounded-lg bg-orange-500 text-white font-semibold px-6 py-4 text-center shadow hover:bg-orange-600 transition duration-300 dark:bg-gray-300 dark:text-black">
-                    [✍ Submit Your Recipe]
-                    </a>
-                </p>
-
+        <section class="mt-12" data-reveal="up">
+            <div class="mb-6 flex items-end justify-between gap-4">
+                <div>
+                    <p class="text-sm font-semibold uppercase tracking-[0.25em] text-orange-600">Latest from the community</p>
+                    <h2 class="mt-2 text-3xl font-semibold text-slate-900 dark:text-white">Fresh recipes from fellow home cooks</h2>
+                </div>
             </div>
 
+            <div class="grid gap-6 lg:grid-cols-3">
+                <article class="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900">
+                    <div class="flex items-center justify-between text-sm text-slate-500 dark:text-slate-400">
+                        <span class="rounded-full bg-orange-100 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-orange-700 dark:bg-orange-500 dark:text-orange-300">Appetizer</span>
+                        <span>2 days ago</span>
+                    </div>
+                    <h3 class="mt-4 text-xl font-semibold text-slate-900 dark:text-white">Crispy plantain bites</h3>
+                    <p class="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">Shared by Aisha K. and loved for weekend gatherings and quick snacks.</p>
+                    <div class="mt-5 flex items-center gap-3 text-sm text-slate-500 dark:text-slate-400">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Aisha K.</span>
+                    </div>
+                </article>
+                <article class="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900">
+                    <div class="flex items-center justify-between text-sm text-slate-500 dark:text-slate-400">
+                        <span class="rounded-full bg-stone-100 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-stone-700 dark:bg-stone-700 dark:text-stone-200">Dinner</span>
+                        <span>5 days ago</span>
+                    </div>
+                    <h3 class="mt-4 text-xl font-semibold text-slate-900 dark:text-white">Garlic butter rice bowls</h3>
+                    <p class="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">A simple, satisfying supper with a glossy finish and plenty of flavor.</p>
+                    <div class="mt-5 flex items-center gap-3 text-sm text-slate-500 dark:text-slate-400">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Daniel O.</span>
+                    </div>
+                </article>
+                <article class="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900">
+                    <div class="flex items-center justify-between text-sm text-slate-500 dark:text-slate-400">
+                        <span class="rounded-full bg-amber-100 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-amber-700 dark:bg-amber-500 dark:text-amber-300">Dessert</span>
+                        <span>1 week ago</span>
+                    </div>
+                    <h3 class="mt-4 text-xl font-semibold text-slate-900 dark:text-white">Cinnamon pear tartlets</h3>
+                    <p class="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">Warm spice, flaky pastry, and a polished finish that feels special.</p>
+                    <div class="mt-5 flex items-center gap-3 text-sm text-slate-500 dark:text-slate-400">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Ruth P.</span>
+                    </div>
+                </article>
+            </div>
         </section>
 
+        <section class="mt-12 overflow-hidden rounded-4xl border border-stone-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900" data-reveal="up">
+            <div class="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+                <div class="bg-[linear-gradient(135deg,rgba(249,115,22,0.12),rgba(251,191,36,0.16))] p-8 sm:p-10">
+                    <p class="text-sm font-semibold uppercase tracking-[0.25em] text-orange-600">Stay inspired</p>
+                    <h2 class="mt-3 text-3xl font-semibold text-slate-900 dark:text-white">Get fresh weekly recipes straight to your inbox</h2>
+                    <p class="mt-4 text-lg leading-8 text-slate-600 dark:text-slate-300">Join the Praroz newsletter for seasonal meal ideas, kitchen tips, and early access to new recipes.</p>
+                    <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+                        <input type="email" aria-label="Email address" placeholder="Your email address" class="w-full rounded-full border border-slate-300 bg-white px-4 py-3 text-sm text-slate-700 outline-none ring-0 focus:border-orange-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100" />
+                        <button type="button" class="rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-orange-600 dark:bg-orange-500 dark:hover:bg-orange-600">Join newsletter</button>
+                    </div>
+                </div>
+                <div class="flex items-center justify-center p-6 sm:p-10">
+                    <img src="/images/thumbnail/praroz-thumbnail.webp" alt="Fresh recipe inspiration" class="h-72 w-full max-w-md rounded-3xl object-cover shadow-lg" loading="lazy">
+                </div>
+            </div>
+        </section>
 
-        <!-- Continue -->
-        <div class="mt-16 flex justify-center items-center">
-
+        <section class="mt-12 flex justify-center" data-reveal="up">
             <button
                 onclick="continueToSite()"
-                class="rounded-xl bg-orange-500 hover:bg-orange-600 px-10 py-4 text-lg font-bold shadow-xl transition duration-300 hover:scale-105 dark:bg-slate-800 dark:text-blue-200">
-
-                Continue to Homepage →
-
+                class="rounded-full border border-orange-200 bg-white px-8 py-3 text-sm font-semibold text-orange-700 shadow-sm transition hover:-translate-y-0.5 hover:bg-orange-50 dark:border-orange-500 dark:bg-slate-900 dark:text-orange-300"
+                type="button"
+            >
+                Continue to homepage
             </button>
-
-        </div>
-
+        </section>
     </main>
 
-    <!-- Footer -->
     <div id="dynamic-footer" class="mt-auto"></div>
 
     <script src="/js/config.js" defer></script>
-
     <script>
         function continueToSite() {
             localStorage.setItem("lastLandingTime", Date.now());
@@ -354,7 +401,42 @@
     </script>
     <script src="/js/navbar.js" defer></script>
     <script src="/js/sidebar.js" defer></script>
+    <script src="/js/search-bar.js" defer></script>
     <script src="/js/footer.js" defer></script>
     <script src="/js/darkmode.js" defer></script>
+    <script>
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+
+                const target = entry.target;
+                const variant = target.getAttribute('data-reveal') || 'up';
+
+                const classesToRemove = {
+                    up: ['opacity-0', 'translate-y-8'],
+                    left: ['opacity-0', '-translate-x-8'],
+                    right: ['opacity-0', 'translate-x-8'],
+                    scale: ['opacity-0', 'scale-95']
+                };
+
+                target.classList.remove(...(classesToRemove[variant] || classesToRemove.up));
+                target.classList.add('opacity-100', 'translate-y-0', 'translate-x-0', 'scale-100');
+                revealObserver.unobserve(target);
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('[data-reveal]').forEach((element) => {
+            const variant = element.getAttribute('data-reveal') || 'up';
+            const classesToAdd = {
+                up: ['opacity-0', 'translate-y-8', 'transition-all', 'duration-700', 'ease-out'],
+                left: ['opacity-0', '-translate-x-8', 'transition-all', 'duration-700', 'ease-out'],
+                right: ['opacity-0', 'translate-x-8', 'transition-all', 'duration-700', 'ease-out'],
+                scale: ['opacity-0', 'scale-95', 'transition-all', 'duration-700', 'ease-out']
+            };
+
+            element.classList.add(...(classesToAdd[variant] || classesToAdd.up));
+            revealObserver.observe(element);
+        });
+    </script>
 </body>
 </html>

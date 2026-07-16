@@ -72,7 +72,7 @@
 
     if (!visibleRecipes.length) {
       container.innerHTML = `
-        <div class="rounded-3xl border border-dashed border-slate-300 bg-slate-50 p-10 text-center shadow-sm dark:border-slate-700 dark:bg-slate-900/40">
+        <div class="rounded-3xl border border-dashed border-slate-300 bg-slate-50 p-10 text-center shadow-sm dark:border-slate-700 dark:bg-slate-900">
           <h3 class="mt-4 text-lg font-semibold text-slate-900 dark:text-slate-100">No recipes match your search</h3>
           <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Try again with a different keyword.</p>
         </div>
