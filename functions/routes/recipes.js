@@ -6,12 +6,6 @@ const path = require('path');
 const { readJSON } = require('../services/jsonFallback');
 const storageService = require('../services/storage');
 
-/*const fs = require('fs');
-const { requireAdmin } = require('../services/auth');
-const { Recipe, Submission } = require('../models');
-const recipeTags = require('../recipetags');
-const { isMongoConnected } = require('../database');
-const { writeJSON } = require('../services/jsonFallback')*/
 const router = express.Router();
 
 cloudinary.config({
@@ -53,31 +47,6 @@ router.get('/recipes/:category/:recipe', async (req, res) => {
   const { category, recipe } = req.params;
 
   try {
-    /*const normalizedName = recipe.replace(/-/g, ' ').replace(/\s+/g, ' ').trim();
-    const escapeRegex = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const nameRegex = new RegExp(`^${escapeRegex(normalizedName)}$`, 'i');
-
-    const matchedRecipe = await Recipe.findOne({ category, name: nameRegex }).lean();
-
-    if (matchedRecipe) {
-      return res.json(matchedRecipe);
-    }
-
-    const recipesJson = require(path.join(__dirname, '..', 'data', 'recipes.json'));
-    const recipesInCategory = recipesJson[category];
-    if (!recipesInCategory) {
-      return res.status(404).json({ error: 'Category not found' });
-    }
-
-    const matched = recipesInCategory.find((r) =>
-      r.name.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '') === recipe.toLowerCase()
-    );
-
-    if (!matched) {
-      return res.status(404).json({ error: 'Recipe not found' });
-    }
-
-    return res.json(matched);*/
     const recipeData = await storageService.getRecipe(category, recipe);
     
     if (!recipeData) {
@@ -100,32 +69,6 @@ router.get('/search', async (req, res) => {
   const category = (req.query.category || '').toLowerCase();
 
   try {
-    /*let results = [];
-
-    const escapeRegex = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const queryFilter = query ? { name: { $regex: escapeRegex(query), $options: 'i' } } : {};
-    const categoryFilter = category ? { category: new RegExp(`^${escapeRegex(category)}$`, 'i') } : {};
-
-    const data = await Recipe.find({
-      ...queryFilter,
-      ...categoryFilter,
-    }).lean();
-
-    if (data && data.length > 0) results = data;
-
-    if (results.length === 0) {
-      for (const cat in recipesData) {
-        if (category && cat.toLowerCase() !== category) continue;
-
-        const matches = recipesData[cat]
-          .filter((r) => r.name.toLowerCase().includes(query))
-          .map((r) => ({ ...r, category: cat }));
-
-        results.push(...matches);
-      }
-    }
-
-    res.json(results);*/
     const results = await storageService.searchRecipes(
       req.query.query || '',
       req.query.category || ''
@@ -191,34 +134,7 @@ router.post('/submit-recipe', upload.single('image'), async (req, res) => {
                   .map(i => i.trim())
                   .filter(Boolean);
 
-        const formatList = (lines, fallbackType = "ol") => {
 
-            if (!Array.isArray(lines) || lines.length === 0)
-                return "";
-
-            const isNumbered = lines.every(line =>
-                /^\d+[\.\)]\s/.test(line)
-            );
-
-            const type = isNumbered
-                ? "ol"
-                : fallbackType;
-
-            const cleaned = lines.map(line =>
-                line
-                    .replace(/^(\d+[\.\)]|[-*•])\s*/, "")
-                    .trim()
-            );
-
-            return `<${type}>${cleaned
-                .map(item => `<li>${item}</li>`)
-                .join("")}</${type}>`;
-        };
-
-        const formattedInstructions = formatList(
-            instructionsArray,
-            "ol"
-        );
 
         if (req.file) {
 
@@ -260,9 +176,8 @@ router.post('/submit-recipe', upload.single('image'), async (req, res) => {
 
             ingredients: parsedIngredients,
 
-            instructions: formattedInstructions,
+            instructions: instructionsArray,
 
-            instructions_array: instructionsArray,
 
             prep_time: prepTime || "",
 
@@ -284,6 +199,7 @@ router.post('/submit-recipe', upload.single('image'), async (req, res) => {
 
         });
 
+
         return res.json({
             success: true,
             message: "Recipe submitted successfully!"
@@ -300,6 +216,167 @@ router.post('/submit-recipe', upload.single('image'), async (req, res) => {
 
     }
 });
+
+router.put("/update-recipe", async (req, res) => {
+    try {
+
+        const {
+            id,
+            name,
+            category,
+            description,
+            image,
+            prepTime,
+            cookTime,
+            servings,
+            ingredients,
+            instructions,
+            chefTips,
+            calories,
+            protein,
+            carbs,
+            fat
+        } = req.body;
+
+        if (!id) {
+            return res.status(400).json({
+                message: "Recipe ID is required."
+            });
+        }
+
+
+
+        const updatedRecipe = {
+            name,
+            category,
+            description,
+            image,
+
+            ingredients,
+
+            // Stored exactly like your existing recipes
+            instructions,
+
+            prep_time: prepTime,
+            cook_time: cookTime,
+            servings,
+
+            chef_tips: chefTips,
+            calories,
+            protein,
+            carbs,
+            fat
+        };
+
+        console.log("=== UPDATE REQUEST ===");
+        console.log(updatedRecipe);
+        console.log("======================");
+
+        const recipe = await storageService.updateSubmission(
+            id,
+            updatedRecipe
+        );
+
+        if (!recipe) {
+            return res.status(404).json({
+                success: false,
+                message: "Recipe not found."
+            });
+        }
+
+        res.json({
+            success: true,
+            message: "Recipe updated successfully.",
+            recipe
+        });
+
+    } catch (err) {
+
+        console.error(err);
+
+        res.status(500).json({
+            success: false,
+            message: err.message
+        });
+
+    }
+});
+/*router.put("/update-recipe", async (req, res) => {
+    try {
+
+        const {
+            id,
+            name,
+            category,
+            description,
+            image,
+            prepTime,
+            cookTime,
+            servings,
+            ingredients,
+            instructions,
+            chefTips,
+            calories,
+            protein,
+            carbs,
+            fat
+        } = req.body;
+
+        if (!id) {
+            return res.status(400).json({
+                message: "Recipe ID is required."
+            });
+        }
+
+        const updatedRecipe = {
+            name,
+            category,
+            description,
+            image,
+
+            ingredients,
+
+            instructions,
+            instructions_array: instructions,
+
+            prep_time: prepTime,
+            cook_time: cookTime,
+            servings,
+
+            chef_tips: chefTips,
+            calories,
+            protein,
+            carbs,
+            fat
+        };
+
+        const recipe = await storageService.updateSubmission(
+            id,
+            updatedRecipe
+        );
+
+        if (!recipe) {
+            return res.status(404).json({
+                message: "Recipe not found."
+            });
+        }
+
+        res.json({
+            success: true,
+            message: "Recipe updated successfully.",
+            recipe
+        });
+
+    } catch (err) {
+
+        console.error(err);
+
+        res.status(500).json({
+            message: "Failed to update recipe."
+        });
+
+    }
+});*/
 
 module.exports = router;
 

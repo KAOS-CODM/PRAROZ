@@ -19,7 +19,9 @@ router.post("/contact", express.json(), async (req, res) => {
 
             message: req.body.message,
 
-            created_at: new Date().toISOString()
+            created_at: new Date().toISOString(),
+
+            status: req.body.status
         };
 
         await storage.createContact(contact);

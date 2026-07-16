@@ -19,9 +19,15 @@ const submissionSchema = new mongoose.Schema(
     },
     image: String,
     description: String,
-    instructions: String,
-    instructions_array: [String],
-    ingredients: [String],
+    instructions: {
+      type: [String],
+      default: [],
+    },
+    
+    ingredients: {
+      type: [String],
+      default: [],
+    },
     prep_time: String,
     cook_time: String,
     servings: String,

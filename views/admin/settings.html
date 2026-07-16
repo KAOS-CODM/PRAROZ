@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PraRoz Admin | Settings</title>
+    <meta name="description" content="Admin settings" />
+    <link rel="stylesheet" href="/css/styles.css" />
+<link rel="stylesheet" href="/assets/fontawesome/css/all.min.css" />
+  </head>
+  <body class="min-h-full bg-slate-100 text-slate-900 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100" data-active-page="settings">
+    <div class="min-h-screen">
+      <header class="sticky top-0 z-40 border-b border-slate-200 bg-white backdrop-blur-xl dark:border-slate-800 dark:bg-slate-900">
+        <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+          <div class="flex items-center gap-3">
+            <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-600 text-white shadow-lg shadow-emerald-600"> 
+              <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/></svg>
+            </div>
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">PraRoz Admin</p>
+              <h1 class="text-xl font-semibold text-slate-900 dark:text-slate-100">Settings</h1>
+            </div>
+          </div>
+
+          <div class="flex flex-1 flex-wrap items-center justify-end gap-3">
+            <label for="admin-global-search" class="hidden"></label>
+            <button
+              id="theme-toggle"
+              type="button"
+              class="rounded-2xl border border-slate-200 bg-white p-2.5 text-slate-700 shadow-sm transition hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700"
+              aria-label="Toggle dark mode"
+              aria-pressed="false"
+            ><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
+            </svg></button>
+            <button id="logout-button" type="button" class="inline-flex items-center gap-2 rounded-2xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-700 dark:bg-emerald-500 dark:hover:bg-emerald-400" aria-label="Log out">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><path d="m16 17 5-5-5-5"></path><path d="M21 12H9"></path></svg>
+              Logout
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <div class="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-4 py-6 sm:px-6 lg:grid-cols-[16rem_1fr] lg:px-8">
+        <aside class="lg:sticky lg:top-21">
+          <nav class="rounded-3xl border border-slate-200 bg-slate-50 p-3 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+            <ul class="space-y-1">
+              <li>
+                <a data-nav="dashboard" href="/admin" class="group flex items-center gap-3 rounded-2xl px-3 py-2 text-sm font-medium transition hover:bg-slate-50 dark:hover:bg-slate-800">
+                  <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-slate-100 text-slate-600 transition group-hover:bg-gray-600 group-hover:text-white dark:bg-slate-800 dark:text-slate-300">
+                    <i class="fas fa-home"></i>
+                  </span>
+                  Dashboard
+                </a>
+              </li>
+              <li>
+                <a data-nav="recipes" href="/admin/recipes" class="group flex items-center gap-3 rounded-2xl px-3 py-2 text-sm font-medium transition hover:bg-slate-50 dark:hover:bg-slate-800">
+                  <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-slate-100 text-slate-600 transition group-hover:bg-gray-600 group-hover:text-white dark:bg-slate-800 dark:text-slate-300">
+                    <i class="fas fa-folder"></i>
+                  </span>
+                  Recipes
+                </a>
+              </li>
+              <li>
+                <a data-nav="comments" href="/admin/comments" class="group flex items-center gap-3 rounded-2xl px-3 py-2 text-sm font-medium transition hover:bg-slate-50 dark:hover:bg-slate-800">
+                  <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-slate-100 text-slate-600 transition group-hover:bg-gray-600 group-hover:text-white dark:bg-slate-800 dark:text-slate-300">
+                    <i class="fas fa-comments"></i>
+                  </span>
+                  Comments
+                </a>
+              </li>
+              <li>
+                <a data-nav="contacts" href="/admin/contacts" class="group flex items-center gap-3 rounded-2xl px-3 py-2 text-sm font-medium transition hover:bg-slate-50 dark:hover:bg-slate-800">
+                  <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-slate-100 text-slate-600 transition group-hover:bg-gray-600 group-hover:text-white dark:bg-slate-800 dark:text-slate-300">
+                    <i class="fas fa-phone"></i>
+                  </span>
+                  Contacts
+                </a>
+              </li>
+              <li>
+                <a data-nav="settings" href="/admin/settings" class="group flex items-center gap-3 rounded-2xl px-3 py-2 text-sm font-medium transition hover:bg-slate-50 dark:hover:bg-slate-800">
+                  <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-slate-100 text-slate-600 transition group-hover:bg-gray-600 group-hover:text-white dark:bg-slate-800 dark:text-slate-300">
+                    <i class="fas fa-gear"></i>
+                  </span>
+                  Settings
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </aside>
+
+        <main class="space-y-6">
+          <section class="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-800 sm:p-6">
+            <h2 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Settings</h2>
+            <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Placeholder sections for future SaaS-style configuration.</p>
+
+            <div class="mt-6 grid gap-4 md:grid-cols-2">
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-900">
+                <h3 class="font-semibold text-slate-900 dark:text-slate-100">General</h3>
+                <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Placeholder</p>
+              </div>
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-900">
+                <h3 class="font-semibold text-slate-900 dark:text-slate-100">Admin Password</h3>
+                <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Placeholder</p>
+              </div>
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-900">
+                <h3 class="font-semibold text-slate-900 dark:text-slate-100">Theme</h3>
+                <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Placeholder</p>
+              </div>
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-900">
+                <h3 class="font-semibold text-slate-900 dark:text-slate-100">Database Status</h3>
+                <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Placeholder</p>
+              </div>
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-900">
+                <h3 class="font-semibold text-slate-900 dark:text-slate-100">Cloudinary</h3>
+                <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Placeholder</p>
+              </div>
+              <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-900">
+                <h3 class="font-semibold text-slate-900 dark:text-slate-100">Email Settings</h3>
+                <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Placeholder</p>
+              </div>
+              <div class="rounded-2xl border border-rose-200 bg-rose-50 p-4 dark:border-rose-900 dark:bg-rose-950 md:col-span-2">
+                <h3 class="font-semibold text-rose-700 dark:text-rose-200">Danger Zone</h3>
+                <p class="mt-2 text-sm text-rose-800 dark:text-rose-200">Placeholder</p>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div id="toast-container" class="pointer-events-none fixed right-4 top-4 z-50 flex w-[min(92vw,24rem)] flex-col gap-3"></div>
+    <div id="modal-root"></div>
+
+    <script src="/js/config.js"></script>
+    <script src="/js/admin/api.js"></script>
+    <script src="/js/admin/ui.js"></script>
+    <script src="/js/admin/auth.js"></script>
+    <script src="/js/admin/app.js"></script>
+    <script src="/js/admin/settings.js"></script>
+  </body>
+</html>
+

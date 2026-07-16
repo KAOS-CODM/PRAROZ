@@ -37,9 +37,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             ? selectedRecipe.ingredients
             : selectedRecipe.ingredients?.split(/\r?\n/) || [];
 
-        const instructions = Array.isArray(selectedRecipe.instructions)
-            ? selectedRecipe.instructions
-            : selectedRecipe.instructions?.split(/\r?\n/) || [];
+        // Backend (storage.formatRecipe) generates instructionsHtml dynamically.
+        // Use it as the single source for HTML rendering.
+        const instructionsHtml = selectedRecipe.instructionsHtml || "";
 
         recipeDiv.innerHTML = `
 
@@ -374,63 +374,24 @@ Instructions
 
 <div
 class="
-space-y-6
+[&>ol]:space-y-4
+[&>ol]:list-decimal
+[&>ol]:pl-7
+
+[&>ol>li]:rounded-2xl
+[&>ol>li]:border
+[&>ol>li]:border-slate-200
+dark:[&>ol>li]:border-slate-700
+[&>ol>li]:bg-slate-50
+dark:[&>ol>li]:bg-slate-800/40
+[&>ol>li]:p-5
+
+[&>ol>li]:marker:text-orange-500
+[&>ol>li]:marker:font-bold
+[&>ol>li]:marker:text-xl
 ">
 
-${instructions
-.filter(step => step.trim())
-.map((step,index)=>`
-
-<div
-class="
-flex
-gap-5
-">
-
-<div
-class="
-h-12
-w-12
-rounded-full
-bg-orange-500
-text-white
-font-bold
-flex
-items-center
-justify-center
-shrink-0
-">
-
-${index+1}
-
-</div>
-
-<div
-class="
-rounded-2xl
-bg-slate-50
-dark:bg-slate-800
-p-5
-flex-1
-">
-
-<p
-class="
-leading-8
-text-lg
-text-slate-700
-dark:text-slate-300
-">
-
-${step.trim()}
-
-</p>
-
-</div>
-
-</div>
-
-`).join("")}
+${instructionsHtml}
 
 </div>
 
@@ -742,23 +703,23 @@ Submit Your Recipe
 </section>
 
 `;
-const redirectBtn = document.querySelector(".redirect-button");
+        const redirectBtn = document.querySelector(".redirect-button");
 
-if (redirectBtn) {
+        if (redirectBtn) {
 
-    redirectBtn.addEventListener("click", () => {
+            redirectBtn.addEventListener("click", () => {
 
-        window.location.href = "/submit";
+                window.location.href = "/submit";
 
-    });
+            });
 
-}
+        }
 
-} catch (err) {
+    } catch (err) {
 
-console.error("❌ Failed to load recipe:", err);
+        console.error("❌ Failed to load recipe:", err);
 
-recipeDiv.innerHTML = `
+        recipeDiv.innerHTML = `
 
 <div
 class="
@@ -825,6 +786,7 @@ font-semibold
 text-white
 
 transition
+
 duration-300
 
 "
@@ -841,6 +803,7 @@ Back Home
 
 `;
 
-}
+    }
 
 });
+

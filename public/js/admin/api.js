@@ -18,6 +18,7 @@
     }
 
     const response = await fetch(`${window.API_BASE_URL}${endpoint}`, options);
+
     const contentType = response.headers.get("content-type") || "";
     const data = contentType.includes("application/json")
       ? await response.json().catch(() => null)
@@ -35,7 +36,8 @@
   }
 
   function showLoader(target) {
-    const container = typeof target === "string" ? document.getElementById(target) : target;
+    const container =
+      typeof target === "string" ? document.getElementById(target) : target;
     if (!container) return;
 
     container.innerHTML = `
@@ -57,10 +59,9 @@
   }
 
   function hideLoader(target) {
-    const container = typeof target === "string" ? document.getElementById(target) : target;
-    if (container) {
-      container.innerHTML = "";
-    }
+    const container =
+      typeof target === "string" ? document.getElementById(target) : target;
+    if (container) container.innerHTML = "";
   }
 
   function showToast(message, type = "info") {
@@ -69,31 +70,39 @@
 
     const toneMap = {
       success: {
-        classes: "border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950/70 dark:text-emerald-200",
-        icon: "M12 8v4l3 3",
+        classes:
+          "border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-800 dark:bg-emerald-950/70 dark:text-emerald-200",
       },
       error: {
-        classes: "border-rose-200 bg-rose-50 text-rose-700 dark:border-rose-800 dark:bg-rose-950/70 dark:text-rose-200",
-        icon: "M6 18L18 6M6 6l12 12",
+        classes:
+          "border-rose-200 bg-rose-50 text-rose-700 dark:border-rose-800 dark:bg-rose-950/70 dark:text-rose-200",
       },
       warning: {
-        classes: "border-amber-200 bg-amber-50 text-amber-700 dark:border-amber-800 dark:bg-amber-950/70 dark:text-amber-200",
-        icon: "M12 9v4m0 4h.01",
+        classes:
+          "border-amber-200 bg-amber-50 text-amber-700 dark:border-amber-800 dark:bg-rose-950/70 dark:text-amber-200",
       },
       info: {
-        classes: "border-slate-200 bg-white text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100",
-        icon: "M13 16h-1v-4h-1m1-4h.01",
+        classes:
+          "border-slate-200 bg-white text-slate-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100",
       },
     };
 
     const tone = toneMap[type] || toneMap.info;
+
     const toast = document.createElement("div");
     toast.className = `pointer-events-auto rounded-2xl border p-4 shadow-lg backdrop-blur ${tone.classes}`;
     toast.innerHTML = `
       <div class="flex items-start gap-3">
         <div class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-black/5 dark:bg-white/10">
           <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 2v6"></path><path d="M12 16v6"></path><path d="M4.93 4.93l4.24 4.24"></path><path d="M14.83 14.83l4.24 4.24"></path><path d="M2 12h6"></path><path d="M16 12h6"></path><path d="M4.93 19.07l4.24-4.24"></path><path d="M14.83 9.17l4.24-4.24"></path>
+            <path d="M12 2v6"></path>
+            <path d="M12 16v6"></path>
+            <path d="M4.93 4.93l4.24 4.24"></path>
+            <path d="M14.83 14.83l4.24 4.24"></path>
+            <path d="M2 12h6"></path>
+            <path d="M16 12h6"></path>
+            <path d="M4.93 19.07l4.24-4.24"></path>
+            <path d="M14.83 9.17l4.24-4.24"></path>
           </svg>
         </div>
         <div class="flex-1">
@@ -114,17 +123,16 @@
     message = "Are you sure you want to continue?",
     confirmLabel = "Confirm",
     cancelLabel = "Cancel",
-    confirmClass = "bg-slate-900 text-white hover:bg-slate-700 dark:bg-emerald-500 dark:hover:bg-emerald-400",
+    confirmClass =
+      "bg-slate-900 text-white hover:bg-slate-700 dark:bg-emerald-500 dark:hover:bg-emerald-400",
   }) {
     return new Promise((resolve) => {
       const root = document.getElementById("modal-root");
-      if (!root) {
-        resolve(false);
-        return;
-      }
+      if (!root) return resolve(false);
 
       const backdrop = document.createElement("div");
-      backdrop.className = "modal-backdrop fixed inset-0 z-[60] flex items-center justify-center bg-slate-950/60 px-4 py-6 backdrop-blur-sm";
+      backdrop.className =
+        "modal-backdrop fixed inset-0 z-[60] flex items-center justify-center bg-slate-950/60 px-4 py-6 backdrop-blur-sm";
       backdrop.innerHTML = `
         <div class="w-full max-w-md rounded-3xl border border-slate-200 bg-white p-6 shadow-2xl dark:border-slate-700 dark:bg-slate-800">
           <h3 class="text-lg font-semibold text-slate-900 dark:text-slate-100">${title}</h3>
@@ -156,9 +164,12 @@
     });
   }
 
-  window.apiCall = apiCall;
-  window.showLoader = showLoader;
-  window.hideLoader = hideLoader;
-  window.showToast = showToast;
-  window.confirmModal = confirmModal;
+  window.adminApi = {
+    apiCall,
+    showLoader,
+    hideLoader,
+    showToast,
+    confirmModal,
+  };
 })();
+

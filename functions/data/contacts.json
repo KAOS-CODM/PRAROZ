@@ -1,1 +1,19 @@
-[]
+[
+    {
+        "id": "7d3bfda0-30a9-442a-a4d4-cf2987856871",
+        "name": "yemi",
+        "email": "ceekeezyblog@gmail.com",
+        "subject": "report-error",
+        "message": "h",
+        "created_at": "2026-07-15T17:56:00.863Z",
+        "status": "unread"
+    },
+    {
+        "id": "ee8a7841-9e3d-46d9-a78d-b750dfb7b657",
+        "name": "ceekeezy",
+        "email": "ceekeezyblog@gmail.com",
+        "subject": "recipe-request",
+        "message": "he",
+        "created_at": "2026-07-15T18:17:00.811Z"
+    }
+]

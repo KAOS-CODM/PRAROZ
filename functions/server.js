@@ -38,7 +38,14 @@ app.use(
   })
 );
 
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(
+    express.static(
+        path.join(__dirname, "../public"),
+        {
+            index: false
+        }
+    )
+);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/images', express.static(path.join(__dirname, '../public/images')));
 
@@ -50,6 +57,9 @@ app.use('/api', contactRoutes);
 
 // Serve static HTML with meta injection & SPA-style fallbacks
 app.use(pagesRouter);
+
+// Quick admin views guard (so /admin/* is never mistaken for /public/*.html)
+app.use('/admin', express.Router());
 
 // Extra static guard (keeps existing behavior)
 app.use((req, res, next) => {
@@ -79,16 +89,16 @@ const PORT = process.env.PORT || 3000;
 
 
 async function startServer() {
-  {
-    await connectDB();
+    try {
+        await connectDB();
 
-    app.listen(PORT, '0.0.0.0', () => {
-      console.log(`🚀 Server running on port http://localhost:${PORT}`);
-    });
-  } (err) => {
-    console.error('Failed to start server:', err);
-    process.exit(1);
-  }
+        app.listen(PORT, "0.0.0.0", () => {
+            console.log(`🚀 Server running on http://localhost:${PORT}`);
+        });
+    } catch (err) {
+        console.error("Failed to start server:", err);
+        process.exit(1);
+    }
 }
 
 startServer();

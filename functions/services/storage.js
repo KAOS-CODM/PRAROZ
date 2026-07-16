@@ -35,6 +35,43 @@ function normalize(str = "") {
     return str.toString().toLowerCase().trim();
 }
 
+function normalizeInstructionsToArray(instructions) {
+    // Desired DB type: Array<string>
+    if (Array.isArray(instructions)) {
+        return instructions.map(s => (s == null ? "" : String(s).trim())).filter(Boolean);
+    }
+
+    if (typeof instructions === "string") {
+        const trimmed = instructions.trim();
+        if (!trimmed) return [];
+
+        // Backward compatibility: old data may store HTML like <ol><li>..</li></ol>
+        const hasListMarkup = /<\s*(ol|ul)\b/i.test(trimmed) || /<\s*li\b/i.test(trimmed);
+        if (hasListMarkup) {
+            const liMatches = trimmed.match(/<\s*li\b[^>]*>([\s\S]*?)<\s*\/\s*li\s*>/gi) || [];
+            if (liMatches.length) {
+                return liMatches
+                    .map(liHtml => {
+                        const inner = liHtml.replace(/<\s*li\b[^>]*>/i, "").replace(/<\s*\/\s*li\s*>/i, "");
+                        const withoutTags = inner.replace(/<[^>]*>/g, "");
+                        return withoutTags.replace(/\s+/g, " ").trim();
+                    })
+                    .filter(Boolean);
+            }
+        }
+
+        // Fallback: treat as newline-separated text
+        return trimmed
+            .split(/\r?\n+/g)
+            .map(s =>
+                s.replace(/^\s*(?:\d+[.)]|[-*•])\s*/, "").trim()
+            )
+            .filter(Boolean);
+    }
+
+    return [];
+}
+
 function formatRecipe(recipe) {
     if (!recipe) return null;
 
@@ -43,11 +80,19 @@ function formatRecipe(recipe) {
         recipe = recipe.toObject();
     }
 
+    const instructionsArray = normalizeInstructionsToArray(recipe.instructions);
+
     return {
         ...recipe,
 
-        instructions:
-            recipe.instructions,
+        instructions: instructionsArray,
+
+        instructionsHtml:
+            "<ol>" +
+            (instructionsArray || [])
+                .map(step => `<li>${step}</li>`)
+                .join("") +
+            "</ol>",
 
         extraContent: {
             prepTime: recipe.prep_time || "",
@@ -65,6 +110,7 @@ function formatRecipe(recipe) {
         }
     };
 }
+
 
 function getAllRecipeFiles() {
     if (!fs.existsSync(RECIPES_DIR)) return [];
@@ -184,17 +230,20 @@ const storage = {
                 const normalizedName =
                     slug.replace(/-/g, " ").trim();
     
-                const recipe =
-                    await Recipe.findOne({
-    
+                    console.log({
                         category: cat,
-    
-                        name: new RegExp(
-                            `^${escapeRegex(normalizedName)}$`,
-                            "i"
-                        )
-    
-                    }).lean();
+                        normalizedName
+                    });
+                const recipe = await Recipe.findOne({
+                    category: new RegExp(
+                        `^${escapeRegex(cat)}$`,
+                        "i"
+                    ),
+                    name: new RegExp(
+                        `^${escapeRegex(normalizedName)}$`,
+                        "i"
+                    )
+                }).lean();console.log(recipe);
     
                 return formatRecipe(recipe);
     
@@ -921,6 +970,26 @@ const storage = {
             }
     
         );
+    },
+
+    async updateSubmission(id, data) {
+        console.log("Updating:", id);
+        console.log(data);
+    
+        const recipe = await Submission.findOneAndUpdate(
+            { id },
+            {
+                $set: data
+            },
+            {
+                new: true,
+                runValidators: true
+            }
+        ).lean();
+    
+        console.log("RESULT:", recipe);
+    
+        return recipe;
     }
 };
 
