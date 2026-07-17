@@ -6,13 +6,12 @@ module.exports = {
     image: "https://praroz.onrender.com/images/thumbnail/praroz_thumbnail.webp",
   },
 
-  home: {
-    title: "Home | Homemade Recipes & Cooking Ideas",
-    description:
-      "Browse the latest homemade recipes, cooking inspiration and delicious meals from Praroz. Find easy recipes for every occasion.",
-    image: "https://praroz.onrender.com/images/thumbnail/praroz_thumbnail.webp",
+  explore: {
+      title: "Explore Recipes | Homemade Meals & Cooking Inspiration",
+      description: "Browse all homemade recipes on Praroz. Discover Nigerian favorites, desserts, pasta, pizza, burgers, salads, appetizers, and more.",
+      image: "/images/thumbnail/praroz-thumbnail.webp"
   },
-
+  
   desserts: {
     title: "Dessert Recipes | Homemade Cakes, Cookies & Sweet Treats",
     description:

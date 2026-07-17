@@ -506,6 +506,7 @@ router.get('/sitemap.xml', async (req, res) => {
 
   const staticPages = [
     { url: '/', changefreq: 'daily', priority: 1.0 },
+    { url: '/explore', changefreq: 'weekly', priority: 0.9 },
     { url: '/home', changefreq: 'daily', priority: 0.8 },
     { url: '/desserts', changefreq: 'weekly', priority: 1.0 },
     { url: '/appetizers', changefreq: 'weekly', priority: 0.8 },
@@ -599,7 +600,7 @@ router.get('/recipes/:category/:recipeSlug', async (req, res) => {
       return res.status(404).sendFile(path.join(__dirname, '../../public/404.html'));
     }
 
-    const templatePath = path.join(__dirname, '../../public/recipe.html');
+    const templatePath = path.join(__dirname, '../../public/recipe-detail.html');
     let html = fs.readFileSync(templatePath, 'utf8');
 
     const seoHtml = buildRecipeSeoHtml({ recipe, req });

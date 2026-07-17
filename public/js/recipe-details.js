@@ -50,14 +50,14 @@ mx-auto
 px-6
 py-10
 space-y-16
-">
+" data-reveal="up">
 
 <!-- HERO -->
 
 <section
 class="
 space-y-8
-">
+" data-reveal="up">
 
 <div
 class="
@@ -140,7 +140,7 @@ grid
 grid-cols-2
 lg:grid-cols-4
 gap-6
-">
+" data-reveal="up">
 
 <div
 class="
@@ -267,7 +267,7 @@ class="
 grid
 lg:grid-cols-2
 gap-12
-">
+" data-reveal="up">
 
 <!-- INGREDIENTS -->
 
@@ -400,7 +400,7 @@ ${instructionsHtml}
 </section>
 <!-- NUTRITION -->
 
-<section>
+<section data-reveal="up">
 
 <h2
 class="
@@ -503,7 +503,7 @@ ${item.value}
 
 <!-- CHEF'S TIP -->
 
-<section>
+<section data-reveal="up">
 
 <div
 class="
@@ -586,7 +586,7 @@ ${extra.chefTips || "No chef tips available for this recipe."}
 
 <!-- SUBMIT CTA -->
 
-<section>
+<section data-reveal="up">
 
 <div
 class="

@@ -3,11 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!container) return; // Not every page includes the search widget
 
   container.innerHTML = `
-    <input class="w-full p-[10px_15px] border border-solid border-amber-950 dark:border-white rounded-sm text-lg" type="text" id="search-input" placeholder="Search recipes..." />
+    <input class="w-full rounded-full border border-slate-200 bg-white px-4 py-3 text-sm text-slate-500 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-300 type="text" id="search-input" placeholder="Try: “Pepper soup”, “Jollof”, “No-bake”, “Weeknight" />
     <div id="search-results" class="
     absolute
     top-full
-    w-full
     max-h-75
     overflow-y-auto
     bg-white
@@ -15,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     border-solid
     border-[#eee]
     rounded-t-none
-    z-999
+    z-50
     shadow-lg
     
     dark:bg-gray-800

@@ -120,6 +120,33 @@
         "image":"images/thumbnail/praroz-thumbnail.png"
     },
 
+    "explore": {
+        "title": "Explore Recipes",
+        "description": [
+            "<p>Welcome to the heart of PraRoz.</p>",
+    
+            "<p>Explore carefully curated recipes designed for everyday cooking, special occasions, and everything in between. Whether you're craving comforting Nigerian classics or looking to discover international favourites, you'll find inspiration here.</p>",
+    
+            "<p>Browse by category, cooking time, meal type, or ingredients to quickly find recipes that fit your taste.</p>",
+    
+            "<h2>Explore Categories</h2>",
+    
+            "<ul>",
+            "<li>🍝 Pasta</li>",
+            "<li>🍕 Pizza</li>",
+            "<li>🍔 Burgers</li>",
+            "<li>🥗 Salads</li>",
+            "<li>🍰 Desserts</li>",
+            "<li>🥟 Appetizers</li>",
+            "</ul>",
+    
+            "<p>Every recipe includes clear instructions, ingredient lists, preparation times, and practical cooking tips so you can cook with confidence.</p>",
+    
+            "<p><em>Start exploring and discover your next favourite meal.</em></p>"
+        ],
+        "image":"images/thumbnail/praroz-thumbnail.webp"
+    },
+
     "salad": {
         "title": "Fresh and Healthy Salads",
         "description": [
@@ -161,14 +188,31 @@
     "navbar": {
         "logo": "images/logo.webp",
         "links": [
-            { "name": "Home", "url": "/home", "icon": "fas fa-home", "active": true},
-            { "name": "Appetizers", "url": "/appetizers", "icon": "fas fa-utensils" },
-            { "name": "Burger", "url": "/burger", "icon": "fas fa-hamburger" },
-            { "name": "Desserts", "url": "/desserts", "icon": "fas fa-birthday-cake" },
-            { "name": "Pasta", "url": "/pasta", "icon": "fas fa-bowl-rice" },
-            { "name": "Pizza", "url": "/pizza", "icon": "fas fa-pizza-slice" },
-            { "name": "Salad", "url": "/salad", "icon": "fas fa-leaf" },
-            { "name": "Recipes", "url": "/recipes", "icon": "fas fa-book" }
+            {
+                "name": "Home",
+                "url": "/",
+                "icon": "fas fa-house"
+            },
+            {
+                "name": "Explore",
+                "url": "/explore",
+                "icon": "fas fa-compass"
+            },
+            {
+                "name": "Submit",
+                "url": "/submit",
+                "icon": "fas fa-plus-circle"
+            },
+            {
+                "name": "About",
+                "url": "/about",
+                "icon": "fas fa-circle-info"
+            },
+            {
+                "name": "Contact",
+                "url": "/contact",
+                "icon": "fas fa-envelope"
+            }
         ]
     },
     

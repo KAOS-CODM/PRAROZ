@@ -15,17 +15,17 @@
         <link href="https://fonts.googleapis.com/css2?family=Tangerin&display=swap " rel="stylesheet">
         <link rel="icon" type="image/png" href="/images/favicon.ico">
     </head>
-    <body class="min-h-screen flex flex-col bg-gray-100 text-gray-900 dark:bg-slate-900 dark:text-gray-100 transition-colors duration-300">
+    <body class="min-h-screen flex flex-col bg-stone-50 text-slate-800 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
 
         <div class="background"></div>
 
         <header id="navbar-container"></header>
 
-        <main>
+        <main class="mx-auto mb-10 mt-8 w-[95%] max-w-7xl px-2 sm:px-4 lg:px-0">
             <!-- Theme Toggle -->
             <button
                 id="theme-toggle"
-                class="fixed bottom-5 left-5 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-white text-black shadow-lg transition-all duration-300 hover:scale-110 hover:bg-slate-700 hover:dark:bg-slate-300 dark:bg-slate-700 dark:text-gray-300 dark:border dark:border-gray-700">
+                class="fixed bottom-5 left-5 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-white bg-white text-slate-800 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-110 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100">
                 🌙
             </button>
             <div
@@ -147,6 +147,7 @@ max-md:grid-cols-[repeat(auto-fit,minmax(220px,1fr))]
         <script src="/js/footer.js" defer></script>
         <script src="/js/search-bar.js" defer></script>
         <script src="/js/darkmode.js" defer></script>
+<script src="/js/reveal.js" defer></script>
 
     </body>
 </html>

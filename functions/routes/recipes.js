@@ -17,6 +17,7 @@ cloudinary.config({
 const DATA_FOLDER = path.join(__dirname, '..', 'data');
 const FILES = {
   contents: path.join(DATA_FOLDER, 'contents.json'),
+  category: path.join(DATA_FOLDER, 'category.json'),
   popup: path.join(DATA_FOLDER, 'popup.json'),
   recipes: path.join(DATA_FOLDER, 'recipes.json'),
 };

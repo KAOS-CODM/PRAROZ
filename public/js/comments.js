@@ -192,7 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     dark:bg-slate-900
                     shadow-xl
                     overflow-hidden
-                "
+                " data-reveal="up"
             >
     
                 <!-- Header -->
@@ -547,47 +547,6 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
     }
 
-    
-
-    // -------------------------
-    // Load Comments
-    // -------------------------
-    /*function loadComments() {
-        fetch(`/api/comments/${recipeSlug}`)
-            .then(res => res.json())
-            .then(data => {
-                list.innerHTML = data.length
-                    ? data.map(c => `
-                        <div class="flex gap-3 items-start rounded-xl bg-white dark:bg-slate-800 p-4 shadow">
-                            <div class="flex flex-col items-center w-14 shrink-0">
-                                <img
-                                    src="/images/placeholder-profile.png"
-                                    alt="User profile"
-                                    class="w-11 h-11 rounded-full object-cover bg-gray-300"
-                                >
-                                <small class="text-xs text-gray-500 text-center wrap-break-word mt-1">
-                                    ${c.name}
-                                </small>
-                            </div>
-
-                            <div class="flex-1">
-                                <small class="block text-xs text-gray-400 mb-1">
-                                    ${new Date(c.created_at).toLocaleString()}
-                                </small>
-
-                                <p class="text-sm leading-6 text-gray-700 dark:text-gray-300">
-                                    ${c.comment}
-                                </p>
-                            </div>
-                        </div>
-                    `).join("")
-                    : `
-                        <p class="text-center text-gray-500 dark:text-gray-400">
-                            No comments yet. Be the first!
-                        </p>
-                    `;
-            });
-    }*/
 
     function loadComments() {
     

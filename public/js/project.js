@@ -4,296 +4,372 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("Detected page:", page);
 
     const recipeContainer = document.getElementById('recipe-container');
-   
+
+    // --- Recipes ---
     if (recipeContainer) {
-    
-        fetch(`${window.API_BASE_URL}/recipes?category=${encodeURIComponent(page)}`)
+        // Loading skeleton (premium card layout)
+        recipeContainer.innerHTML = getRecipeSkeletonHtml(8);
+
+        // On Explore page, show popular recipes regardless of category.
+        // API already supports category filtering; leaving category empty returns all.
+        // If we're on /explore, fetch all popular recipes.
+        // If we're on a category page, filter by that category.
+        const queryCategory = page && page !== 'explore' ? page : '';
+        const url = queryCategory
+            ? `${window.API_BASE_URL}/recipes?category=${encodeURIComponent(queryCategory)}`
+            : `${window.API_BASE_URL}/recipes`;
+
+        fetch(url)
             .then(response => response.json())
             .then(data => {
-    
-                console.log("Fetched data:", data);
-    
                 const recipes = Array.isArray(data) ? data : [];
-    
-                recipeContainer.innerHTML = `
-                    <div class="space-y-10">
-                    
-                        <!-- Header -->
-                        <div
-                            class="
-                                flex
-                                items-center
-                                justify-between
-                            "
-                        >
-                    
-                            <h2
-                                class="
-                                    text-3xl
-                                    font-bold
-                                    text-slate-900
-                                    dark:text-white
-                                "
-                            >
-                                Recipes
-                            </h2>
-                    
-                            <span
-                                class="
-                                    rounded-full
-                                    bg-orange-100
-                                    dark:bg-orange-900/30
-                                    text-orange-600
-                                    dark:text-orange-300
-                                    px-4
-                                    py-2
-                                    font-semibold
-                                "
-                            >
-                                ${recipes.length} Recipes
-                            </span>
-                    
-                        </div>
-                    
-                        <!-- Grid -->
-                        <div
-                            class="
-                                grid
-                                grid-cols-1
-                                sm:grid-cols-3
-                                xl:grid-cols-4
-                                gap-8
-                            "
-                        >
-    
-                        ${recipes.map(recipe => {
-    
-                            let imageUrl = recipe.image;
-    
-                            if (!/^https?:\/\//i.test(imageUrl)) {
-                                imageUrl = `${window.API_BASE_URL}/${imageUrl}`;
-                            }
-    
-                            const categorySlug = page.toLowerCase();
-    
-                            const recipeSlug = recipe.name
-                                .toLowerCase()
-                                .replace(/\s+/g, "-")
-                                .replace(/[^\w-]/g, "");
-    
-                            const url = `/recipes/${encodeURIComponent(categorySlug)}/${encodeURIComponent(recipeSlug)}`;
-    
-                            return `
-                                <a
-                                    href="${url}"
-                                    class="
-                                        block
-                                        group
-                                    "
-                                >
-    
-                                    <article
-                                        class="
-                                            overflow-hidden
-                                            rounded-3xl
-                                            bg-white
-                                            dark:bg-slate-900
-                                            border
-                                            border-slate-200
-                                            dark:border-slate-700
-                                            shadow-lg
-                                            transition-all
-                                            duration-500
-                                            hover:-translate-y-2
-                                            hover:shadow-2xl
-                                        "
-                                    >
-    
-                                        <div class="overflow-hidden pt-6">
-    
-                                            <figure>
-                                                <img 
-                                                    src="${imageUrl}"
-                                                    alt="PraRoz - ${recipe.name}"
-                                                    loading="lazy"
-                                                    class="
-                                                        w-full
-                                                        h-64
-                                                        object-cover
-                                                        transition-transform
-                                                        duration-700
-                                                        group-hover:scale-110
-                                                    "
-                                                    onerror="this.onerror=null;this.src='/images/thumbnail/praroz-thumbnail.png';"
-                                                >
-                                                <figcaption
-                                                    class="
-                                                        py-6
-                                                        px-6
-                                                        text-2xl
-                                                        font-bold
-                                                        text-slate-900
-                                                        dark:text-white
-                                                        transition-colors
-                                                        duration-300
-                                                        group-hover:text-orange-500
-                                                        h-30
-                                                    "
-                                                >
-                                                    ${recipe.name}
-                                                </figcaption>
-                                            </figure>
-    
-                                        </div>
-    
-                                        <div class="p-6">    
-                                            <div
-                                                class="
-                                                    mt-6
-                                                    pt-4
-                                                    border-t
-                                                    border-slate-200
-                                                    dark:border-slate-700
-                                                    flex
-                                                    items-center
-                                                    justify-between
-                                                "
-                                            >
-    
-                                                <span
-                                                    class="
-                                                        font-semibold
-                                                        text-orange-500
-                                                        transition-transform
-                                                        duration-300
-                                                        group-hover:translate-x-2
-                                                    "
-                                                >
-                                                    View Recipe
-                                                </span>
-    
-                                                <i
-                                                    class="
-                                                        fas
-                                                        fa-arrow-right
-                                                        text-orange-500
-                                                        transition-transform
-                                                        duration-300
-                                                        group-hover:translate-x-2
-                                                    "
-                                                ></i>
-    
-                                            </div>
-    
-                                        </div>
-    
-                                    </article>
-    
-                                </a>
-                            `;
-    
-                        }).join("")}
-    
-                    </div>
-                `;
-    
+                recipeContainer.innerHTML = renderRecipeSectionHtml({
+                    recipes,
+                    page,
+                    revealBaseDelayMs: 0
+                });
             })
-            .catch(error => console.error("Error fetching recipes:", error));
-        } else {
-            console.log('No recipe container found on this page; skipping recipe fetch.');
-        }
-    
-    
+            .catch(error => {
+                console.error("Error fetching recipes:", error);
+                recipeContainer.innerHTML = renderEmptyStateHtml({
+                    message: "We couldn’t load recipes right now. Please try again in a moment.",
+                    buttonText: "Back to home",
+                    buttonHref: "/"
+                });
+            });
+    } else {
+        console.log('No recipe container found on this page; skipping recipe fetch.');
+    }
 
+    // --- Category content (hero) ---
     fetch(`${window.API_BASE_URL}/data/contents`, {
         headers: { "x-api-key": "yemite01" }
     })
-    .then(response => response.json())
-    .then(data => {
-        console.log("Fetched data:", data);
-        const content = data[page];
-        const contentContainer = document.getElementById('content');
-        const desc = content?.description?.join("") || "";
+        .then(response => response.json())
+        .then(data => {
+            const content = data[page];
+            const contentContainer = document.getElementById('content');
+            const desc = content?.description?.join("") || "";
 
-        if (!contentContainer) {
-            console.error("ERROR: #content NOT found in html");
-            return;
+            if (!contentContainer) {
+                console.error("ERROR: #content NOT found in html");
+                return;
+            }
+
+            if (content) {
+                contentContainer.innerHTML = renderCategoryHeroHtml({
+                    page,
+                    title: content.title,
+                    description: desc,
+                    image: content.image
+                });
+            } else {
+                contentContainer.innerHTML = '<p>No content found for this category.</p>';
+            }
+        })
+        .catch(error => console.error("Error fetching content:", error));
+
+    function normalizeImageUrlMaybe(imageUrl) {
+        if (!imageUrl) return imageUrl;
+        if (!/^https?:\/\//i.test(imageUrl)) {
+            return `${window.API_BASE_URL}/${imageUrl}`;
         }
+        return imageUrl;
+    }
 
-        if (content) {
-            contentContainer.innerHTML =  `
-            <div class="flex justify-center mb-6">
-            
+    function slugFromRecipeName(name) {
+        return (name || "")
+            .toLowerCase()
+            .replace(/\s+/g, "-")
+            .replace(/[^\w-]/g, "");
+    }
+
+    function getRecipeSkeletonHtml(count) {
+        const skeletonCards = Array.from({ length: count }).map((_, i) => {
+            const delay = i * 70;
+            return `
                 <div
-                    class="
-                        inline-flex
-                        items-center
-                        rounded-full
-                        bg-orange-100
-                        text-orange-600
-                        dark:bg-orange-900/30
-                        dark:text-orange-300
-                        px-4
-                        py-2
-                        text-sm
-                        font-semibold
-                        uppercase
-                        tracking-wider
-                    "
+                    class="group"
+                    data-reveal="up"
+                    style="transition-delay:${delay}ms"
+                    aria-hidden="true"
                 >
-                    ${page}
+                    <article
+                        class="overflow-hidden rounded-[1.25rem] border border-stone-200 bg-white shadow-sm transition-all duration-500 dark:border-slate-800 dark:bg-slate-900"
+                    >
+                        <div class="relative">
+                            <div class="h-56 w-full bg-slate-100 dark:bg-slate-800"></div>
+                            <div class="absolute inset-0 bg-linear-to-t from-slate-900/20 to-transparent" style="opacity:0.35"></div>
+                        </div>
+                        <div class="p-5">
+                            <div class="mb-3 h-5 w-32 rounded-full bg-slate-100 dark:bg-slate-800"></div>
+                            <div class="mb-2 h-6 w-4/5 rounded bg-slate-100 dark:bg-slate-800"></div>
+                            <div class="mb-5 h-4 w-3/4 rounded bg-slate-100 dark:bg-slate-800"></div>
+                            <div class="mt-auto flex items-center justify-between">
+                                <div class="h-4 w-28 rounded bg-slate-100 dark:bg-slate-800"></div>
+                                <div class="h-4 w-8 rounded bg-slate-100 dark:bg-slate-800"></div>
+                            </div>
+                        </div>
+                    </article>
                 </div>
-            
-            </div>
-            <section
-                class="
-                max-w-5xl
-                mx-auto
-                text-left
-                mb-20
-                ">
-                
-                <h1
-                class="
-                text-5xl
-                font-extrabold
-                text-slate-900
-                dark:text-white
-                mb-6
-                ">
-                ${content.title}
-                </h1>
-                
-                <p
-                class="
-                max-w-3xl
-                mx-auto
-                text-lg
-                leading-9
-                text-slate-600
-                dark:text-slate-300
-                ">
-                ${desc}
-                </p>
-                
-                <img
-                src="${content.image}"
-                class="
-                mt-10
-                rounded-3xl
-                shadow-2xl
-                w-full
-                max-h-125
-                object-cover
-                "
-                />
-                
-                </section>
-                
             `;
-        } else {
-            contentContainer.innerHTML = '<p>No content found for this category.</p>';
+        }).join("");
+
+        return `
+            <div class="space-y-10">
+                <div class="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+                    <div class="flex items-center gap-3">
+                        <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Recipes</h2>
+                        <span class="rounded-full bg-orange-100 px-4 py-2 text-sm font-semibold text-orange-600 dark:bg-orange-500 dark:text-orange-300">Loading</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
+                    ${skeletonCards}
+                </div>
+            </div>
+        `;
+    }
+
+    function renderRecipeSectionHtml({ recipes, page, revealBaseDelayMs }) {
+        if (!recipes.length) {
+            return `
+                <div class="py-16">
+                    ${renderEmptyStateHtml({
+                        message: `No recipes found for ${formatCategoryName(page)} yet.`,
+                        buttonText: "Back to home",
+                        buttonHref: "/"
+                    })}
+                </div>
+            `;
         }
-    })
-    .catch(error => console.error("Error fetching content:", error));
+
+        const categorySlug = (page || "").toLowerCase();
+
+        const cards = recipes.map((recipe, idx) => {
+            let imageUrl = recipe.image;
+            imageUrl = normalizeImageUrlMaybe(imageUrl);
+
+            const recipeSlug = slugFromRecipeName(recipe.name);
+            const url = `/recipes/${encodeURIComponent(categorySlug)}/${encodeURIComponent(recipeSlug)}`;
+
+            const delay = revealBaseDelayMs + idx * 70;
+            const safeName = recipe.name || "Recipe";
+
+            return `
+                <a href="${url}" class="group" data-reveal="up" style="transition-delay:${delay}ms">
+                    <article
+                        class="h-full overflow-hidden rounded-[1.25rem] border border-stone-200 bg-white shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900"
+                    >
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-linear-to-t from-black/40 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-90"></div>
+
+                            <img
+                                src="${imageUrl}"
+                                alt="PraRoz - ${escapeHtmlAttr(safeName)}"
+                                loading="lazy"
+                                class="h-64 w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                                onerror="this.onerror=null;this.src='/images/thumbnail/praroz-thumbnail.png';"
+                            />
+
+                            <div class="absolute left-4 top-4">
+                                <span class="inline-flex items-center rounded-full bg-orange-500 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-white shadow-sm">
+                                    ${inferCategoryChipText(page)}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold leading-7 text-slate-900 transition-colors duration-300 group-hover:text-orange-600 dark:text-white">
+                                ${escapeHtml(safeName)}
+                            </h3>
+
+                            <div class="mt-3 flex items-center justify-between gap-3">
+                                <span class="inline-flex items-center gap-2 rounded-full bg-orange-50 px-3 py-2 text-sm font-semibold text-orange-600 transition-colors duration-300 group-hover:bg-orange-100 dark:bg-orange-500/10 dark:text-orange-300">
+                                    View recipe
+                                    <i class="fas fa-arrow-right"></i>
+                                </span>
+
+                                <span class="text-sm font-semibold text-slate-500 dark:text-slate-400">
+                                    <span class="inline-flex items-center gap-2">
+                                        <i class="fa-solid fa-star text-amber-500"></i>
+                                        <span>Popular</span>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </article>
+                </a>
+            `;
+        }).join("");
+
+        return `
+            <div class="space-y-10">
+                <div class="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+                    <div class="flex items-center gap-3">
+                        <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Recipes</h2>
+                        <span class="rounded-full bg-orange-100 px-4 py-2 text-sm font-semibold text-orange-600 dark:bg-orange-500 dark:text-orange-300">
+                            ${recipes.length} ${recipes.length === 1 ? 'Recipe' : 'Recipes'}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
+                    ${cards}
+                </div>
+            </div>
+        `;
+    }
+
+    function renderEmptyStateHtml({ message, buttonText, buttonHref }) {
+        return `
+            <div class="mx-auto flex max-w-xl flex-col items-center rounded-[1.25rem] border border-stone-200 bg-white p-10 text-center shadow-sm dark:border-slate-800 dark:bg-slate-900">
+                <div class="mb-5 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-orange-50 text-orange-600 dark:bg-orange-500/10 dark:text-orange-300">
+                    <i class="fa-solid fa-bowl-food text-2xl"></i>
+                </div>
+
+                <h3 class="text-2xl font-semibold text-slate-900 dark:text-white">Nothing here yet</h3>
+                <p class="mt-3 text-base leading-8 text-slate-600 dark:text-slate-300">${escapeHtml(message)}</p>
+
+                <a
+                    href="${buttonHref}"
+                    class="mt-6 inline-flex items-center justify-center rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-orange-500 transition hover:bg-orange-600 focus:outline-none focus:ring-4 focus:ring-orange-200 dark:focus:ring-orange-500/30"
+                >
+                    ${escapeHtml(buttonText)}
+                </a>
+
+                <p class="mt-4 text-sm text-slate-500 dark:text-slate-400">
+                    Try exploring other categories or check back soon.
+                </p>
+            </div>
+        `;
+    }
+
+    function renderCategoryHeroHtml({ page, title, description, image }) {
+        const categoryName = formatCategoryName(page);
+        const heroImageUrl = normalizeImageUrlMaybe(image);
+
+        return `
+            <section
+                class="relative overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-sm backdrop-blur-xl dark:border-slate-800 dark:bg-slate-900"
+                data-reveal="up"
+            >
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(249,115,22,0.16),transparent_40%)]"></div>
+                <div class="absolute -right-24 -top-24 h-64 w-64 rounded-full bg-orange-500/15 blur-3xl dark:bg-orange-500/10"></div>
+
+                <div class="relative grid gap-10 px-6 py-10 sm:px-8 sm:py-12 lg:grid-cols-[1.15fr_0.85fr] lg:px-12 lg:py-14">
+                    <div class="space-y-7">
+                        <div class="inline-flex items-center gap-2 rounded-full border border-orange-200 bg-orange-50 px-4 py-2 text-sm font-semibold text-orange-700 dark:border-orange-500 dark:bg-orange-500 dark:text-orange-300">
+                            <i class="fa-solid fa-fire"></i>
+                            ${escapeHtml(categoryName)} • Premium recipes
+                        </div>
+
+                        <div class="space-y-4">
+                            <h1 class="text-4xl font-black leading-[0.95] text-slate-900 sm:text-5xl lg:text-6xl dark:text-white">
+                                ${escapeHtml(title || categoryName)}
+                            </h1>
+
+                            <p class="max-w-xl text-lg leading-8 text-slate-600 dark:text-slate-300">
+                                ${escapeHtml(description || '')}
+                            </p>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2 text-sm">
+                            <span class="rounded-full border border-stone-200 bg-white px-3 py-2 text-slate-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200">
+                                Step-by-step clarity
+                            </span>
+                            <span class="rounded-full border border-stone-200 bg-white px-3 py-2 text-slate-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200">
+                                Cozy, everyday flavors
+                            </span>
+                            <span class="rounded-full border border-stone-200 bg-white px-3 py-2 text-slate-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200">
+                                Built to impress
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="relative overflow-hidden rounded-[1.25rem] border border-stone-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900 h-fit">
+                        <div class="absolute inset-0 bg-linear-to-t from-black/40 to-transparent opacity-70"></div>
+                        <img
+                            src="${heroImageUrl}"
+                            alt="${escapeHtml(title || categoryName)}"
+                            class="h-72 w-full object-cover transition-transform duration-700 hover:scale-[1.02]"
+                            loading="eager"
+                            onerror="this.onerror=null;this.src='/images/thumbnail/praroz-thumbnail.png';"
+                        />
+
+                        <div class="relative p-6">
+                            <div class="flex items-center justify-between gap-3">
+                                <span class="rounded-full bg-orange-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-orange-700 dark:bg-orange-500 dark:text-orange-300">
+                                    Explore ${escapeHtml(categoryName)}
+                                </span>
+                                <span class="text-sm font-semibold text-slate-500 dark:text-slate-300">
+                                    Curated selection
+                                </span>
+                            </div>
+
+                            <h2 class="mt-4 text-2xl font-semibold text-white">
+                                <span class="text-white">Find</span> your next favorite.
+                            </h2>
+
+                            <p class="mt-2 text-sm leading-7 text-slate-200">
+                                Browse the recipes below—premium flavors, modern presentation.
+                            </p>
+
+                            <a
+                                href="/explore"
+                                class="mt-5 inline-flex items-center justify-center rounded-full border border-white/30 bg-white px-5 py-3 text-sm font-semibold text-slate-800 transition hover:bg-orange-50 focus:outline-none focus:ring-4 focus:ring-orange-200 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
+                            >
+                                Browse all recipes
+                                <i class="fa-solid fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="mt-8" data-reveal="up">
+                <div class="flex items-end justify-between gap-4">
+                    <div>
+                        <p class="text-sm font-semibold uppercase tracking-[0.25em] text-orange-600 dark:text-orange-400">Discover</p>
+                        <h2 class="mt-2 text-3xl font-semibold text-slate-900 dark:text-white">Browse & save your next meal</h2>
+                    </div>
+                    <a href="/explore" class="hidden text-sm font-semibold text-slate-600 transition hover:text-orange-600 sm:inline-flex dark:text-slate-300">
+                        See all
+                    </a>
+                </div>
+            </div>
+        `;
+    }
+
+    function formatCategoryName(page) {
+        if (!page) return '';
+        return page.charAt(0).toUpperCase() + page.slice(1);
+    }
+
+    function inferCategoryChipText(page) {
+        const p = (page || '').toLowerCase();
+        const map = {
+            desserts: 'Dessert',
+            pizza: 'Pizza',
+            pasta: 'Pasta',
+            salad: 'Salad',
+            burger: 'Burger',
+            appetizers: 'Appetizers'
+        };
+        return map[p] || formatCategoryName(page);
+    }
+
+    function escapeHtml(str) {
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '<')
+            .replace(/>/g, '>')
+            .replace(/"/g, '"')
+            .replace(/'/g, '&#039;');
+    }
+
+    function escapeHtmlAttr(str) {
+        return escapeHtml(str);
+    }
 });
+
