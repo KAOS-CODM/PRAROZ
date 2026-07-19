@@ -318,7 +318,6 @@
   <option ${recipe.category==="pasta"?"selected":""}>Pasta</option>
   <option ${recipe.category==="salad"?"selected":""}>Salad</option>
   <option ${recipe.category==="appetizers"?"selected":""}>Appetizers</option>
-  <option ${recipe.category==="recipes"?"selected":""}>Recipes</option>
   
   </select>
   </div>

@@ -10,24 +10,42 @@ document.addEventListener("DOMContentLoaded", function () {
         // Loading skeleton (premium card layout)
         recipeContainer.innerHTML = getRecipeSkeletonHtml(8);
 
-        // On Explore page, show popular recipes regardless of category.
-        // API already supports category filtering; leaving category empty returns all.
-        // If we're on /explore, fetch all popular recipes.
-        // If we're on a category page, filter by that category.
-        const queryCategory = page && page !== 'explore' ? page : '';
+        // Get the current page from URL query parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const currentPage = parseInt(urlParams.get('page')) || 1;
+        
+        const queryCategory = page && page !== "explore" ? page : "";
+        
         const url = queryCategory
-            ? `${window.API_BASE_URL}/recipes?category=${encodeURIComponent(queryCategory)}`
-            : `${window.API_BASE_URL}/recipes`;
-
+            ? `${window.API_BASE_URL}/recipes?category=${encodeURIComponent(queryCategory)}&page=${currentPage}&limit=12`
+            : `${window.API_BASE_URL}/recipes?page=${currentPage}&limit=12`;
+        
         fetch(url)
             .then(response => response.json())
             .then(data => {
-                const recipes = Array.isArray(data) ? data : [];
+                const recipes = data.recipes;
+                const pagination = data.pagination;
+            
+                // Keep URL in sync - only update if different
+                const params = new URLSearchParams(window.location.search);
+                const currentUrlPage = parseInt(params.get("page")) || 1;
+                
+                if (currentUrlPage !== pagination.page) {
+                    params.set("page", pagination.page);
+                    history.replaceState(
+                        {},
+                        "",
+                        `${window.location.pathname}?${params.toString()}`
+                    );
+                }
+            
                 recipeContainer.innerHTML = renderRecipeSectionHtml({
                     recipes,
                     page,
                     revealBaseDelayMs: 0
                 });
+            
+                renderPagination(pagination);
             })
             .catch(error => {
                 console.error("Error fetching recipes:", error);
@@ -370,6 +388,115 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function escapeHtmlAttr(str) {
         return escapeHtml(str);
+    }
+    
+    function renderPagination(pagination) {
+        const container = document.getElementById("pagination");
+        if (!container) return;
+        
+        // Handle both possible property names
+        const current = pagination.page || 1;
+        const total = pagination.totalPages;
+        const hasPrev = pagination.hasPrev !== undefined ? pagination.hasPrev : pagination.hasPrevPage;
+        const hasNext = pagination.hasNext !== undefined ? pagination.hasNext : pagination.hasNextPage;
+        
+        if (total <= 1) {
+            container.innerHTML = "";
+            return;
+        }
+    
+        const pages = [];
+    
+        // Always show first page
+        pages.push(1);
+    
+        // Calculate the range around current page
+        let startPage = Math.max(2, current - 2);
+        let endPage = Math.min(total - 1, current + 2);
+    
+        // Add pages in the range
+        for (let i = startPage; i <= endPage; i++) {
+            pages.push(i);
+        }
+    
+        // Add right dots if there's a gap and we haven't reached the end
+        if (endPage < total - 1) {
+            pages.push("...");
+        }
+    
+        // Always show last page if total > 1 and not already included
+        if (total > 1 && pages[pages.length - 1] !== total) {
+            pages.push(total);
+        }
+    
+        // Remove duplicates if first page is also in the range
+        const uniquePages = [];
+        for (let i = 0; i < pages.length; i++) {
+            if (pages[i] !== pages[i-1]) {
+                uniquePages.push(pages[i]);
+            }
+        }
+    
+        const pageLink = (page, active = false) => `
+            <a href="?page=${page}" 
+               class="h-11 min-w-11 px-4 flex items-center justify-center rounded-xl text-sm font-semibold transition-all duration-300 ${
+                   active 
+                   ? "bg-orange-500 text-white shadow-lg shadow-orange-500/30 scale-105" 
+                   : "border border-stone-200 bg-white text-slate-700 hover:bg-orange-500 hover:text-white hover:border-orange-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
+               }">
+                ${page}
+            </a>
+        `;
+    
+        const disabledBtn = `opacity-40 pointer-events-none`;
+    
+        let html = `
+            <nav class="mt-12 flex justify-center" aria-label="Pagination">
+                <div class="inline-flex items-center gap-2 rounded-2xl border border-stone-200 bg-white p-2 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+        `;
+    
+        // Previous button
+        const prevDisabled = !hasPrev ? disabledBtn : "";
+        html += `
+            <a href="?page=${Math.max(current - 1, 1)}" 
+               class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-stone-200 bg-white text-slate-700 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-orange-500 hover:text-orange-500 dark:border-slate-700 dark:bg-slate-900 dark:text-white ${prevDisabled} ${hasPrev ? 'hover:bg-orange-500 hover:text-white' : ''}">
+                <i class="fas fa-chevron-left"></i>
+            </a>
+        `;
+    
+        // Page numbers
+        uniquePages.forEach(page => {
+            if (page === "...") {
+                html += `
+                    <span class="w-10 text-center text-slate-400">...</span>
+                `;
+            } else {
+                html += pageLink(page, page === current);
+            }
+        });
+    
+        // Next button
+        const nextDisabled = !hasNext ? disabledBtn : "";
+        html += `
+            <a href="?page=${Math.min(current + 1, total)}" 
+               class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-stone-200 bg-white text-slate-700 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-orange-500 hover:text-orange-500 dark:border-slate-700 dark:bg-slate-900 dark:text-white ${nextDisabled} ${hasNext ? 'hover:bg-orange-500 hover:text-white' : ''}">
+                <i class="fas fa-chevron-right"></i>
+            </a>
+        `;
+    
+        html += `
+                </div>
+            </nav>
+        `;
+    
+        container.innerHTML = html;
+    
+        // Update URL without reload
+        const url = new URL(window.location);
+        if (Number(url.searchParams.get("page") || 1) !== current) {
+            url.searchParams.set("page", current);
+            window.history.replaceState({}, "", url);
+        }
     }
 });
 

@@ -433,11 +433,39 @@ async function fetchContents() {
   return data;
 }
 
-async function fetchRecipes() {
-  const res = await fetch(`${window.API_BASE_URL}/recipes`);
-  if (!res.ok) throw new Error(`Failed to load recipes: ${res.status}`);
-  const data = await res.json();
-  return data;
+/*async function fetchRecipes() {
+
+    const currentPage =
+        Number(new URLSearchParams(window.location.search).get("page")) || 1;
+
+    const res = await fetch(
+        `${window.API_BASE_URL}/recipes?page=${currentPage}&limit=12`
+    );
+
+    if (!res.ok)
+        throw new Error(`Failed to load recipes: ${res.status}`);
+
+    return await res.json();
+}*/
+
+async function fetchRecipes(page = 1) {
+
+    const res = await fetch(
+        `${window.API_BASE_URL}/recipes?page=${page}&limit=12`
+    );
+
+    return await res.json();
+
+}
+
+async function fetchCategories() {
+
+    const res = await fetch(
+        `${window.API_BASE_URL}/recipes/categories`
+    );
+
+    return await res.json();
+
 }
 
 async function loadExplore() {
@@ -455,15 +483,41 @@ async function loadExplore() {
   if (allCategoriesContainer) allCategoriesContainer.innerHTML = '<div class="min-h-30"></div>';
 
   try {
-    const [contentsData, recipes] = await Promise.all([fetchContents(), fetchRecipes()]);
+    const currentPage =
+        Number(
+            new URLSearchParams(
+                location.search
+            ).get("page")
+        ) || 1;
+    
+    const [
+    
+        contentsData,
+    
+        recipeData,
+    
+        categories
+    
+    ] = await Promise.all([
+    
+        fetchContents(),
+    
+        fetchRecipes(currentPage),
+    
+        fetchCategories()
+    
+    ]);
+
+    const recipes = recipeData.recipes;
+    const pagination = recipeData.pagination;
 
     const exploreContents = contentsData?.explore || {};
     renderHero(exploreContents, contentContainer);
 
     const grouped = groupRecipesByCategory(recipes);
 
-    renderFeaturedCategories(featuredContainer, grouped);
-    renderCategoryGrid(allCategoriesContainer, grouped);
+    renderFeaturedCategories(featuredContainer, categories);
+    renderCategoryGrid(allCategoriesContainer, categories);
 
     // Latest recipes (newest 6)
     if (latestContainer) {
@@ -471,6 +525,8 @@ async function loadExplore() {
       // But if we removed project.js, we render here.
       renderLatestRecipes(latestContainer, recipes);
     }
+
+    //renderPagination(pagination);
 
     // If there are no recipes, ensure empty message exists.
     if (!Array.isArray(recipes) || recipes.length === 0) {

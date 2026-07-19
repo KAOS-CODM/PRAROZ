@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Praroz is a premium recipe destination featuring homemade meals, Nigerian favorites, and global inspiration for everyday cooking.">
     <meta name="theme-color" content="#f97316">
-    <title>Praroz | Home</title>
 
     <link rel="icon" type="image/png" href="/images/favicon.ico">
     <link rel="stylesheet" href="/assets/fontawesome/css/all.min.css">
@@ -462,39 +461,6 @@
     <script src="/js/search-bar.js" defer></script>
     <script src="/js/footer.js" defer></script>
     <script src="/js/darkmode.js" defer></script>
-    <script src="/js/reveal.js" defer>
-        /*const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (!entry.isIntersecting) return;
-
-                const target = entry.target;
-                const variant = target.getAttribute('data-reveal') || 'up';
-
-                const classesToRemove = {
-                    up: ['opacity-0', 'translate-y-8'],
-                    left: ['opacity-0', '-translate-x-8'],
-                    right: ['opacity-0', 'translate-x-8'],
-                    scale: ['opacity-0', 'scale-95']
-                };
-
-                target.classList.remove(...(classesToRemove[variant] || classesToRemove.up));
-                target.classList.add('opacity-100', 'translate-y-0', 'translate-x-0', 'scale-100');
-                revealObserver.unobserve(target);
-            });
-        }, { threshold: 0.15 });
-
-        document.querySelectorAll('[data-reveal]').forEach((element) => {
-            const variant = element.getAttribute('data-reveal') || 'up';
-            const classesToAdd = {
-                up: ['opacity-0', 'translate-y-8', 'transition-all', 'duration-700', 'ease-out'],
-                left: ['opacity-0', '-translate-x-8', 'transition-all', 'duration-700', 'ease-out'],
-                right: ['opacity-0', 'translate-x-8', 'transition-all', 'duration-700', 'ease-out'],
-                scale: ['opacity-0', 'scale-95', 'transition-all', 'duration-700', 'ease-out']
-            };
-
-            element.classList.add(...(classesToAdd[variant] || classesToAdd.up));
-            revealObserver.observe(element);
-        });*/
-    </script>
+    <script src="/js/reveal.js" defer></script>
 </body>
 </html>

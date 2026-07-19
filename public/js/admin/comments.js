@@ -71,7 +71,7 @@
                 ${comments
                   .map(
                     (comment) => `
-                  <article class="rounded-2xl border border-slate-200 bg-slate-50 p-4 shadow-sm dark:border-slate-700 dark:bg-slate-900/50">
+                  <article class="rounded-2xl border border-slate-200 bg-slate-50 p-4 shadow-sm dark:border-slate-700 dark:bg-slate-900">
                     <div class="flex items-start justify-between gap-3">
                       <div>
                         <p class="font-semibold text-slate-900 dark:text-slate-100">${comment.name || "Anonymous"}</p>

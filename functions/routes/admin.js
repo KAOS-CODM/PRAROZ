@@ -9,8 +9,12 @@ router.post("/validate-admin", express.json(), adminValidateRoute);
 
 router.get("/approved-recipes", requireAdmin, async (_req, res) => {
     try {
-        const recipes = await storage.getRecipes();
-        res.json(recipes);
+        const results = await storage.getRecipes({
+            filter: {},
+            page: 1,
+            limit: 100
+        });
+        res.json(results.recipes);
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: "Internal Server Error" });

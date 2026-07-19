@@ -25,7 +25,7 @@ const FILES = {
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
-router.get('/recipes', async (req, res) => {
+/*router.get('/recipes', async (req, res) => {
   const category = req.query.category;
   const filter = {};
 
@@ -42,6 +42,64 @@ router.get('/recipes', async (req, res) => {
     console.error(err);
     return res.status(500).json({ error: err.message, stack: err.stack });
   }
+});*/
+
+router.get("/recipes", async (req, res) => {
+    const category = req.query.category;
+
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 12;
+
+    const filter = {};
+
+    if (category) {
+        const escapeRegex = value =>
+            value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+        filter.category = new RegExp(
+            `^${escapeRegex(category)}$`,
+            "i"
+        );
+    }
+
+    try {
+        const result = await storageService.getRecipes({
+            filter,
+            page,
+            limit,
+        });
+
+        res.json(result);
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({
+            error: err.message
+        });
+    }
+});
+
+router.get("/recipes/categories", async (req, res) => {
+
+    try {
+
+        const categories =
+            await storageService.getRecipeCategories();
+
+        res.json(categories);
+
+    }
+
+    catch (err) {
+
+        console.error(err);
+
+        res.status(500).json({
+            error: err.message
+        });
+
+    }
+
 });
 
 router.get('/recipes/:category/:recipe', async (req, res) => {

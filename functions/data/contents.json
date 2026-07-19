@@ -71,21 +71,6 @@
         "image":"images/thumbnail/praroz-thumbnail.png"
     },
 
-    "home": {
-        "title": "Welcome to PraRoz – Your Culinary Haven",
-        "description": [
-            "<p>At <strong>PraRoz</strong>, we bring the joy of cooking to every kitchen! Whether you're a seasoned chef or a home cook exploring new flavors, our step-by-step recipes make delicious meals easy to create.</p>",
-            "<p>Founded in <strong>2025</strong>, our mission is to provide accessible, well-tested, and flavorful recipes that inspire creativity in the kitchen. From traditional classics to modern twists, we ensure that every dish is crafted for taste, simplicity, and success.</p>",
-            "<p>With a passion for global cuisine, we strive to make cooking fun, informative, and hassle-free—so you can focus on what truly matters: enjoying the food you love with the people you cherish.</p>",
-            "<h2>What Sets Us Apart?</h2>",
-            "<ul><li><strong>✅ Tested & Trusted Recipes</strong> – Every dish is perfected for the best results.</li>",
-            "<li><strong>✅ Step-by-Step Guidance</strong> – Clear instructions and visuals make cooking simple.</li>",
-            "<li><strong>✅ Diverse Flavors</strong> – Explore global cuisines, dietary-friendly options, and creative twists.</li>",
-            "<li><strong>✅ A Community of Food Lovers</strong> – Join our growing family of passionate home cooks!</li> </ul> <p><em>Let’s get cooking… one delicious recipe at a time!</em></p>"
-        ],
-        "image":"images/thumbnail/praroz-thumbnail.png"
-    },
-
     "pasta": {
         "title": "Delicious Pasta Dishes",
         "description": [
@@ -100,22 +85,6 @@
         "description": [
             "<p>Welcome to our Pizza Collection! Whether you love classic Margherita, cheesy pepperoni, or unique gourmet toppings, we have the perfect pizza recipes for you. </p> <p>Learn how to make crispy crusts, flavorful sauces, and the best topping combinations right in your own kitchen.</p>",
             "<p>Get ready to bake, slice, and enjoy homemade pizzas just the way you like them!</p>"
-        ],
-        "image":"images/thumbnail/praroz-thumbnail.png"
-    },
-
-    "recipes": {
-        "title": "Explore Our Recipe Collection",
-        "description": [
-            "<p>Welcome to the ultimate recipe hub! Here, you'll find a diverse collection of mouthwatering recipes, ranging from comforting classics to modern favorites.</p> <p>Whether you're looking for a quick meal, a healthy option, or something indulgent, we have something for every taste and occasion.</p>",
-            "<p>Browse through our categories and discover step-by-step guides to help you create delicious homemade dishes effortlessly.</p>",
-            "<h2>What You'll Find:</h2>",
-            "<p><strong>🍲 Hearty Main Courses:</strong> From pastas to burgers, enjoy satisfying meals.</p>",
-            "<p><strong>🥗 Fresh & Healthy Salads:</strong> Nutrient-packed and delicious.</p>",
-            "<p><strong>🍕 Flavorful Pizzas:</strong> Crispy crusts and endless topping combinations.</p>",
-            "<p><strong>🍰 Sweet Desserts:</strong> Indulge in cakes, pastries, and more.</p>",
-            "<p><strong>🍽️ Tasty Appetizers:</strong> Perfect for parties and gatherings.</p>",
-            "<p><em>Start exploring and bring the joy of cooking to your kitchen!</em></p>"
         ],
         "image":"images/thumbnail/praroz-thumbnail.png"
     },

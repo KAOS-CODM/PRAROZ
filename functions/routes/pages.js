@@ -9,14 +9,14 @@ const { sanitizeMeta, escapeHtml } = require('../services/htmlSafe');
 const router = express.Router();
 
 const GA_SCRIPT = `
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWDGMK7KP6"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-RWDGMK7KP6');
-        </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWDGMK7KP6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-RWDGMK7KP6');
+    </script>
 `;
 
 const ADSENSE_META = {
@@ -134,20 +134,20 @@ function buildMetaTags(pageMeta, req) {
   // robots meta tag (required) + canonical + OG/Twitter + GA injection
   // NOTE: keep favicon untouched by only injecting before </head>.
   const metaHtml = `
-        ${buildTitleHtml(title)}
-        <meta name="google-adsense-account" content="${sanitizeMeta(ADSENSE_META.content)}" />
-        ${buildDescriptionHtml(description)}
-        ${buildKeywordsHtml(keywords)}
-        ${buildAuthorHtml(author)}
+    ${buildTitleHtml(title)}
+    <meta name="google-adsense-account" content="${sanitizeMeta(ADSENSE_META.content)}" />
+    ${buildDescriptionHtml(description)}
+    ${buildKeywordsHtml(keywords)}
+    ${buildAuthorHtml(author)}
 
-        ${buildCanonicalLinkHtml(canonicalUrl)}
-        <meta name="robots" content="${sanitizeMeta(robotsMeta)}" />
+    ${buildCanonicalLinkHtml(canonicalUrl)}
+    <meta name="robots" content="${sanitizeMeta(robotsMeta)}" />
 
-        ${buildOpenGraphHtml(og)}
-        ${buildTwitterCardHtml(twitter)}
+    ${buildOpenGraphHtml(og)}
+    ${buildTwitterCardHtml(twitter)}
 
-        ${GA_SCRIPT}
-      `;
+    ${GA_SCRIPT}
+  `;
 
   return metaHtml;
 }
@@ -506,20 +506,18 @@ router.get('/sitemap.xml', async (req, res) => {
 
   const staticPages = [
     { url: '/', changefreq: 'daily', priority: 1.0 },
-    { url: '/explore', changefreq: 'weekly', priority: 0.9 },
-    { url: '/home', changefreq: 'daily', priority: 0.8 },
-    { url: '/desserts', changefreq: 'weekly', priority: 1.0 },
-    { url: '/appetizers', changefreq: 'weekly', priority: 0.8 },
-    { url: '/salad', changefreq: 'weekly', priority: 0.8 },
-    { url: '/burger', changefreq: 'weekly', priority: 0.8 },
-    { url: '/pizza', changefreq: 'weekly', priority: 0.8 },
-    { url: '/pasta', changefreq: 'weekly', priority: 0.8 },
-    { url: '/recipes', changefreq: 'weekly', priority: 0.8 },
-    { url: '/submit', changefreq: 'weekly', priority: 0.8 },
     { url: '/about', changefreq: 'weekly', priority: 0.8 },
-    { url: '/terms', changefreq: 'weekly', priority: 0.8 },
-    { url: '/privacy', changefreq: 'weekly', priority: 0.8 },
+    { url: '/appetizers', changefreq: 'weekly', priority: 0.8 },
+    { url: '/burger', changefreq: 'weekly', priority: 0.8 },
     { url: '/contact', changefreq: 'weekly', priority: 0.8 },
+    { url: '/desserts', changefreq: 'weekly', priority: 0.8 },
+    { url: '/explore', changefreq: 'weekly', priority: 0.9 },
+    { url: '/pasta', changefreq: 'weekly', priority: 0.8 },
+    { url: '/pizza', changefreq: 'weekly', priority: 0.8 },
+    { url: '/privacy', changefreq: 'weekly', priority: 0.8 },
+    { url: '/salad', changefreq: 'weekly', priority: 0.8 },
+    { url: '/submit', changefreq: 'weekly', priority: 0.8 },
+    { url: '/terms', changefreq: 'weekly', priority: 0.8 },
   ];
 
   let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;

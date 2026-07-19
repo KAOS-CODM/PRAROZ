@@ -155,14 +155,38 @@ const storage = {
     /* =====================
        GET ALL RECIPES
     ===================== */
-    async getRecipes(filter = {}) {
+    //async getRecipes(filter = {})
+     /*async getRecipes({ filter = {}, page = 1, limit = 12 }) {
         return useMongo(
     
             async () => {
     
-                const recipes = await Recipe.find(filter).lean();
+                //const recipes = await Recipe.find(filter).lean();
     
-                return recipes.map(formatRecipe);
+                //return recipes.map(formatRecipe);
+
+                const totalRecipes = await Recipe.countDocuments(filter);
+                const totalPages= Math.ceil(totalRecipes / limit);
+                const validPage= Math.max(1, Math.min(page, totalPages || 1));
+                
+                const recipes = await Recipe.find(filter)
+                    .sort({ created_at: -1 })
+                    .skip((validPage - 1) * limit)
+                    .limit(limit)
+                    .lean();
+                
+                return {
+                    recipes: recipes.map(formatRecipe),
+                
+                    pagination: {
+                        page: validPage,
+                        limit,
+                        totalRecipes,
+                        totalPages: Math.ceil(totalRecipes / limit),
+                        hasPrev: page > 1,
+                        hasNext: page * limit < totalRecipes
+                    }
+                };
     
             },
     
@@ -207,7 +231,182 @@ const storage = {
     
                 }
     
-                return recipes.map(formatRecipe);
+                //return recipes.map(formatRecipe);
+                const totalRecipes = recipes.length;
+                const totalPages= Math.ceil(totalRecipes / limit);
+                const validPage= Math.max(1, Math.min(page, totalPages || 1));
+                
+                const paginatedRecipes = recipes.slice(
+                    (validPage - 1) * limit,
+                    validPage * limit
+                );
+                
+                return {
+                    recipes: paginatedRecipes.map(formatRecipe),
+                
+                    pagination: {
+                        page: validPage,
+                        limit,
+                        totalRecipes,
+                        totalPages,
+                        hasPrev: page > 1,
+                        hasNext: page * limit < totalRecipes
+                    }
+                };
+    
+            }
+    
+        );
+    },*/
+    async getRecipes({ filter = {}, page = 1, limit = 12 }) {
+        return useMongo(
+            async () => {
+                const totalRecipes = await Recipe.countDocuments(filter);
+                
+                // Validate page number
+                const totalPages = Math.ceil(totalRecipes / limit);
+                const validPage = Math.max(1, Math.min(page, totalPages || 1));
+                
+                const recipes = await Recipe.find(filter)
+                    .sort({ created_at: -1 })
+                    .skip((validPage - 1) * limit)
+                    .limit(limit)
+                    .lean();
+                
+                return {
+                    recipes: recipes.map(formatRecipe),
+                    pagination: {
+                        page: validPage,
+                        limit,
+                        totalRecipes,
+                        totalPages,
+                        hasPrev: validPage > 1,
+                        hasNext: validPage * limit < totalRecipes
+                    }
+                };
+            },
+            () => {
+                const files = getAllRecipeFiles();
+                let recipes = [];
+    
+                for (const file of files) {
+                    const category = file.replace(".json", "");
+                    const items = readJSON(path.join(RECIPES_DIR, file)) || [];
+                    recipes.push(
+                        ...items.map(recipe => ({
+                            ...recipe,
+                            category
+                        }))
+                    );
+                }
+    
+                if (filter.category) {
+                    recipes = recipes.filter(recipe => {
+                        if (filter.category instanceof RegExp) {
+                            return filter.category.test(recipe.category);
+                        }
+                        return normalize(recipe.category) === normalize(filter.category);
+                    });
+                }
+    
+                const totalRecipes = recipes.length;
+                const totalPages = Math.ceil(totalRecipes / limit);
+                const validPage = Math.max(1, Math.min(page, totalPages || 1));
+                
+                const paginatedRecipes = recipes.slice(
+                    (validPage - 1) * limit,
+                    validPage * limit
+                );
+                
+                return {
+                    recipes: paginatedRecipes.map(formatRecipe),
+                    pagination: {
+                        page: validPage,
+                        limit,
+                        totalRecipes,
+                        totalPages,
+                        hasPrev: validPage > 1,
+                        hasNext: validPage * limit < totalRecipes
+                    }
+                };
+            }
+        );
+    },
+
+    async getRecipeCategories() {
+    
+        return useMongo(
+    
+            async () => {
+    
+                const recipes = await Recipe.find()
+                    .sort({ created_at: -1 })
+                    .lean();
+    
+                const map = new Map();
+    
+                for (const recipe of recipes) {
+    
+                    const category = recipe.category;
+    
+                    if (!map.has(category)) {
+    
+                        map.set(category, {
+                            name: category,
+                            count: 0,
+                            image: recipe.image,
+                            recipes: []
+                        });
+    
+                    }
+    
+                    const group = map.get(category);
+    
+                    group.count++;
+    
+                    if (group.recipes.length < 3) {
+    
+                        group.recipes.push({
+                            name: recipe.name,
+                            image: recipe.image
+                        });
+    
+                    }
+    
+                }
+    
+                return [...map.values()];
+    
+            },
+    
+            () => {
+    
+                const files = getAllRecipeFiles();
+    
+                return files.map(file => {
+    
+                    const items = readJSON(
+                        path.join(RECIPES_DIR, file)
+                    );
+    
+                    return {
+    
+                        name: file.replace(".json", ""),
+    
+                        count: items.length,
+    
+                        image: items[0]?.image,
+    
+                        recipes: items
+                            .slice(0, 3)
+                            .map(recipe => ({
+                                name: recipe.name,
+                                image: recipe.image
+                            }))
+    
+                    };
+    
+                });
     
             }
     
