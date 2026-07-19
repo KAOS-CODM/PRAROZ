@@ -120,3 +120,4 @@ if (searchToggle) {
     event.stopPropagation();
   });
 }
+

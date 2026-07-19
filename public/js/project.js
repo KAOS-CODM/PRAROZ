@@ -413,17 +413,24 @@ document.addEventListener("DOMContentLoaded", function () {
         // Calculate the range around current page
         let startPage = Math.max(2, current - 2);
         let endPage = Math.min(total - 1, current + 2);
+        
+        // Add left dots if there's a gap between page 1 and startPage
+        //Only add if startPage > 2 (meaning there are pages between 1 and startPage)
+        if (startPage > 2) {
+            pages.push("...");
+        }
     
         // Add pages in the range
         for (let i = startPage; i <= endPage; i++) {
             pages.push(i);
         }
     
-        // Add right dots if there's a gap and we haven't reached the end
+        // Add right dots if there's a gap between endPage and startPage
+        //Only add if endPage < total - 1 (meaning there are pages between endPage and total)
         if (endPage < total - 1) {
             pages.push("...");
         }
-    
+
         // Always show last page if total > 1 and not already included
         if (total > 1 && pages[pages.length - 1] !== total) {
             pages.push(total);
@@ -498,5 +505,63 @@ document.addEventListener("DOMContentLoaded", function () {
             window.history.replaceState({}, "", url);
         }
     }
+
+    // Add event delegation for pagination clicks
+    /*document.addEventListener('click', function(e) {
+        const paginationLink = e.target.closest('#pagination a[href*="page="]');
+        if (paginationLink) {
+            e.preventDefault();
+            const url = new URL(paginationLink.href);
+            const page = url.searchParams.get('page');
+            
+            if (page) {
+                // Update URL without reload
+                const currentUrl = new URL(window.location);
+                currentUrl.searchParams.set('page', page);
+                window.history.pushState({}, '', currentUrl);
+                
+                // Re-fetch recipes with new page
+                fetchRecipes(page);
+            }
+        }
+    });
+    
+    // Separate function to fetch recipes
+    function fetchRecipes(page) {
+        const recipeContainer = document.getElementById('recipe-container');
+        if (!recipeContainer) return;
+        
+        recipeContainer.innerHTML = getRecipeSkeletonHtml(8);
+        
+        const pagePath = window.location.pathname.split('/').pop().replace('.html', '');
+        const queryCategory = pagePath && pagePath !== "explore" ? pagePath : "";
+        
+        const url = queryCategory
+            ? `${window.API_BASE_URL}/recipes?category=${encodeURIComponent(queryCategory)}&page=${page}&limit=12`
+            : `${window.API_BASE_URL}/recipes?page=${page}&limit=12`;
+        
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const recipes = data.recipes;
+                const pagination = data.pagination;
+                
+                recipeContainer.innerHTML = renderRecipeSectionHtml({
+                    recipes,
+                    page: pagePath,
+                    revealBaseDelayMs: 0
+                });
+                
+                renderPagination(pagination);
+            })
+            .catch(error => {
+                console.error("Error fetching recipes:", error);
+                recipeContainer.innerHTML = renderEmptyStateHtml({
+                    message: "We couldn’t load recipes right now. Please try again in a moment.",
+                    buttonText: "Back to home",
+                    buttonHref: "/"
+                });
+            });
+    }*/
 });
 
