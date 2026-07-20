@@ -105,6 +105,11 @@ router.get("/recipes/categories", async (req, res) => {
 router.get('/recipes/:category/:recipe', async (req, res) => {
   const { category, recipe } = req.params;
 
+  // Decode recipe slug segment to properly handle special characters
+  // coming from client-side routes (e.g. jalape%C3%B1o -> jalapeño).
+  const decodedRecipeSlug = typeof recipe === 'string' ? decodeURIComponent(recipe) : recipe;
+
+
   try {
     const recipeData = await storageService.getRecipe(category, recipe);
     

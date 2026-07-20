@@ -313,10 +313,10 @@
   class="mt-2 w-full rounded-xl border p-3">
   
   <option ${recipe.category==="desserts"?"selected":""}>Desserts</option>
-  <option ${recipe.category==="burger"?"selected":""}>Burger</option>
+  <option ${recipe.category==="burgers"?"selected":""}>Burgers</option>
   <option ${recipe.category==="pizza"?"selected":""}>Pizza</option>
   <option ${recipe.category==="pasta"?"selected":""}>Pasta</option>
-  <option ${recipe.category==="salad"?"selected":""}>Salad</option>
+  <option ${recipe.category==="salads"?"selected":""}>Salads</option>
   <option ${recipe.category==="appetizers"?"selected":""}>Appetizers</option>
   
   </select>

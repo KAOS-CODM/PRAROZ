@@ -28,7 +28,7 @@
         "image":"images/thumbnail/praroz-thumbnail.png"
     },
 
-    "burger": {
+    "burgers": {
         "title": "Juicy and Flavorful Burgers",
         "description": [
             "<p>Sink your teeth into the best homemade burgers! Our collection features everything from classic beef patties to creative veggie and chicken burgers. Learn how to craft the juiciest burgers with the best toppings, sauces, and buns.</p>",
@@ -116,7 +116,7 @@
         "image":"images/thumbnail/praroz-thumbnail.webp"
     },
 
-    "salad": {
+    "salads": {
         "title": "Fresh and Healthy Salads",
         "description": [
             "<p>Enjoy fresh, healthy, and delicious salads that are packed with flavor and nutrition! From light garden salads to protein-packed meals, we have a variety of refreshing recipes for you to try.</p>",

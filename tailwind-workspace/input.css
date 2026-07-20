@@ -70,6 +70,57 @@
       animation: fadeIn 180ms ease-out;
     }
 
+    /* Search bar animations */
+    #search-input {
+        transition: all 0.3s ease;
+    }
+    
+    #search-input:focus {
+        box-shadow: 0 4px 20px rgba(249, 115, 22, 0.1);
+    }
+    
+    #search-results {
+        animation: slideDown 0.2s ease-out;
+    }
+    
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    /* Search result item hover effect */
+    #search-results a {
+        transition: all 0.2s ease;
+    }
+    
+    #search-results a:hover {
+        background-color: rgba(249, 115, 22, 0.05);
+    }
+    
+    /* Dark mode scrollbar */
+    #search-results::-webkit-scrollbar {
+        width: 6px;
+    }
+    
+    #search-results::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    
+    #search-results::-webkit-scrollbar-thumb {
+        background: #d1d5db;
+        border-radius: 10px;
+    }
+    
+    .dark #search-results::-webkit-scrollbar-thumb {
+        background: #374151;
+    }
+
     @keyframes fadeIn {
       from {
         opacity: 0;

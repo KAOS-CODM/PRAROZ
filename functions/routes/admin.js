@@ -66,8 +66,12 @@ router.post("/disapprove-recipe", requireAdmin, express.json(), async (req, res)
     try {
         const { id } = req.body;
 
-        const recipes = await storage.getRecipes();
-        const recipe = recipes.find(r => r.id === id);
+        const recipesResult = await storage.getRecipes({
+            filter: {},
+            page: 1,
+            limit: 100
+        });
+        const recipe = recipesResult.recipes?.find(r => r.id === id);
 
         if (!recipe) {
             return res.status(404).json({

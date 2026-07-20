@@ -87,12 +87,54 @@ function formatRecipe(recipe) {
 
         instructions: instructionsArray,
 
-        instructionsHtml:
-            "<ol>" +
-            (instructionsArray || [])
-                .map(step => `<li>${step}</li>`)
-                .join("") +
-            "</ol>",
+        // Build instructions as multiple resettable groups.
+        // If a step contains a delimiter line like "---" or "\n\n---\n\n",
+        // we treat it as a new instruction section.
+        // This preserves existing step strings while fixing continuous numbering.
+        instructionsHtml: (() => {
+            const rawSteps = instructionsArray || [];
+
+            // Split each step on delimiter markers; keep order.
+            // Each segment becomes its own numbered <ol>.
+            const groups = [];
+            let current = [];
+
+            const pushCurrent = () => {
+                if (current.length) {
+                    groups.push(current);
+                    current = [];
+                }
+            };
+
+            for (const step of rawSteps) {
+                const str = step == null ? "" : String(step);
+
+                // delimiter: a line containing only ---
+                const parts = str.split(/\n\s*---\s*\n/g);
+                for (let idx = 0; idx < parts.length; idx++) {
+                    const part = parts[idx].trim();
+                    if (!part) continue;
+
+                    // If this isn't the first part, we start a new group.
+                    if (idx !== 0) pushCurrent();
+                    current.push(part);
+                }
+            }
+
+            pushCurrent();
+
+            // If no delimiter produced groups, fall back to a single <ol>.
+            const finalGroups = groups.length ? groups : [rawSteps.map(s => String(s))];
+
+            return finalGroups
+                .map(group =>
+                    "<ol>" +
+                    (group || []).map(step => `<li>${step}</li>`).join("") +
+                    "</ol>"
+                )
+                .join("");
+        })(),
+
 
         extraContent: {
             prepTime: recipe.prep_time || "",
@@ -419,8 +461,12 @@ const storage = {
     async getRecipe(category, recipeSlug) {
     
         const cat = normalize(category);
-    
-        const slug = normalize(recipeSlug);
+
+        // Decode URL-encoded slug, then normalize.
+        // This fixes slugs like `spicy-jalapeo-burger` coming from
+        // names such as `Spicy Jalapeño Burger`.
+        const slug = normalize(decodeURIComponent(recipeSlug));
+
     
         return useMongo(
     

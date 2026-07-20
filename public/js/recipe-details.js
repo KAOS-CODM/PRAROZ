@@ -52,12 +52,20 @@ py-10
 space-y-16
 " data-reveal="up">
 
-<!-- HERO -->
+<!-- HERO (Premium Editorial) -->
 
 <section
 class="
 space-y-8
 " data-reveal="up">
+
+<div
+class="
+flex
+items-center
+justify-between
+gap-6
+">
 
 <div
 class="
@@ -80,14 +88,97 @@ ${category}
 
 </div>
 
+<div
+class="
+hidden
+sm:flex
+items-center
+gap-3
+text-sm
+text-slate-600
+dark:text-slate-300
+">
+
+<div
+class="
+flex
+items-center
+gap-2
+rounded-full
+border
+border-slate-200
+dark:border-slate-700
+bg-white/60
+dark:bg-slate-900/40
+px-4
+py-2
+shadow-sm
+">
+
+<span class="opacity-90">⏱</span>
+
+<span class="font-semibold">${extra.prepTime || "N/A"}</span>
+
+</div>
+
+<div
+class="
+flex
+items-center
+gap-2
+rounded-full
+border
+border-slate-200
+dark:border-slate-700
+bg-white/60
+dark:bg-slate-900/40
+px-4
+py-2
+shadow-sm
+">
+
+<span class="opacity-90">🔥</span>
+
+<span class="font-semibold">${extra.cookTime || "N/A"}</span>
+
+</div>
+
+<div
+class="
+flex
+items-center
+gap-2
+rounded-full
+border
+border-slate-200
+dark:border-slate-700
+bg-white/60
+dark:bg-slate-900/40
+px-4
+py-2
+shadow-sm
+">
+
+<span class="opacity-90">🍽</span>
+
+<span class="font-semibold">${extra.servings || "N/A"}</span>
+
+</div>
+
+</div>
+
+</div>
+
 <h1
 class="
-text-5xl
+text-4xl
+sm:text-5xl
 lg:text-6xl
 font-black
 text-slate-900
 dark:text-white
 leading-tight
+tracking-tight
 ">
 
 ${selectedRecipe.name}
@@ -97,7 +188,8 @@ ${selectedRecipe.name}
 <p
 class="
 max-w-4xl
-text-xl
+text-lg
+sm:text-xl
 leading-9
 text-slate-600
 dark:text-slate-300
@@ -106,6 +198,26 @@ dark:text-slate-300
 ${selectedRecipe.description || "A delicious homemade recipe waiting to be enjoyed."}
 
 </p>
+
+<div
+class="
+relative
+overflow-hidden
+rounded-4xl
+shadow-2xl
+border
+border-slate-200/70
+dark:border-slate-700/70
+">
+
+<div
+class="
+absolute
+inset-0
+bg-[radial-gradient(circle_at_top_left,rgba(249,115,22,0.16),transparent_40%)]
+opacity-100
+pointer-events-none
+"></div>
 
 <img
 
@@ -120,156 +232,139 @@ w-full
 h-137.5
 object-cover
 rounded-4xl
-shadow-2xl
 transition-transform
 duration-700
 hover:scale-[1.02]
+relative
+z-10
 "
 
 onerror="this.onerror=null;this.src='/images/thumbnail/praroz-thumbnail.png'"
 
 >
 
-</section>
+</div>
 
-<!-- QUICK INFO -->
+<!-- Mobile-only quick info -->
 
 <section
 class="
 grid
 grid-cols-2
 lg:grid-cols-4
-gap-6
+gap-4
+sm:gap-6
 " data-reveal="up">
 
 <div
 class="
 rounded-3xl
-bg-white
-dark:bg-slate-900
+bg-white/70
+dark:bg-slate-900/60
 border
 border-slate-200
 dark:border-slate-700
 shadow-lg
 p-6
 text-center
+backdrop-blur
 ">
 
-<div class="text-4xl mb-3">⏱</div>
+<div class="text-4xl mb-2">⏱</div>
 
-<p class="text-sm uppercase text-slate-500">
+<p class="text-xs sm:text-sm uppercase text-slate-500">Prep Time</p>
 
-Prep Time
-
-</p>
-
-<p class="text-xl font-bold mt-2">
-
-${extra.prepTime || "N/A"}
-
-</p>
+<p class="text-base sm:text-xl font-bold mt-2">${extra.prepTime || "N/A"}</p>
 
 </div>
 
 <div
 class="
 rounded-3xl
-bg-white
-dark:bg-slate-900
+bg-white/70
+dark:bg-slate-900/60
 border
 border-slate-200
 dark:border-slate-700
 shadow-lg
 p-6
 text-center
+backdrop-blur
 ">
 
-<div class="text-4xl mb-3">🔥</div>
+<div class="text-4xl mb-2">🔥</div>
 
-<p class="text-sm uppercase text-slate-500">
+<p class="text-xs sm:text-sm uppercase text-slate-500">Cook Time</p>
 
-Cook Time
-
-</p>
-
-<p class="text-xl font-bold mt-2">
-
-${extra.cookTime || "N/A"}
-
-</p>
+<p class="text-base sm:text-xl font-bold mt-2">${extra.cookTime || "N/A"}</p>
 
 </div>
 
 <div
 class="
 rounded-3xl
-bg-white
-dark:bg-slate-900
+bg-white/70
+dark:bg-slate-900/60
 border
 border-slate-200
 dark:border-slate-700
 shadow-lg
 p-6
 text-center
+backdrop-blur
 ">
 
-<div class="text-4xl mb-3">🍽</div>
+<div class="text-4xl mb-2">🍽</div>
 
-<p class="text-sm uppercase text-slate-500">
+<p class="text-xs sm:text-sm uppercase text-slate-500">Servings</p>
 
-Servings
-
-</p>
-
-<p class="text-xl font-bold mt-2">
-
-${extra.servings || "N/A"}
-
-</p>
+<p class="text-base sm:text-xl font-bold mt-2">${extra.servings || "N/A"}</p>
 
 </div>
 
 <div
 class="
 rounded-3xl
-bg-white
-dark:bg-slate-900
+bg-white/70
+dark:bg-slate-900/60
 border
 border-slate-200
 dark:border-slate-700
 shadow-lg
 p-6
 text-center
+backdrop-blur
 ">
 
-<div class="text-4xl mb-3">🥣</div>
+<div class="text-4xl mb-2">🥣</div>
 
-<p class="text-sm uppercase text-slate-500">
+<p class="text-xs sm:text-sm uppercase text-slate-500">Calories</p>
 
-Calories
-
-</p>
-
-<p class="text-xl font-bold mt-2">
-
-${nutrition.calories || "N/A"}
-
-</p>
+<p class="text-base sm:text-xl font-bold mt-2">${nutrition.calories || "N/A"}</p>
 
 </div>
 
 </section>
 
-<!-- INGREDIENTS + INSTRUCTIONS -->
+</section>
+
+<!-- TWO-COLUMN EDITORIAL LAYOUT -->
 
 <section
 class="
 grid
-lg:grid-cols-2
-gap-12
+lg:grid-cols-[1.05fr_0.95fr]
+gap-8
+lg:gap-12
 " data-reveal="up">
 
-<!-- INGREDIENTS -->
+<!-- LEFT COLUMN: Ingredients / Equipment / Nutrition / Notes -->
+
+<div
+class="
+space-y-6
+lg:space-y-8
+">
 
 <div
 class="
@@ -280,14 +375,16 @@ border
 border-slate-200
 dark:border-slate-700
 shadow-xl
-p-8
+p-7
+sm:p-8
 ">
 
 <h2
 class="
-text-3xl
+text-2xl
+sm:text-3xl
 font-bold
-mb-8
+mb-6
 ">
 
 Ingredients
@@ -296,7 +393,8 @@ Ingredients
 
 <ul
 class="
-space-y-5
+space-y-4
+sm:space-y-5
 ">
 
 ${ingredients
@@ -308,6 +406,10 @@ class="
 flex
 items-start
 gap-4
+p-3
+rounded-2xl
+hover:bg-orange-500/5
+transition-colors
 ">
 
 <div
@@ -321,6 +423,7 @@ flex
 items-center
 justify-center
 shrink-0
+shadow-md
 ">
 
 <i class="fas fa-check"></i>
@@ -329,7 +432,8 @@ shrink-0
 
 <span
 class="
-text-lg
+text-base
+sm:text-lg
 leading-8
 text-slate-700
 dark:text-slate-300
@@ -347,7 +451,74 @@ ${i.trim()}
 
 </div>
 
-<!-- INSTRUCTIONS -->
+<div
+class="
+rounded-4xl
+bg-white
+dark:bg-slate-900
+border
+border-slate-200
+dark:border-slate-700
+shadow-xl
+p-7
+sm:p-8
+">
+
+<h2
+class="
+text-2xl
+sm:text-3xl
+font-bold
+mb-4
+">
+
+Equipment
+
+</h2>
+
+<p class="text-slate-600 dark:text-slate-300 leading-8">
+
+A chef-loved setup for smooth cooking: sharp tools, clean prep, and a reliable pan.
+
+</p>
+
+<div class="mt-4 grid grid-cols-2 gap-3">
+
+<div class="rounded-2xl border border-slate-200 dark:border-slate-700 p-4 bg-slate-50/70 dark:bg-slate-800/30">
+
+<div class="text-3xl">🥄</div>
+
+<div class="mt-2 text-sm font-semibold text-slate-800 dark:text-slate-200">Mixing</div>
+
+</div>
+
+<div class="rounded-2xl border border-slate-200 dark:border-slate-700 p-4 bg-slate-50/70 dark:bg-slate-800/30">
+
+<div class="text-3xl">🍳</div>
+
+<div class="mt-2 text-sm font-semibold text-slate-800 dark:text-slate-200">Cooking</div>
+
+</div>
+
+<div class="rounded-2xl border border-slate-200 dark:border-slate-700 p-4 bg-slate-50/70 dark:bg-slate-800/30">
+
+<div class="text-3xl">🫙</div>
+
+<div class="mt-2 text-sm font-semibold text-slate-800 dark:text-slate-200">Storage</div>
+
+</div>
+
+<div class="rounded-2xl border border-slate-200 dark:border-slate-700 p-4 bg-slate-50/70 dark:bg-slate-800/30">
+
+<div class="text-3xl">🔪</div>
+
+<div class="mt-2 text-sm font-semibold text-slate-800 dark:text-slate-200">Prep</div>
+
+</div>
+
+</div>
+
+</div>
 
 <div
 class="
@@ -358,60 +529,19 @@ border
 border-slate-200
 dark:border-slate-700
 shadow-xl
-p-8
+p-7
+sm:p-8
 ">
 
 <h2
 class="
-text-3xl
+text-2xl
+sm:text-3xl
 font-bold
-mb-8
+mb-6
 ">
 
-Instructions
-
-</h2>
-
-<div
-class="
-[&>ol]:space-y-4
-[&>ol]:list-decimal
-[&>ol]:pl-7
-
-[&>ol>li]:rounded-2xl
-[&>ol>li]:border
-[&>ol>li]:border-slate-200
-dark:[&>ol>li]:border-slate-700
-[&>ol>li]:bg-slate-50
-dark:[&>ol>li]:bg-slate-800/40
-[&>ol>li]:p-5
-
-[&>ol>li]:marker:text-orange-500
-[&>ol>li]:marker:font-bold
-[&>ol>li]:marker:text-xl
-">
-
-${instructionsHtml}
-
-</div>
-
-</div>
-
-</section>
-<!-- NUTRITION -->
-
-<section data-reveal="up">
-
-<h2
-class="
-text-4xl
-font-bold
-mb-8
-text-slate-900
-dark:text-white
-">
-
-Nutrition Facts
+Nutrition
 
 </h2>
 
@@ -419,8 +549,9 @@ Nutrition Facts
 class="
 grid
 grid-cols-2
-lg:grid-cols-4
-gap-6
+sm:grid-cols-2
+lg:grid-cols-2
+gap-4
 ">
 
 ${[
@@ -455,24 +586,21 @@ border
 border-slate-200
 dark:border-slate-700
 shadow-lg
-hover:shadow-xl
 transition
 duration-300
-p-8
+p-6
 text-center
+hover:shadow-xl
 ">
 
-<div class="text-5xl mb-4">
-
-${item.icon}
-
-</div>
+<div class="text-4xl mb-3">${item.icon}</div>
 
 <p
 class="
 uppercase
 tracking-wider
-text-sm
+text-xs
+sm:text-sm
 text-slate-500
 ">
 
@@ -483,7 +611,8 @@ ${item.label}
 <p
 class="
 mt-3
-text-2xl
+text-lg
+sm:text-2xl
 font-bold
 text-slate-900
 dark:text-white
@@ -499,11 +628,116 @@ ${item.value}
 
 </div>
 
-</section>
+</div>
+
+<!-- Notes -->
+
+<div
+class="
+rounded-4xl
+bg-white
+dark:bg-slate-900
+border
+border-slate-200
+dark:border-slate-700
+shadow-xl
+p-7
+sm:p-8
+">
+
+<h2
+class="
+text-2xl
+sm:text-3xl
+font-bold
+mb-4
+">
+
+Notes
+
+</h2>
+
+<p class="text-slate-600 dark:text-slate-300 leading-8">
+
+Save this recipe and tweak with your favorite spices—premium flavor is always personal.
+
+</p>
+
+<div class="mt-5 flex flex-wrap gap-3">
+
+<span class="inline-flex items-center rounded-full border border-slate-200 dark:border-slate-700 bg-slate-50/70 dark:bg-slate-800/30 px-4 py-2 text-sm font-semibold text-slate-700 dark:text-slate-200">Make-ahead</span>
+
+<span class="inline-flex items-center rounded-full border border-slate-200 dark:border-slate-700 bg-slate-50/70 dark:bg-slate-800/30 px-4 py-2 text-sm font-semibold text-slate-700 dark:text-slate-200">Chef-friendly</span>
+
+<span class="inline-flex items-center rounded-full border border-slate-200 dark:border-slate-700 bg-slate-50/70 dark:bg-slate-800/30 px-4 py-2 text-sm font-semibold text-slate-700 dark:text-slate-200">Season to taste</span>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- RIGHT COLUMN: Instructions / Tips / Gallery -->
+
+<div
+class="
+space-y-6
+lg:space-y-8
+">
+
+<div
+class="
+rounded-4xl
+bg-white
+dark:bg-slate-900
+border
+border-slate-200
+dark:border-slate-700
+shadow-xl
+p-7
+sm:p-8
+">
+
+<h2
+class="
+text-2xl
+sm:text-3xl
+font-bold
+mb-6
+">
+
+Instructions
+
+</h2>
+
+<div
+class="
+[&>ol]:space-y-4
+[&>ol]:list-decimal
+[&>ol]:pl-7
+
+[&>ol>li]:rounded-2xl
+[&>ol>li]:border
+[&>ol>li]:border-slate-200
+
+dark:[&>ol>li]:border-slate-700
+[&>ol>li]:bg-slate-50
+
+dark:[&>ol>li]:bg-slate-800/40
+[&>ol>li]:p-5
+
+[&>ol>li]:marker:text-orange-500
+[&>ol>li]:marker:font-bold
+[&>ol>li]:marker:text-xl
+">
+
+${instructionsHtml}
+
+</div>
+
+</div>
 
 <!-- CHEF'S TIP -->
-
-<section data-reveal="up">
 
 <div
 class="
@@ -518,7 +752,8 @@ overflow-hidden
 
 <div
 class="
-p-10
+p-7
+sm:p-10
 ">
 
 <div
@@ -539,6 +774,7 @@ flex
 items-center
 justify-center
 text-3xl
+shadow-md
 ">
 
 👨‍🍳
@@ -549,7 +785,8 @@ text-3xl
 
 <h2
 class="
-text-3xl
+text-2xl
+sm:text-3xl
 font-bold
 ">
 
@@ -569,7 +806,8 @@ Professional cooking advice
 
 <p
 class="
-text-xl
+text-lg
+sm:text-xl
 leading-9
 italic
 ">
@@ -577,6 +815,94 @@ italic
 ${extra.chefTips || "No chef tips available for this recipe."}
 
 </p>
+
+</div>
+
+</div>
+
+<!-- Gallery (UI only; images use hero image as fallback since data model doesn't provide gallery) -->
+
+<div
+class="
+rounded-4xl
+bg-white
+dark:bg-slate-900
+border
+border-slate-200
+dark:border-slate-700
+shadow-xl
+p-7
+sm:p-8
+">
+
+<h2
+class="
+text-2xl
+sm:text-3xl
+font-bold
+mb-6
+">
+
+Gallery
+
+</h2>
+
+<div
+class="
+grid
+grid-cols-2
+gap-3
+">
+
+<div class="group overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50/70 dark:bg-slate-800/30">
+
+<img
+src="${imagePath}"
+alt="${selectedRecipe.name}"
+loading="lazy"
+class="w-full h-36 object-cover transition-transform duration-500 group-hover:scale-[1.06]"
+onerror="this.onerror=null;this.src='/images/thumbnail/praroz-thumbnail.png'"
+>
+
+</div>
+
+<div class="group overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50/70 dark:bg-slate-800/30">
+
+<img
+src="${imagePath}"
+alt="${selectedRecipe.name}"
+loading="lazy"
+class="w-full h-36 object-cover transition-transform duration-500 group-hover:scale-[1.06]"
+onerror="this.onerror=null;this.src='/images/thumbnail/praroz-thumbnail.png'"
+>
+
+</div>
+
+<div class="group overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50/70 dark:bg-slate-800/30">
+
+<img
+src="${imagePath}"
+alt="${selectedRecipe.name}"
+loading="lazy"
+class="w-full h-36 object-cover transition-transform duration-500 group-hover:scale-[1.06]"
+onerror="this.onerror=null;this.src='/images/thumbnail/praroz-thumbnail.png'"
+>
+
+</div>
+
+<div class="group overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50/70 dark:bg-slate-800/30">
+
+<img
+src="${imagePath}"
+alt="${selectedRecipe.name}"
+loading="lazy"
+class="w-full h-36 object-cover transition-transform duration-500 group-hover:scale-[1.06]"
+onerror="this.onerror=null;this.src='/images/thumbnail/praroz-thumbnail.png'"
+>
+
+</div>
+
+</div>
 
 </div>
 
@@ -703,6 +1029,7 @@ Submit Your Recipe
 </section>
 
 `;
+
         const redirectBtn = document.querySelector(".redirect-button");
 
         if (redirectBtn) {

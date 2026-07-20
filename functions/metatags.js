@@ -33,14 +33,14 @@ module.exports = {
     image: "https://praroz.onrender.com/images/thumbnail/praroz_thumbnail.webp",
   },
 
-  salad: {
+  salads: {
     title: "Salad Recipes | Fresh & Healthy Homemade Salads",
     description:
       "Browse healthy homemade salad recipes made with fresh vegetables, fruits and flavorful dressings for every meal.",
     image: "https://praroz.onrender.com/images/thumbnail/praroz_thumbnail.webp",
   },
 
-  burger: {
+  burgers: {
     title: "Burger Recipes | Homemade Beef, Chicken & Veggie Burgers",
     description:
       "Learn how to make juicy homemade burgers including beef burgers, chicken burgers and delicious veggie burgers with easy recipes.",

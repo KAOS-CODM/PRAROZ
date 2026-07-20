@@ -595,16 +595,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 `;
             
             });
-            setTimeout(() => {
-            
-                list.firstElementChild?.scrollIntoView({
-                    behavior:"smooth",
-                    block:"nearest"
-                });
-            
-            },500);
+            // setTimeout(() => {
+            // 
+            //     list.firstElementChild?.scrollIntoView({
+            //         behavior:"smooth",
+            //         block:"nearest"
+            //     });
+            // 
+            // },500);
     
     }
+
 
     function renderComment(comment) {
     
