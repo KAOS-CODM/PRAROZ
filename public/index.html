@@ -419,20 +419,94 @@
             </div>
         </section>
 
-        <section class="mt-12 overflow-hidden rounded-4xl border border-stone-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900" data-reveal="up">
+        <!-- Newsletter CTA -->
+        <section
+            class="mt-12 overflow-hidden rounded-4xl border border-stone-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900"
+            data-reveal="up"
+        >
             <div class="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+        
+                <!-- Content -->
                 <div class="bg-[linear-gradient(135deg,rgba(249,115,22,0.12),rgba(251,191,36,0.16))] p-8 sm:p-10">
-                    <p class="text-sm font-semibold uppercase tracking-[0.25em] text-orange-600">Stay inspired</p>
-                    <h2 class="mt-3 text-3xl font-semibold text-slate-900 dark:text-white">Get fresh weekly recipes straight to your inbox</h2>
-                    <p class="mt-4 text-lg leading-8 text-slate-600 dark:text-slate-300">Join the Praroz newsletter for seasonal meal ideas, kitchen tips, and early access to new recipes.</p>
-                    <div class="mt-6 flex flex-col gap-3 sm:flex-row">
-                        <input type="email" aria-label="Email address" placeholder="Your email address" class="w-full rounded-full border border-slate-300 bg-white px-4 py-3 text-sm text-slate-700 outline-none ring-0 focus:border-orange-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100" />
-                        <button type="button" class="rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-orange-600 dark:bg-orange-500 dark:hover:bg-orange-600">Join newsletter</button>
-                    </div>
+        
+                    <p class="text-sm font-semibold uppercase tracking-[0.25em] text-orange-600">
+                        Stay Inspired
+                    </p>
+        
+                    <h2 class="mt-3 text-3xl font-semibold text-slate-900 dark:text-white">
+                        Get fresh weekly recipes straight to your inbox
+                    </h2>
+        
+                    <p class="mt-4 text-lg leading-8 text-slate-600 dark:text-slate-300">
+                        Join the PraRoz newsletter for seasonal recipes, cooking tips, exclusive updates, and early access to newly published meals.
+                    </p>
+        
+                    <form
+                        id="newsletter-form"
+                        class="mt-8 space-y-4"
+                        autocomplete="off"
+                    >
+        
+                        <!-- Name -->
+                        <input
+                            id="newsletter-name"
+                            name="name"
+                            type="text"
+                            placeholder="Your name"
+                            required
+                            maxlength="80"
+                            class="w-full rounded-full border border-slate-300 bg-white px-5 py-3 text-sm text-slate-700 outline-none transition focus:border-orange-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+                        >
+        
+                        <!-- Email -->
+                        <div class="flex flex-col gap-3 sm:flex-row">
+        
+                            <input
+                                id="newsletter-email"
+                                name="email"
+                                type="email"
+                                placeholder="Your email address"
+                                required
+                                maxlength="255"
+                                class="w-full rounded-full border border-slate-300 bg-white px-5 py-3 text-sm text-slate-700 outline-none transition focus:border-orange-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+                            >
+        
+                            <button
+                                id="newsletter-submit"
+                                type="submit"
+                                class="rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-orange-600 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-orange-500 dark:hover:bg-orange-600"
+                            >
+                                Join Newsletter
+                            </button>
+        
+                        </div>
+        
+                        <!-- Status Message -->
+                        <p
+                            id="newsletter-message"
+                            class="hidden text-sm font-medium"
+                        ></p>
+        
+                        <p class="text-xs text-slate-500 dark:text-slate-400">
+                            We respect your privacy. No spam—unsubscribe anytime.
+                        </p>
+        
+                    </form>
+        
                 </div>
+        
+                <!-- Image -->
                 <div class="flex items-center justify-center p-6 sm:p-10">
-                    <img src="/images/thumbnail/praroz-thumbnail.webp" alt="Fresh recipe inspiration" class="h-72 w-full max-w-md rounded-3xl object-cover shadow-lg" loading="lazy">
+        
+                    <img
+                        src="/images/thumbnail/praroz-thumbnail.webp"
+                        alt="Fresh recipe inspiration"
+                        class="h-72 w-full max-w-md rounded-3xl object-cover shadow-lg"
+                        loading="lazy"
+                    >
+        
                 </div>
+        
             </div>
         </section>
 
@@ -459,5 +533,6 @@
     <script src="/js/footer.js" defer></script>
     <script src="/js/darkmode.js" defer></script>
     <script src="/js/reveal.js" defer></script>
+    <script src="/js/subscribe.js" defer></script>
 </body>
 </html>

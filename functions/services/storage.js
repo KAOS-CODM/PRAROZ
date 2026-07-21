@@ -1,12 +1,14 @@
 const path = require("path");
 const fs = require("fs");
-const { Recipe, Submission, Comment, Contact } = require("../models");
+const { Recipe, Submission, Comment, Contact, Subscribe } = require("../models");
 const { isMongoConnected } = require("../database");
 const {
     readJSON,
     writeJSON,
     readComments,
     writeComments,
+    readSubscribers,
+    writeSubscribers,
 } = require("./jsonFallback");
 
 const DATA_FOLDER = path.join(__dirname, "..", "data");
@@ -194,112 +196,6 @@ async function useMongo(operation, fallback) {
 
 const storage = {
 
-    /* =====================
-       GET ALL RECIPES
-    ===================== */
-    //async getRecipes(filter = {})
-     /*async getRecipes({ filter = {}, page = 1, limit = 12 }) {
-        return useMongo(
-    
-            async () => {
-    
-                //const recipes = await Recipe.find(filter).lean();
-    
-                //return recipes.map(formatRecipe);
-
-                const totalRecipes = await Recipe.countDocuments(filter);
-                const totalPages= Math.ceil(totalRecipes / limit);
-                const validPage= Math.max(1, Math.min(page, totalPages || 1));
-                
-                const recipes = await Recipe.find(filter)
-                    .sort({ created_at: -1 })
-                    .skip((validPage - 1) * limit)
-                    .limit(limit)
-                    .lean();
-                
-                return {
-                    recipes: recipes.map(formatRecipe),
-                
-                    pagination: {
-                        page: validPage,
-                        limit,
-                        totalRecipes,
-                        totalPages: Math.ceil(totalRecipes / limit),
-                        hasPrev: page > 1,
-                        hasNext: page * limit < totalRecipes
-                    }
-                };
-    
-            },
-    
-            () => {
-    
-                const files = getAllRecipeFiles();
-    
-                let recipes = [];
-    
-                for (const file of files) {
-    
-                    const category = file.replace(".json", "");
-    
-                    const items =
-                        readJSON(path.join(RECIPES_DIR, file)) || [];
-    
-                    recipes.push(
-    
-                        ...items.map(recipe => ({
-                            ...recipe,
-                            category
-                        }))
-    
-                    );
-    
-                }
-    
-                if (filter.category) {
-    
-                    recipes = recipes.filter(recipe => {
-    
-                        if (filter.category instanceof RegExp) {
-                            return filter.category.test(recipe.category);
-                        }
-    
-                        return (
-                            normalize(recipe.category) ===
-                            normalize(filter.category)
-                        );
-    
-                    });
-    
-                }
-    
-                //return recipes.map(formatRecipe);
-                const totalRecipes = recipes.length;
-                const totalPages= Math.ceil(totalRecipes / limit);
-                const validPage= Math.max(1, Math.min(page, totalPages || 1));
-                
-                const paginatedRecipes = recipes.slice(
-                    (validPage - 1) * limit,
-                    validPage * limit
-                );
-                
-                return {
-                    recipes: paginatedRecipes.map(formatRecipe),
-                
-                    pagination: {
-                        page: validPage,
-                        limit,
-                        totalRecipes,
-                        totalPages,
-                        hasPrev: page > 1,
-                        hasNext: page * limit < totalRecipes
-                    }
-                };
-    
-            }
-    
-        );
-    },*/
     async getRecipes({ filter = {}, page = 1, limit = 12 }) {
         return useMongo(
             async () => {
@@ -1214,6 +1110,94 @@ const storage = {
                 return contact;
             }
     
+        );
+    },
+
+    /* =====================
+       SUBSCRIBERS
+    ===================== */
+
+    async getSubscriber(email) {
+        return useMongo(
+
+            async () => {
+                if (!Subscribe) throw new Error("No Subscribe model");
+                return await Subscribe.findOne({ email }).lean();
+            },
+
+            () => {
+                const subscribers = readSubscribers();
+                return (Array.isArray(subscribers) ? subscribers : [])
+                    .find(sub => sub.email === email.toLowerCase().trim()) || null;
+            }
+
+        );
+    },
+
+    async createSubscriber(data) {
+        return useMongo(
+
+            async () => {
+                if (!Subscribe) throw new Error("No Subscribe model");
+                return await Subscribe.create(data);
+            },
+
+            () => {
+                const subscribers = readSubscribers();
+
+                const dataArr = Array.isArray(subscribers)
+                    ? subscribers
+                    : [];
+
+                dataArr.push(data);
+
+                writeSubscribers(dataArr);
+
+                return data;
+            }
+
+        );
+    },
+
+    async getSubscribers() {
+        return useMongo(
+
+            async () => {
+                if (!Subscribe) throw new Error("No Subscribe model");
+                return await Subscribe.find({})
+                    .sort({ subscribed_at: -1 })
+                    .lean();
+            },
+
+            () => {
+                const subscribers = readSubscribers();
+                return Array.isArray(subscribers) ? subscribers : [];
+            }
+
+        );
+    },
+
+    async deleteSubscriber(id) {
+        return useMongo(
+
+            async () => {
+                if (!Subscribe) throw new Error("No Subscribe model");
+                return await Subscribe.deleteOne({ id });
+            },
+
+            () => {
+                const subscribers = readSubscribers();
+
+                const updated = (Array.isArray(subscribers)
+                    ? subscribers
+                    : []
+                ).filter(sub => sub.id !== id);
+
+                writeSubscribers(updated);
+
+                return true;
+            }
+
         );
     },
 

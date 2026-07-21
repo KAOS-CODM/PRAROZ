@@ -14,6 +14,7 @@ const recipesRouter = require('./routes/recipes');
 const commentsRouter = require('./routes/comments');
 const adminRouter = require('./routes/admin');
 const contactRoutes = require("./routes/contact");
+const subscribeRoutes = require("./routes/subscribe");
 
 const rateLimit = require("express-rate-limit");
 
@@ -145,6 +146,7 @@ app.use('/api', recipesRouter);
 app.use('/api', commentsRouter);
 app.use('/api', apiLimiter, adminRouter);
 app.use('/api', contactLimiter, contactRoutes);
+app.use("/api", subscribeRoutes);
 
 // Serve static HTML with meta injection & SPA-style fallbacks
 app.use(pagesRouter);

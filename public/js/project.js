@@ -188,7 +188,7 @@ function renderCategoryHeroHtml({ page, title, description, image }) {
 
             <div class="relative grid gap-10 px-6 py-10 sm:px-8 sm:py-12 lg:grid-cols-[1.15fr_0.85fr] lg:px-12 lg:py-14">
                 <div class="space-y-7">
-                    <div class="inline-flex items-center gap-2 rounded-full border border-orange-200 bg-orange-50 px-4 py-2 text-sm font-semibold text-orange-700 dark:border-orange-500 dark:bg-orange-500 dark:text-orange-300">
+                    <div class="inline-flex items-center gap-2 rounded-full border border-orange-200 bg-orange-50 px-4 py-2 text-sm font-semibold text-orange-700 dark:border-orange-500 dark:bg-orange-500 dark:text-gray-300">
                         <i class="fa-solid fa-fire"></i>
                         ${escapeHtml(categoryName)} • Premium recipes
                     </div>
