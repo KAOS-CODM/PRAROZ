@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
                            class="flex items-center gap-4 p-3 border-b border-stone-100 hover:bg-orange-50 transition-all duration-200 dark:border-slate-700 dark:hover:bg-slate-800 last:border-b-0">
                             <img src="${recipe.image || '/images/thumbnail/praroz-thumbnail.png'}" 
                                  alt="${recipe.name}" 
-                                 onerror="this.onerror=null;this.src='/images/thumbnail/praroz-thumbnail.png'"
+                                 data-fallback="true"
                                  class="w-14 h-14 object-cover rounded-lg shrink-0"
                             />
                             <div class="flex-1 min-w-0">

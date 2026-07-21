@@ -95,7 +95,7 @@
                     src="${getRecipeImage(recipe)}"
                     alt="${recipe.name || "Recipe image"}"
                     class="h-44 w-full object-cover transition duration-300 group-hover:scale-105"
-                    onerror="this.onerror=null;this.src='/images/download.webp';"
+                    data-fallback="true"
                   />
                 </div>
                 <div class="mt-4 flex items-start justify-between gap-3">

@@ -98,7 +98,7 @@ function renderRecipeSectionHtml({ recipes, page, revealBaseDelayMs }) {
                             alt="PraRoz - ${escapeHtmlAttr(safeName)}"
                             loading="lazy"
                             class="h-64 w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                            onerror="this.onerror=null;this.src='/images/thumbnail/praroz-thumbnail.png';"
+                            data-fallback="true"
                         />
 
                         <div class="absolute left-4 top-4">
@@ -223,7 +223,7 @@ function renderCategoryHeroHtml({ page, title, description, image }) {
                         alt="${escapeHtml(title || categoryName)}"
                         class="h-72 w-full object-cover transition-transform duration-700 hover:scale-[1.02]"
                         loading="eager"
-                        onerror="this.onerror=null;this.src='/images/thumbnail/praroz-thumbnail.png';"
+                        data-fallback="true"
                     />
 
                     <div class="relative p-6">
@@ -256,13 +256,30 @@ function renderCategoryHeroHtml({ page, title, description, image }) {
             </div>
         </section>
 
-        <div class="mt-8" data-reveal="up">
+        <div
+            class="mt-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-lg backdrop-blur-sm dark:border-slate-700 dark:bg-slate-900"
+            data-reveal="up"
+        >
             <div class="flex items-end justify-between gap-4">
                 <div>
-                    <p class="text-sm font-semibold uppercase tracking-[0.25em] text-orange-600 dark:text-orange-400">Discover</p>
-                    <h2 class="mt-2 text-3xl font-semibold text-slate-900 dark:text-white">Browse & save your next meal</h2>
+                    <p class="text-sm font-semibold uppercase tracking-[0.25em] text-orange-600 dark:text-orange-400">
+                        Discover
+                    </p>
+        
+                    <h2 class="mt-2 text-3xl font-bold text-slate-900 dark:text-white">
+                        Browse & save your next meal
+                    </h2>
+        
+                    <p class="mt-3 max-w-2xl text-slate-600 dark:text-slate-300">
+                        Explore delicious recipes from every category, save your favourites,
+                        and discover your next family meal.
+                    </p>
                 </div>
-                <a href="/explore" class="hidden text-sm font-semibold text-slate-600 transition hover:text-orange-600 sm:inline-flex dark:text-slate-300">
+        
+                <a
+                    href="/explore"
+                    class="rounded-xl bg-gray-500 px-5 py-3 font-semibold text-white transition hover:bg-orange-600"
+                >
                     See all
                 </a>
             </div>

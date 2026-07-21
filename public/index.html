@@ -438,7 +438,7 @@
 
         <section class="mt-12 flex justify-center" data-reveal="up">
             <button
-                onclick="continueToSite()"
+                id="continue-btn"
                 class="rounded-full border border-orange-200 bg-white px-8 py-3 text-sm font-semibold text-orange-700 shadow-sm transition hover:-translate-y-0.5 hover:bg-orange-50 dark:border-orange-500 dark:bg-slate-900 dark:text-orange-300"
                 type="button"
             >
@@ -450,11 +450,8 @@
     <div id="dynamic-footer" class="mt-auto"></div>
 
     <script src="/js/config.js" defer></script>
-    <script>
-        function continueToSite() {
-            localStorage.setItem("lastLandingTime", Date.now());
-            window.location.href = "/explore";
-        }
+    <script src="/js/continue.js">
+        
     </script>
     <script src="/js/navbar.js" defer></script>
     <script src="/js/sidebar.js" defer></script>

@@ -8,13 +8,13 @@
                 "<p>From the early days of handwritten notes and shared kitchen experiments, PraRoz has grown into a global platform that brings people together through the love of food.",
                 "We strive to maintain the authenticity of traditional recipes while embracing the creativity of modern cuisine.</p>",
                 "<h2>Our Mission</h2> <p>At PraRoz, our mission is simple:</p>",
-                "<ul> <p><strong>🍲 Bringing People Together:</strong> We believe food is more than just sustenance—it's a way to connect with others, share cultures, and create memories.</p>",
-                "<p><strong>📚 Educating & Inspiring:</strong> Whether you're a beginner or an expert, we provide clear, well-tested recipes to help you improve your cooking skills.</p> <p><strong>🌎 Celebrating Diversity:</strong>",
-                "From classic comfort foods to international delicacies, we explore a world of flavors and techniques.</p> <p><strong>🚀 Innovating for the Future:</strong> With dynamic content, smart recipe suggestions, and a growing community, we’re always looking ahead.</p></ul>",
+                "<ul> <p><strong> Bringing People Together:</strong> We believe food is more than just sustenance—it's a way to connect with others, share cultures, and create memories.</p>",
+                "<p><strong> Educating & Inspiring:</strong> Whether you're a beginner or an expert, we provide clear, well-tested recipes to help you improve your cooking skills.</p> <p><strong> Celebrating Diversity:</strong>",
+                "From classic comfort foods to international delicacies, we explore a world of flavors and techniques.</p> <p><strong> Innovating for the Future:</strong> With dynamic content, smart recipe suggestions, and a growing community, we’re always looking ahead.</p></ul>",
                 "<h2>Meet the Creators</h2> <p>PraRoz was founded by a group of passionate individuals who combined their expertise in <strong>cooking, content creation, and technology</strong>.",
                 "Each recipe, guide, and tutorial is carefully curated by our team to ensure quality, authenticity, and ease of use. We are constantly growing, collaborating, and learning from our amazing community.</p>",
                 "<p><em>Thank you for being part of our journey. Let’s cook, create, and share—one delicious dish at a time!</em></p>",
-                "<li><strong>📧 You can contact Us at </strong> <a href='/contact'>our contact page</a></li>"
+                "<li><strong> You can contact Us at </strong> <a href=/contact>our contact page</a></li>"
             ],
             "image":"images/thumbnail/praroz-thumbnail.png"
         },
@@ -44,19 +44,19 @@
             "Whether you have a question, feedback, or just want to say hello, feel free to reach out to us.</p>",
             "<p>Our team is dedicated to ensuring you have the best experience on PraRoz, ",
             "and we're always happy to assist you.</p>",
-            "<h2>📩 Contact Information</h2>",
-            "<ul> <p><strong>📧 Email:</strong>",
-            "<a href='mailto:support@praroz.com'>support@praroz.com</a></p>",
-            "<p><strong>📞 Phone:</strong> +1 (234) 567-890</p>",
-            "<p><strong>📍 Address:</strong> 123 Culinary Street, Food City, FC 56789</p>",
-            "</ul> <h2>📢 Connect with Us on Social Media</h2>",
+            "<h2> Contact Information</h2>",
+            "<ul> <p><strong> Email:</strong>",
+            "<a href=mailto:support@praroz.com>support@praroz.com</a></p>",
+            "<p><strong> Phone:</strong> +1 (234) 567-890</p>",
+            "<p><strong> Address:</strong> 123 Culinary Street, Food City, FC 56789</p>",
+            "</ul> <h2> Connect with Us on Social Media</h2>",
             "<p>Stay updated with our latest recipes, cooking tips, and food ",
             "inspiration by following us on social media:</p> <ul> <p><strong>",
-            "Facebook:</strong> <a href='#' target='_blank'><i class='fab fa-facebook'></i></a></p>",
-            "<p><strong> Instagram:</strong> <a href='#' target='_blank'><i class='fab fa-instagram'></i></a></p>",
-            "<p><strong> Twitter:</strong> <a href='#' target='_blank'><i class='fab fa-x-twitter'></i></a></p> </ul>",
-            "<h2>💬 Customer Support</h2> <p>Have a specific issue or need assistance? Fill out our ",
-            "<a href='/contact-form'>Contact Form</a>, and we’ll get back to you as soon as possible.</p>",
+            "Facebook:</strong> <a href=# target='_blank'>Contact us via our Facebook Handle</a></p>",
+            "<p><strong> Instagram:</strong> <a href=# target='_blank'>Contact us via our Instagram Handle</a></p>",
+            "<p><strong> Twitter:</strong> <a href=# target='_blank'>Contact us via our X Handle</a></p> </ul>",
+            "<h2> Customer Support</h2> <p>Have a specific issue or need assistance? Fill out our ",
+            "<a href=/contact-form>Contact Form</a>, and we’ll get back to you as soon as possible.</p>",
             "<p><em>We appreciate your support and can't wait to hear from you!</em></p>"
         ],
         "image":"images/thumbnail/praroz-thumbnail.png"
@@ -126,7 +126,7 @@
     },
 
     "terms": {
-        "title": "📜 Terms & Conditions",
+        "title": " Terms & Conditions",
         "description": [
             "<p><strong>Effective Date:</strong> [Insert Date]</p><p><strong>Website:</strong> www.praroz.com  </p><p><strong>Owner:</strong> Praroz</p>",
             "<p>By accessing and using this website, you agree to be bound by the following Terms and Conditions. If you do not agree with any part of these terms, please do not use the site.</p>",
@@ -199,7 +199,7 @@
             { "name": "Contact Us", "url": "/contact" },
             { "name": "Terms & Conditions", "url": "/terms" },
             { "name": "Customer Support", "url": "/support" },
-            { "name": "Privacy Policy", "url": "/pirivacy" }
+            { "name": "Privacy Policy", "url": "/privacy" }
         ]
         },
         "social": {

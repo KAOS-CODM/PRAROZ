@@ -4,5 +4,17 @@ window.API_BASE_URL = isLocal
     ? "http://127.0.0.1:3000/api"
     : "https://praroz.onrender.com/api";
 
-    window.CLOUDINARY_CLOUD_NAME = "dbdtvd1qj"; 
-    window.CLOUDINARY_UPLOAD_PRESET = "PraRoz images"; 
+window.CLOUDINARY_CLOUD_NAME = "dbdtvd1qj"; 
+window.CLOUDINARY_UPLOAD_PRESET = "PraRoz images"; 
+
+// Global image error handler for CSP compliance
+// Replaces inline onerror attributes with a single listener
+document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("error", (e) => {
+        const target = e.target;
+        if (target.tagName === "IMG" && target.dataset.fallback !== undefined) {
+            target.src = "/images/thumbnail/praroz-thumbnail.webp";
+            target.removeAttribute("data-fallback");
+        }
+    }, true);
+});

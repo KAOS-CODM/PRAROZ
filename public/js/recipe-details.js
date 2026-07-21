@@ -239,7 +239,7 @@ relative
 z-10
 "
 
-onerror="this.onerror=null;this.src='/images/thumbnail/praroz-thumbnail.png'"
+data-fallback="true"
 
 >
 
@@ -861,7 +861,7 @@ src="${imagePath}"
 alt="${selectedRecipe.name}"
 loading="lazy"
 class="w-full h-36 object-cover transition-transform duration-500 group-hover:scale-[1.06]"
-onerror="this.onerror=null;this.src='/images/thumbnail/praroz-thumbnail.png'"
+data-fallback="true"
 >
 
 </div>
@@ -873,7 +873,7 @@ src="${imagePath}"
 alt="${selectedRecipe.name}"
 loading="lazy"
 class="w-full h-36 object-cover transition-transform duration-500 group-hover:scale-[1.06]"
-onerror="this.onerror=null;this.src='/images/thumbnail/praroz-thumbnail.png'"
+data-fallback="true"
 >
 
 </div>
@@ -885,7 +885,7 @@ src="${imagePath}"
 alt="${selectedRecipe.name}"
 loading="lazy"
 class="w-full h-36 object-cover transition-transform duration-500 group-hover:scale-[1.06]"
-onerror="this.onerror=null;this.src='/images/thumbnail/praroz-thumbnail.png'"
+data-fallback="true"
 >
 
 </div>
@@ -897,7 +897,7 @@ src="${imagePath}"
 alt="${selectedRecipe.name}"
 loading="lazy"
 class="w-full h-36 object-cover transition-transform duration-500 group-hover:scale-[1.06]"
-onerror="this.onerror=null;this.src='/images/thumbnail/praroz-thumbnail.png'"
+data-fallback="true"
 >
 
 </div>

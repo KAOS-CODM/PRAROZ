@@ -113,7 +113,7 @@ function createCategoryCard(category) {
           alt="${escapeHtml(name)} preview"
           class="h-16 w-16 rounded-xl object-cover ring-1 ring-white/40 shadow-sm dark:ring-white/10"
           loading="lazy"
-          onerror="this.onerror=null;this.src='${FALLBACK_IMAGE}';"
+          data-fallback="true"
         />
       `;
     })
@@ -288,7 +288,7 @@ function renderLatestRecipes(sectionContainer, recipes) {
                       alt="${escapeHtml(name)}"
                       loading="lazy"
                       class="h-56 w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                      onerror="this.onerror=null;this.src='${FALLBACK_IMAGE}';"
+                      data-fallback="true"
                     />
                     <div class="absolute left-4 top-4">
                       <span class="inline-flex items-center rounded-full bg-white/90 px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-orange-600 shadow-sm dark:bg-slate-900/60">
@@ -387,7 +387,7 @@ function renderHero(contentsExplore, contentContainer) {
                             alt="${escapeHtml(title)}"
                             class="h-72 w-full object-cover transition-transform duration-700 hover:scale-[1.02]"
                             loading="eager"
-                            onerror="this.onerror=null;this.src='${FALLBACK_IMAGE}';"
+                            data-fallback="true"
                         />
                     </div>
 

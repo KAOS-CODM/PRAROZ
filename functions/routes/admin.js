@@ -98,7 +98,7 @@ router.post("/delete-recipe", requireAdmin, express.json(), async (req, res) => 
     try {
         const { id, type } = req.body;
 
-        if (type === "approved") {
+       /* if (type === "approved") {
             await storage.deleteRecipe(id);
         } else {
             await storage.deleteSubmission(id);
@@ -106,9 +106,18 @@ router.post("/delete-recipe", requireAdmin, express.json(), async (req, res) => 
 
         res.json({
             message: "Recipe deleted successfully",
-        });
+        });*/
+        if (!["approved", "submission"].includes(type)) {
+            return res.status(400).json({
+                message:"Invalid type"
+            });
 
-    } catch (err) {
+        }
+        
+        res.json({
+            message: "Recipe deleted successfully",
+        });
+    }catch (err) {
         console.error(err);
         res.status(500).json({
             message: "Error deleting recipe",

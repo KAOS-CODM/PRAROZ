@@ -11,12 +11,7 @@ const router = express.Router();
 const GA_SCRIPT = `
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWDGMK7KP6"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-RWDGMK7KP6');
-    </script>
+    <script src="/js/gtag.js"></script>
 `;
 
 const ADSENSE_META = {
@@ -607,8 +602,7 @@ router.get('/recipes/:category/:recipeSlug', async (req, res) => {
     // Preserve existing behavior: RECIPE_ID in the frontend.
     html = html.replace(
       '</body>',
-      `<script>
-window.RECIPE_ID = "${escapeHtml(recipe.id || '')}";
+      `<script src="/js/id.js">
 </script></body>`
     );
 

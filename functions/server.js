@@ -1,9 +1,11 @@
 require('dotenv').config();
+const helmet = require("helmet");
 const {connectDB} = require('./database');
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
+//const crypto = require("crypto");
 
 const app = express();
 
@@ -13,9 +15,105 @@ const commentsRouter = require('./routes/comments');
 const adminRouter = require('./routes/admin');
 const contactRoutes = require("./routes/contact");
 
+const rateLimit = require("express-rate-limit");
 
-app.use(express.urlencoded({ extended: true }));
+const apiLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 300
+});
+
+const contactLimiter = rateLimit({
+    windowMs: 60 * 60 * 1000,
+    max: 5
+});
+
+app.disable("x-powered-by");
+
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: [
+            "'self'",
+            "https://www.googletagmanager.com",
+            "https://www.google-analytics.com",
+            "https://www.google.com/recaptcha/",
+            "https://www.gstatic.com/recaptcha/"
+        ],
+    
+        frameSrc: [
+            "'self'",
+            "https://www.google.com/recaptcha/",
+            "https://recaptcha.google.com/recaptcha/"
+        ],
+        imgSrc: [
+            "'self'",
+            "data:",
+            "http://127.0.0.1:3000",
+            "http://localhost:3000",
+            "https://res.cloudinary.com",
+            "https://www.google-analytics.com"
+        ],
+        styleSrc: [
+          "'self'",
+          "'unsafe-inline'",
+          "https://fonts.googleapis.com"
+        ],
+        fontSrc: [
+          "'self'",
+          "https://fonts.gstatic.com",
+          "data:"
+        ],
+        connectSrc: [
+          "'self'",
+          "http://localhost:3000",
+          "http://127.0.0.1:3000",
+          "https://praroz-50094.web.app",
+          "https://praroz.onrender.com",
+          "https://www.google-analytics.com",
+          "https://www.google.com",
+          "https://www.google.com/recaptcha/"
+        ]
+      }
+    },
+    permissionsPolicy: {
+      features: {
+        camera: [],
+        microphone: [],
+        geolocation: [],
+        payment: []
+      }
+    },
+    hsts: {
+      maxAge: 31536000,
+      includeSubDomains: true,
+      preload: true
+    }
+  })
+);
+
+/*app.use((req, res, next) => {
+    res.locals.nonce = crypto.randomBytes(16).toString("base64");
+    next();
+});*/
+
+app.use(
+  cors({
+    origin: ['https://praroz-50094.web.app', 'http://localhost:3000'],
+    methods: [
+        "GET",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE"
+    ],
+    credentials: true,
+  })
+);
+
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Minimal cookie parsing (no external deps)
 app.use((req, _res, next) => {
@@ -30,13 +128,6 @@ app.use((req, _res, next) => {
   next();
 });
 
-app.use(
-  cors({
-    origin: ['https://praroz-50094.web.app', 'http://localhost:3000'],
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
-  })
-);
 
 app.use(
     express.static(
@@ -52,8 +143,8 @@ app.use('/images', express.static(path.join(__dirname, '../public/images')));
 // API routers
 app.use('/api', recipesRouter);
 app.use('/api', commentsRouter);
-app.use('/api', adminRouter);
-app.use('/api', contactRoutes);
+app.use('/api', apiLimiter, adminRouter);
+app.use('/api', contactLimiter, contactRoutes);
 
 // Serve static HTML with meta injection & SPA-style fallbacks
 app.use(pagesRouter);
