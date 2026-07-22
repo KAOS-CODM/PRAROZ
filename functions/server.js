@@ -35,37 +35,50 @@ app.use(
     contentSecurityPolicy: {
       directives: {
         defaultSrc: ["'self'"],
+
         scriptSrc: [
-            "'self'",
-            "https://www.googletagmanager.com",
-            "https://www.google-analytics.com",
-            "https://www.google.com/recaptcha/",
-            "https://www.gstatic.com/recaptcha/"
+          "'self'",
+          "https://pagead2.googlesyndication.com",
+          "https://*.googlesyndication.com",
+          "https://googleads.g.doubleclick.net",
+          "https://*.doubleclick.net",
+          "https://www.googletagmanager.com",
+          "https://www.google-analytics.com",
+          "https://www.google.com",
+          "https://www.google.com/recaptcha/",
+          "https://www.gstatic.com",
+          "https://www.gstatic.com/recaptcha/",
+          "https://adtrafficquality.google",
+          "https://*.adtrafficquality.google"
         ],
-    
-        frameSrc: [
-            "'self'",
-            "https://www.google.com/recaptcha/",
-            "https://recaptcha.google.com/recaptcha/"
-        ],
-        imgSrc: [
-            "'self'",
-            "data:",
-            "http://127.0.0.1:3000",
-            "http://localhost:3000",
-            "https://res.cloudinary.com",
-            "https://www.google-analytics.com"
-        ],
+
         styleSrc: [
           "'self'",
           "'unsafe-inline'",
           "https://fonts.googleapis.com"
         ],
+
         fontSrc: [
           "'self'",
           "https://fonts.gstatic.com",
           "data:"
         ],
+
+        imgSrc: [
+          "'self'",
+          "data:",
+          "blob:",
+          "http://localhost:3000",
+          "http://127.0.0.1:3000",
+          "https://res.cloudinary.com",
+          "https://pagead2.googlesyndication.com",
+          "https://*.googlesyndication.com",
+          "https://*.doubleclick.net",
+          "https://*.g.doubleclick.net",
+          "https://www.google-analytics.com",
+          "https:"
+        ],
+
         connectSrc: [
           "'self'",
           "http://localhost:3000",
@@ -73,11 +86,54 @@ app.use(
           "https://praroz-50094.web.app",
           "https://praroz.onrender.com",
           "https://www.google-analytics.com",
+          "https://region1.google-analytics.com",
+          "https://pagead2.googlesyndication.com",
+          "https://*.googlesyndication.com",
+          "https://googleads.g.doubleclick.net",
+          "https://*.doubleclick.net",
+          "https://tpc.googlesyndication.com",
+          "https://adtrafficquality.google",
+          "https://*.adtrafficquality.google",
           "https://www.google.com",
           "https://www.google.com/recaptcha/"
-        ]
+        ],
+
+        frameSrc: [
+          "'self'",
+          "https://googleads.g.doubleclick.net",
+          "https://*.doubleclick.net",
+          "https://tpc.googlesyndication.com",
+          "https://*.googlesyndication.com",
+          "https://www.google.com",
+          "https://www.google.com/recaptcha/",
+          "https://recaptcha.google.com/recaptcha/",
+          "https://*.adtrafficquality.google/"
+        ],
+
+        childSrc: [
+          "'self'",
+          "https://googleads.g.doubleclick.net",
+          "https://tpc.googlesyndication.com"
+        ],
+
+        workerSrc: [
+          "'self'",
+          "blob:"
+        ],
+
+        mediaSrc: [
+          "'self'",
+          "https:"
+        ],
+
+        objectSrc: ["'none'"],
+
+        baseUri: ["'self'"],
+
+        formAction: ["'self'"]
       }
     },
+
     permissionsPolicy: {
       features: {
         camera: [],
@@ -86,6 +142,7 @@ app.use(
         payment: []
       }
     },
+
     hsts: {
       maxAge: 31536000,
       includeSubDomains: true,

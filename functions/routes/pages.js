@@ -131,6 +131,7 @@ function buildMetaTags(pageMeta, req) {
   const metaHtml = `
     ${buildTitleHtml(title)}
     <meta name="google-adsense-account" content="${sanitizeMeta(ADSENSE_META.content)}" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2855061272568390" crossorigin="anonymous"></script>
     ${buildDescriptionHtml(description)}
     ${buildKeywordsHtml(keywords)}
     ${buildAuthorHtml(author)}
